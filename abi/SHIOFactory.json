@@ -1,0 +1,36 @@
+[
+ {
+  "inputs": [],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "Rod",
+    "type": "address"
+   },
+   {
+    "internalType": "address",
+    "name": "Cone",
+    "type": "address"
+   },
+   {
+    "internalType": "address",
+    "name": "MathLib",
+    "type": "address"
+   }
+  ],
+  "name": "New",
+  "outputs": [
+   {
+    "internalType": "contract SHIO",
+    "name": "Zeta",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ }
+]

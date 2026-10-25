@@ -1,0 +1,41 @@
+{
+  "v": 1,
+  "generatedBy": "tools/dys_sim_bundle.py",
+  "pin": 27674000,
+  "compiler": "solc 0.8.21 (svm) \u00b7 --evm-version shanghai --optimize --optimize-runs 200",
+  "sourceRevision": "harness/fixtures/world-layer/sources.manifest",
+  "sourceManifestSha256": "383c1348f64e49579fcd0898c23145139a0e135a44b9c88d591e76ccf6190863",
+  "fixedVariants": "WORLDFIXED/WARFIXED are the fixture-fixed pair (VITUSFIXED/H2OFIXED deploy inside their constructors); ENCRYPT/GWAT are verbatim. The app ABIs are the WORLD/WAR interfaces; the deployed names in the runtime overlay stay WORLD/WAR.",
+  "variants": {
+    "ENCRYPT": "verbatim (self-registers as VOID's 'encrypt' library in its constructor)",
+    "WORLDFIXED": "fixture-fixed WORLD (+ VITUSFIXED inside): the verbatim constructor callback loop is patched; the cauda write is wired",
+    "WARFIXED": "fixture-fixed WAR (+ H2OFIXED inside): the verbatim constructor callback loop is patched",
+    "GWAT": "verbatim (read-only constructor against the live perimeter + WAR)"
+  },
+  "files": {
+    "encrypt": {
+      "file": "encrypt.creation.hex",
+      "contract": "ENCRYPT",
+      "bytes": 14301,
+      "sha256": "e30ea16679c57b75b414109aa75611b5bd1a61d6c6631ee7bcec7c7e0f03a7ce"
+    },
+    "worldfixed": {
+      "file": "worldfixed.creation.hex",
+      "contract": "WORLDFIXED",
+      "bytes": 20780,
+      "sha256": "4acc1be9249a56428f6065e19703f04bc3d3159198ad910d18c3a6001fee6ec4"
+    },
+    "warfixed": {
+      "file": "warfixed.creation.hex",
+      "contract": "WARFIXED",
+      "bytes": 18079,
+      "sha256": "f51745e97b7d00285108956be85ba29b85a893481e8f2d19687723a7f17b3021"
+    },
+    "gwat": {
+      "file": "gwat.creation.hex",
+      "contract": "GWAT",
+      "bytes": 26509,
+      "sha256": "d91d58b7dcbffc4b08e94e796096b4ee4fae867646fa480d71c33191a72d97d3"
+    }
+  }
+}

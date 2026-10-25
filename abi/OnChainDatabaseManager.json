@@ -1,0 +1,1515 @@
+[
+ {
+  "inputs": [],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "targetField",
+    "type": "uint8"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "result",
+    "type": "uint256"
+   }
+  ],
+  "name": "FieldCalculated",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "oldValue",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "newValue",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "blockNumber",
+    "type": "uint256"
+   }
+  ],
+  "name": "JournalLogged",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint8",
+    "name": "targetIndex",
+    "type": "uint8"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "oldVal",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "newVal",
+    "type": "uint256"
+   }
+  ],
+  "name": "MutationTriggered",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "RecordDeleted",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "fieldCount",
+    "type": "uint8"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "flags",
+    "type": "uint8"
+   }
+  ],
+  "name": "RecordInserted",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "saltAmount",
+    "type": "uint8"
+   }
+  ],
+  "name": "SaltPurchased",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": false,
+    "internalType": "bytes32",
+    "name": "newFieldData",
+    "type": "bytes32"
+   }
+  ],
+  "name": "SubstrateDecayed",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "targetField",
+    "type": "uint8"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "result",
+    "type": "uint256"
+   }
+  ],
+  "name": "TableFieldCalculated",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "oldValue",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "newValue",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "blockNumber",
+    "type": "uint256"
+   }
+  ],
+  "name": "TableJournalLogged",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "TableRecordDeleted",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "fieldCount",
+    "type": "uint8"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "flags",
+    "type": "uint8"
+   }
+  ],
+  "name": "TableRecordInserted",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "triggeredIndex",
+    "type": "uint8"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "value",
+    "type": "uint256"
+   }
+  ],
+  "name": "TriggerExecuted",
+  "type": "event"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "op",
+    "type": "uint8"
+   }
+  ],
+  "name": "aggregateField",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "result",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "op",
+    "type": "uint8"
+   }
+  ],
+  "name": "aggregateFieldTable",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "result",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "saltAmount",
+    "type": "uint8"
+   }
+  ],
+  "name": "buySalt",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint256",
+    "name": "valA",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint256",
+    "name": "valB",
+    "type": "uint256"
+   },
+   {
+    "internalType": "uint8",
+    "name": "operator",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "targetField",
+    "type": "uint8"
+   }
+  ],
+  "name": "calculateField",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "result",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "",
+    "type": "uint8"
+   },
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "name": "columnWritePermissions",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "deleteRecord",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "deleteRecordTable",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "diyatContract",
+  "outputs": [
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "value",
+    "type": "uint8"
+   }
+  ],
+  "name": "enforceUniqueField",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "value",
+    "type": "uint8"
+   }
+  ],
+  "name": "enforceUniqueFieldTable",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "executeDecay",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "newFieldData",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "offsetBytes",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "sizeBytes",
+    "type": "uint8"
+   }
+  ],
+  "name": "getCustomField",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "result",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "offsetBytes",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "sizeBytes",
+    "type": "uint8"
+   }
+  ],
+  "name": "getCustomFieldTable",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "result",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "getRecord",
+  "outputs": [
+   {
+    "components": [
+     {
+      "internalType": "uint16",
+      "name": "recordId",
+      "type": "uint16"
+     },
+     {
+      "internalType": "uint8",
+      "name": "fieldCount",
+      "type": "uint8"
+     },
+     {
+      "internalType": "uint8",
+      "name": "flags",
+      "type": "uint8"
+     },
+     {
+      "internalType": "bytes32",
+      "name": "fieldData",
+      "type": "bytes32"
+     }
+    ],
+    "internalType": "struct OnChainDatabaseManager.Record",
+    "name": "rec",
+    "type": "tuple"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "getRecordTable",
+  "outputs": [
+   {
+    "components": [
+     {
+      "internalType": "uint16",
+      "name": "recordId",
+      "type": "uint16"
+     },
+     {
+      "internalType": "uint8",
+      "name": "fieldCount",
+      "type": "uint8"
+     },
+     {
+      "internalType": "uint8",
+      "name": "flags",
+      "type": "uint8"
+     },
+     {
+      "internalType": "bytes32",
+      "name": "fieldData",
+      "type": "bytes32"
+     }
+    ],
+    "internalType": "struct OnChainDatabaseManager.Record",
+    "name": "rec",
+    "type": "tuple"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "getStorageSlot",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "pure",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "getStorageSlot",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "pure",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "goldToken",
+  "outputs": [
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "fieldCount",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "flags",
+    "type": "uint8"
+   },
+   {
+    "internalType": "bytes32",
+    "name": "fieldData",
+    "type": "bytes32"
+   }
+  ],
+  "name": "insertRecord",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "fieldCount",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "flags",
+    "type": "uint8"
+   },
+   {
+    "internalType": "bytes32",
+    "name": "fieldData",
+    "type": "bytes32"
+   }
+  ],
+  "name": "insertRecordTable",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "indexA",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordIdB",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "indexB",
+    "type": "uint8"
+   }
+  ],
+  "name": "joinAndCompareFields",
+  "outputs": [
+   {
+    "internalType": "int256",
+    "name": "diff",
+    "type": "int256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "indexA",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint16",
+    "name": "tableIdB",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordIdB",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "indexB",
+    "type": "uint8"
+   }
+  ],
+  "name": "joinAndCompareFieldsTable",
+  "outputs": [
+   {
+    "internalType": "int256",
+    "name": "diff",
+    "type": "int256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   }
+  ],
+  "name": "lastDecayBlock",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint8",
+    "name": "shiftBytes",
+    "type": "uint8"
+   }
+  ],
+  "name": "migrateSchema",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "shiftBytes",
+    "type": "uint8"
+   }
+  ],
+  "name": "migrateSchemaTable",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "owner",
+  "outputs": [
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint8",
+    "name": "flagMask",
+    "type": "uint8"
+   }
+  ],
+  "name": "queryRecordsByFlag",
+  "outputs": [
+   {
+    "internalType": "uint16[]",
+    "name": "matches",
+    "type": "uint16[]"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "flagMask",
+    "type": "uint8"
+   }
+  ],
+  "name": "queryRecordsByFlagTable",
+  "outputs": [
+   {
+    "internalType": "uint16[]",
+    "name": "matches",
+    "type": "uint16[]"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "randomGenerator",
+  "outputs": [
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "name": "recordList",
+  "outputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "minVal",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "maxVal",
+    "type": "uint8"
+   }
+  ],
+  "name": "registerCheckConstraint",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "rollbackRecord",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   }
+  ],
+  "name": "rollbackRecordTable",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "address",
+    "name": "user",
+    "type": "address"
+   },
+   {
+    "internalType": "bool",
+    "name": "allowed",
+    "type": "bool"
+   }
+  ],
+  "name": "setColumnWritePermission",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_diyat",
+    "type": "address"
+   }
+  ],
+  "name": "setDiyatContract",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_goldToken",
+    "type": "address"
+   }
+  ],
+  "name": "setGoldToken",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_randomGenerator",
+    "type": "address"
+   }
+  ],
+  "name": "setRandomGenerator",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_registry",
+    "type": "address"
+   }
+  ],
+  "name": "setSystemRegistry",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "name": "sortedRecordsByLead",
+  "outputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "systemRegistry",
+  "outputs": [
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "",
+    "type": "uint8"
+   }
+  ],
+  "name": "tableCheckConstraints",
+  "outputs": [
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "minValue",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "maxValue",
+    "type": "uint8"
+   },
+   {
+    "internalType": "bool",
+    "name": "active",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "name": "tableRecordList",
+  "outputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "name": "tableSortedRecordsByLead",
+  "outputs": [
+   {
+    "internalType": "uint16",
+    "name": "",
+    "type": "uint16"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "indexA",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "indexB",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "operator",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "targetIndex",
+    "type": "uint8"
+   }
+  ],
+  "name": "transmute",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint8",
+    "name": "value",
+    "type": "uint8"
+   }
+  ],
+  "name": "validateCheckConstraint",
+  "outputs": [],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "indexA",
+    "type": "uint8"
+   }
+  ],
+  "name": "verifyForeignKey",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "indexA",
+    "type": "uint8"
+   }
+  ],
+  "name": "verifyForeignKeyTable",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableId",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint8",
+    "name": "index",
+    "type": "uint8"
+   },
+   {
+    "internalType": "address",
+    "name": "user",
+    "type": "address"
+   }
+  ],
+  "name": "verifyWritePermission",
+  "outputs": [],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "recordIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordIdB",
+    "type": "uint16"
+   }
+  ],
+  "name": "virtualJoinView",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "viewData",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint16",
+    "name": "tableIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordIdA",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "tableIdB",
+    "type": "uint16"
+   },
+   {
+    "internalType": "uint16",
+    "name": "recordIdB",
+    "type": "uint16"
+   }
+  ],
+  "name": "virtualJoinViewTable",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "viewData",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ }
+]

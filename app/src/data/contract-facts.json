@@ -1,0 +1,5680 @@
+{
+ "$generated": "2026-10-11T22:48:46+00:00",
+ "$sources": [
+  "abi/index.json",
+  "kb/contract-facts.md",
+  "config/addresses.json"
+ ],
+ "$skipped": [
+  "CROWS (no abi/index entry)",
+  "DO (no abi/index entry)",
+  "LibAttribute (no abi/index entry)",
+  "LibStrings (no abi/index entry)",
+  "ReactionsLib (no abi/index entry)",
+  "WITHOUT (no abi/index entry)"
+ ],
+ "contracts": {
+  "AFFECTION": {
+   "sourceContract": "IAlchemicalGold",
+   "file": "OnChainDatabaseManager.sol",
+   "address": "0x24F0154C1dCe548AdF15da2098Fdd8B8A3B8151D",
+   "abiFile": "IAlchemicalGold.json",
+   "factsCovered": false,
+   "functions": {
+    "burn(address,uint256)": {
+     "selector": "0x9dc29fac",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mint(address,uint256)": {
+     "selector": "0x40c10f19",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "CHAN": {
+   "sourceContract": "CHAN",
+   "file": "domain/sky/01_chan.sol",
+   "address": "0xe250bf9729076B14A8399794B61C72d0F4AeFcd8",
+   "abiFile": "CHAN.json",
+   "factsCovered": true,
+   "functions": {
+    "AddYue(address,address)": {
+     "selector": "0xd0ba60d1",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": [
+      "AlreadyAdded"
+     ]
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "OptIn(address,bool)": {
+     "selector": "0xfcfcea45",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "OptedIn(address,address)": {
+     "selector": "0xd70d37e6",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "ReactYue(address,address)": {
+     "selector": "0x7a9bd221",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "TransferYue(address,address)": {
+     "selector": "0x2621e0f8",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "AlreadyAdded",
+      "NotOrigin"
+     ]
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xie()": {
+     "selector": "0x313d246b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Yan(address)": {
+     "selector": "0x18025d89",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "YueForceTransfer(address,address,address,uint256)": {
+     "selector": "0x35cb27d7",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": [
+      "PlayerMustOptIn"
+     ]
+    },
+    "YueMintToOrigin(address)": {
+     "selector": "0xe4606fde",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "YueWithdraw(address,address,address,uint256)": {
+     "selector": "0xc4a3ab27",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": [
+      "PlayerMustOptIn"
+     ]
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "CHEON": {
+   "sourceContract": "CHEON",
+   "file": "domain/tang/02_cheon.sol",
+   "address": "0x3d23084cA3F40465553797b5138CFC456E61FB5D",
+   "abiFile": "CHEON.json",
+   "factsCovered": true,
+   "functions": {
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Sei()": {
+     "selector": "0x6456147b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Su(address)": {
+     "selector": "0x753a0c09",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "CHO": {
+   "sourceContract": "CHO",
+   "file": "domain/dan/01_cho.sol",
+   "address": "0xB6be11F0A788014C1F68C92F8D6CcC1AbF78F2aB",
+   "abiFile": "CHO.json",
+   "factsCovered": true,
+   "functions": {
+    "AddContractOwner(address,address)": {
+     "selector": "0x7fac92c1",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": []
+    },
+    "AddLibraryOwner(string)": {
+     "selector": "0x7c2bcc81",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": []
+    },
+    "AddSystemAddress(string,address)": {
+     "selector": "0x9377a2c3",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": [
+      "SystemAddress"
+     ]
+    },
+    "Addresses(string)": {
+     "selector": "0xac5bd44f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Aliases(uint256)": {
+     "selector": "0x1ca30a2f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Enter(address)": {
+     "selector": "0x37a2e752",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "InvalidOwnership"
+     ]
+    },
+    "Entropy()": {
+     "selector": "0x40c48dfa",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetAddressBySoul(uint64)": {
+     "selector": "0x60844f9d",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetUser()": {
+     "selector": "0x5ee0f654",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetUserBySoul(uint64)": {
+     "selector": "0x37820e7a",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetUserSoul()": {
+     "selector": "0xe1ed6e72",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetUserTokenAddress(address)": {
+     "selector": "0xe80c28bf",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Gua()": {
+     "selector": "0xf0f80d26",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Luo()": {
+     "selector": "0x4431fbc4",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "On()": {
+     "selector": "0x85bcb519",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Qu(uint256)": {
+     "selector": "0xdc8849d0",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "React(uint64)": {
+     "selector": "0x3b8052c9",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "ReactUser(uint64,uint64)": {
+     "selector": "0xeedf25f0",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "SoulNotEntered"
+     ]
+    },
+    "Reactor()": {
+     "selector": "0x929c6ca9",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Recall(tuple)": {
+     "selector": "0x997e9282",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Saat(uint256)": {
+     "selector": "0x088aee78",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "VerifyUserTokenPermissions(address)": {
+     "selector": "0xfcef603d",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Void()": {
+     "selector": "0xf4f6c22c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "has(address,string)": {
+     "selector": "0x9909afed",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "CHOA": {
+   "sourceContract": "CHOA",
+   "file": "domain/sky/02_choa.sol",
+   "address": "0x0f5a352fd4cA4850c2099C15B3600ff085B66197",
+   "abiFile": "CHOA.json",
+   "factsCovered": true,
+   "functions": {
+    "Chat(address,string)": {
+     "selector": "0xb340a780",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Play(address)": {
+     "selector": "0x74ff4718",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Sei()": {
+     "selector": "0x6456147b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Yuan(address)": {
+     "selector": "0xd6047e37",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "ErisSHIO": {
+   "sourceContract": "SHIO",
+   "file": "03_shio.sol",
+   "address": "0xE843765114992e18061498aeD708537cE9d924FA",
+   "abiFile": "SHIO.json",
+   "factsCovered": true,
+   "functions": {
+    "Cone()": {
+     "selector": "0x4970204f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Generate(uint64,uint64,uint64)": {
+     "selector": "0x85da8ff8",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Isolate()": {
+     "selector": "0x089c10b0",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Isomerize()": {
+     "selector": "0xece1af6b",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Log(uint64,uint64,string)": {
+     "selector": "0xdaeee482",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": []
+    },
+    "Magnetize()": {
+     "selector": "0x95fb8190",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": [
+      "ManifoldInequality",
+      "RingInequality",
+      "BarnInequality"
+     ]
+    },
+    "Manifold()": {
+     "selector": "0x03443a15",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Monopole()": {
+     "selector": "0x3cf93051",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "React(uint64)": {
+     "selector": "0x3b8052c9",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "ReactionInequalityError",
+      "ReactionZeroError"
+     ]
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rho()": {
+     "selector": "0xa4566950",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rod()": {
+     "selector": "0x25a28a8f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "FornaxSHIO": {
+   "sourceContract": "SHIO",
+   "file": "03_shio.sol",
+   "address": "0xF6C50fFE7efbDeE63A92E52A4D5E9afF7fb4A4D7",
+   "abiFile": "SHIO.json",
+   "factsCovered": true,
+   "functions": {
+    "Cone()": {
+     "selector": "0x4970204f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Generate(uint64,uint64,uint64)": {
+     "selector": "0x85da8ff8",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Isolate()": {
+     "selector": "0x089c10b0",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Isomerize()": {
+     "selector": "0xece1af6b",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Log(uint64,uint64,string)": {
+     "selector": "0xdaeee482",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": []
+    },
+    "Magnetize()": {
+     "selector": "0x95fb8190",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": [
+      "ManifoldInequality",
+      "RingInequality",
+      "BarnInequality"
+     ]
+    },
+    "Manifold()": {
+     "selector": "0x03443a15",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Monopole()": {
+     "selector": "0x3cf93051",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "React(uint64)": {
+     "selector": "0x3b8052c9",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "ReactionInequalityError",
+      "ReactionZeroError"
+     ]
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rho()": {
+     "selector": "0xa4566950",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rod()": {
+     "selector": "0x25a28a8f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "HECKE": {
+   "sourceContract": "Hecke",
+   "file": "lib/heckemeridians.sol",
+   "address": "0x29A924D9B0233026B9844f2aFeB202F1791D7593",
+   "abiFile": "Hecke.json",
+   "factsCovered": false,
+   "functions": {
+    "Compliment(uint256)": {
+     "selector": "0x3353268d",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMeridian(uint256)": {
+     "selector": "0xfd9b726a",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetWaat(int256)": {
+     "selector": "0x8dd75fb8",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Meridians(uint256)": {
+     "selector": "0x4c2ef291",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "LAUFactory": {
+   "sourceContract": "LAUFactory",
+   "file": "11c_laufactory.sol",
+   "address": "0xbA6CcD38992839aEE20D5bF9125b1d94190b091C",
+   "abiFile": "LAUFactory.json",
+   "factsCovered": false,
+   "functions": {
+    "New(string,string)": {
+     "selector": "0x8c6dc5ec",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Void()": {
+     "selector": "0xf4f6c22c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "MAI": {
+   "sourceContract": "MAI",
+   "file": "domain/soeng/02_mai.sol",
+   "address": "0xc48B0a4E79eF302c8Eb5be71F562d08fB8E6A3d8",
+   "abiFile": "MAI.json",
+   "factsCovered": true,
+   "functions": {
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Qi()": {
+     "selector": "0x84d0643e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "React(uint64,uint256)": {
+     "selector": "0x743a3e5e",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "MAP": {
+   "sourceContract": "MAP",
+   "file": "domain/map.sol",
+   "address": "0xD3a7A95012Edd46Ea115c693B74c5e524b3DdA75",
+   "abiFile": "MAP.json",
+   "factsCovered": false,
+   "functions": {
+    "Cho()": {
+     "selector": "0x6872fc3c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Forbid(address,bool)": {
+     "selector": "0xb3ffa83e",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Forbidden(address)": {
+     "selector": "0xa59d7f4d",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMapQing(int256,int256)": {
+     "selector": "0xb93ae85f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetQing(uint256)": {
+     "selector": "0x20bc1aa2",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Map()": {
+     "selector": "0xec557f40",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "New(address)": {
+     "selector": "0xddb59200",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Offset()": {
+     "selector": "0x5261d74a",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "has(address,string)": {
+     "selector": "0x9909afed",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "hasOwner(address)": {
+     "selector": "0x230b3790",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "MATH": {
+   "sourceContract": "atropaMath",
+   "file": "RandomGenerator.sol",
+   "address": "0xB680F0cc810317933F234f67EB6A9E923407f05D",
+   "abiFile": "atropaMath.json",
+   "factsCovered": false,
+   "functions": {
+    "modExp(uint256,uint256,uint256)": {
+     "selector": "0x3148f14f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "META": {
+   "sourceContract": "META",
+   "file": "domain/tang/03_meta.sol",
+   "address": "0xE77Bdae31b2219e032178d88504Cc0170a5b9B97",
+   "abiFile": "META.json",
+   "factsCovered": false,
+   "functions": {
+    "Beat(uint256)": {
+     "selector": "0xd5215e06",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Ring()": {
+     "selector": "0x87b3be7d",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "PANG": {
+   "sourceContract": "PANG",
+   "file": "domain/soeng/06_pang.sol",
+   "address": "0xEe25Ccd41671F3B67d660cf6532085586aec8457",
+   "abiFile": "PANG.json",
+   "factsCovered": true,
+   "functions": {
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Push(uint256)": {
+     "selector": "0xd5220cc9",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Zi()": {
+     "selector": "0x7c396cc0",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "PhobosQING": {
+   "sourceContract": "QING",
+   "file": "domain/dan/03_qing.sol",
+   "address": "0xb0Ba7D36B7F0505879179ecE7401F24eB653c6E1",
+   "abiFile": "QING.json",
+   "factsCovered": true,
+   "functions": {
+    "AddMarketRate(address,uint256)": {
+     "selector": "0x989ae288",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": [
+      "MarketRateCanOnlyBeIncreased",
+      "TokenMaximumRate"
+     ]
+    },
+    "Admitted(address)": {
+     "selector": "0xdfffcc74",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "AllowCROWS(bool)": {
+     "selector": "0x7b166306",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": []
+    },
+    "Asset()": {
+     "selector": "0xdf42e80e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "BouncerDivisor()": {
+     "selector": "0x0aae7978",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Chat(address,string)": {
+     "selector": "0xb340a780",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "Forbidden",
+      "NotAdmitted",
+      "PayCover"
+     ]
+    },
+    "Cho()": {
+     "selector": "0x6872fc3c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "CoverCharge()": {
+     "selector": "0xfbe5a232",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Entropy()": {
+     "selector": "0x40c48dfa",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GWAT()": {
+     "selector": "0x8dd6363c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetQing(uint256)": {
+     "selector": "0x20bc1aa2",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Join(address)": {
+     "selector": "0x0764c80c",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "CoverChargeUnauthorized"
+     ]
+    },
+    "Map()": {
+     "selector": "0xec557f40",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "NoCROWS()": {
+     "selector": "0xd5ca77c4",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Waat()": {
+     "selector": "0xa138da0b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Withdraw(address,uint256)": {
+     "selector": "0x884edad9",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": [
+      "assert"
+     ]
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "bouncer(address)": {
+     "selector": "0x37d74ffe",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "removeGuest(address)": {
+     "selector": "0x5256bfe7",
+     "mutability": "nonpayable",
+     "gate": "bouncers",
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "setBouncerDivisor(uint16)": {
+     "selector": "0x3c7e0c00",
+     "mutability": "nonpayable",
+     "gate": "bouncers",
+     "metered": false,
+     "reverts": []
+    },
+    "setCoverCharge(uint256)": {
+     "selector": "0x7dfe96f3",
+     "mutability": "nonpayable",
+     "gate": "bouncers",
+     "metered": false,
+     "reverts": []
+    },
+    "setGuestlist(address)": {
+     "selector": "0x0d4ec845",
+     "mutability": "nonpayable",
+     "gate": "bouncers",
+     "metered": false,
+     "reverts": []
+    },
+    "setStaff(address,bool)": {
+     "selector": "0x328d13e3",
+     "mutability": "nonpayable",
+     "gate": "bouncers",
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "QI": {
+   "sourceContract": "QI",
+   "file": "domain/soeng/01_qi.sol",
+   "address": "0x4d9Ce396BE95dbc5F71808c38107eB7422FD9a03",
+   "abiFile": "QI.json",
+   "factsCovered": true,
+   "functions": {
+    "Eris()": {
+     "selector": "0x05d3d596",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "ReactSoul(uint64)": {
+     "selector": "0x6ba5a0d9",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "ReactWaat(uint256)": {
+     "selector": "0x48b582c7",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Zuo()": {
+     "selector": "0xbafd8d4a",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "RING": {
+   "sourceContract": "RING",
+   "file": "domain/sky/03_ring.sol",
+   "address": "0x1574c84Ec7fA78fC6C749e1d242dbde163675e72",
+   "abiFile": "RING.json",
+   "factsCovered": false,
+   "functions": {
+    "Eta()": {
+     "selector": "0x4209b07c",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Moments(uint64)": {
+     "selector": "0x50acdbdc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Pang()": {
+     "selector": "0xa7b7ae01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Phobos()": {
+     "selector": "0x2d8fab5f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "SEI": {
+   "sourceContract": "SEI",
+   "file": "domain/tang/01_sei.sol",
+   "address": "0x3dC54d46e030C42979f33C9992348a990acb6067",
+   "abiFile": "SEI.json",
+   "factsCovered": true,
+   "functions": {
+    "Chan()": {
+     "selector": "0x031d11f4",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Chi()": {
+     "selector": "0x1cb77ea7",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Start(address,string,string)": {
+     "selector": "0x78519019",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "SHAFactory": {
+   "sourceContract": "SHAFactory",
+   "file": "02c_shafactory.sol",
+   "address": "0x4208333D65A90577E3da39B84D6A95eb9db717D2",
+   "abiFile": "SHAFactory.json",
+   "factsCovered": false,
+   "functions": {
+    "New(string,string,address)": {
+     "selector": "0x210a6a1e",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "SHIOFactory": {
+   "sourceContract": "SHIOFactory",
+   "file": "03c_shiofactory.sol",
+   "address": "0x5063D2A97960DDE8dc5E3e5A69aAa379C6301F1C",
+   "abiFile": "SHIOFactory.json",
+   "factsCovered": false,
+   "functions": {
+    "New(address,address,address)": {
+     "selector": "0x485830ae",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "SIU": {
+   "sourceContract": "SIU",
+   "file": "09_siu.sol",
+   "address": "0x43136735603D4060f226C279613A4dD97146937c",
+   "abiFile": "SIU.json",
+   "factsCovered": true,
+   "functions": {
+    "Aura()": {
+     "selector": "0x27bacc40",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Miu(string,string)": {
+     "selector": "0x01d03071",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Psi()": {
+     "selector": "0x76fade90",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "VOID": {
+   "sourceContract": "VOID",
+   "file": "10_void.sol",
+   "address": "0x965B0d74591bF30327075A247C47dBf487dCff08",
+   "abiFile": "VOID.json",
+   "factsCovered": true,
+   "functions": {
+    "AddLibrary(string,address)": {
+     "selector": "0xe774b3a4",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Alias(address,string)": {
+     "selector": "0x00b660ef",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "NoUserEntry"
+     ]
+    },
+    "Alias(tuple)": {
+     "selector": "0xcabda747",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Alias(tuple,string)": {
+     "selector": "0x1618ced2",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "NoUserEntry"
+     ]
+    },
+    "Alias(address)": {
+     "selector": "0xed70e46c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Chat(string)": {
+     "selector": "0x21516fc4",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "NoUserEntry",
+      "NoUserName"
+     ]
+    },
+    "Enter()": {
+     "selector": "0x1097e579",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "NoUserEntry",
+      "NotShioOwner"
+     ]
+    },
+    "Enter(string,string)": {
+     "selector": "0x68f9c787",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "UserAlreadyCreated",
+      "NotShioOwner"
+     ]
+    },
+    "GetAttribute(string)": {
+     "selector": "0xb502e567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetLibraryAddress(string)": {
+     "selector": "0xd9270a5a",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Log(address,string)": {
+     "selector": "0x0738f4da",
+     "mutability": "nonpayable",
+     "gate": "internal",
+     "metered": true,
+     "reverts": [
+      "InvalidLogXi"
+     ]
+    },
+    "Log(string)": {
+     "selector": "0xcf34ef53",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Log(uint64,string)": {
+     "selector": "0xe7c4b151",
+     "mutability": "nonpayable",
+     "gate": "internal",
+     "metered": true,
+     "reverts": [
+      "InvalidLogXi"
+     ]
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Nu()": {
+     "selector": "0x9ff43001",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "SetAttribute(string,string)": {
+     "selector": "0xdf5cb7b4",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "NoUserEntry"
+     ]
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "WorldChatSHIO": {
+   "sourceContract": "SHIO",
+   "file": "03_shio.sol",
+   "address": "0x7aE73C498A308247BE73688c09c96B3fd06dDB84",
+   "abiFile": "SHIO.json",
+   "factsCovered": true,
+   "functions": {
+    "Cone()": {
+     "selector": "0x4970204f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Generate(uint64,uint64,uint64)": {
+     "selector": "0x85da8ff8",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Isolate()": {
+     "selector": "0x089c10b0",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Isomerize()": {
+     "selector": "0xece1af6b",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Log(uint64,uint64,string)": {
+     "selector": "0xdaeee482",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": false,
+     "reverts": []
+    },
+    "Magnetize()": {
+     "selector": "0x95fb8190",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": [
+      "ManifoldInequality",
+      "RingInequality",
+      "BarnInequality"
+     ]
+    },
+    "Manifold()": {
+     "selector": "0x03443a15",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Monopole()": {
+     "selector": "0x3cf93051",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "React(uint64)": {
+     "selector": "0x3b8052c9",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": [
+      "ReactionInequalityError",
+      "ReactionZeroError"
+     ]
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rho()": {
+     "selector": "0xa4566950",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rod()": {
+     "selector": "0x25a28a8f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "XIA": {
+   "sourceContract": "XIA",
+   "file": "domain/soeng/03_xia.sol",
+   "address": "0x7f4a4DD4a6f233d2D82BE38b2F9fc0Fef46f25FA",
+   "abiFile": "XIA.json",
+   "factsCovered": true,
+   "functions": {
+    "Charge(uint256)": {
+     "selector": "0x43116354",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Fomalhaute()": {
+     "selector": "0xfff3be7d",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Mai()": {
+     "selector": "0xbebbe7bb",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "XIE": {
+   "sourceContract": "XIE",
+   "file": "domain/soeng/04_xie.sol",
+   "address": "0x4Df51741F2926525A21bF63E4769bA70633D2792",
+   "abiFile": "XIE.json",
+   "factsCovered": true,
+   "functions": {
+    "Fornax()": {
+     "selector": "0xa60d57c8",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Power(uint256)": {
+     "selector": "0x07cd2de8",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xia()": {
+     "selector": "0xc42564ea",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "YANG": {
+   "sourceContract": "YANG",
+   "file": "08_yang.sol",
+   "address": "0xB702b3ec6d9De1011BE963EFe30A28b6dDFbe011",
+   "abiFile": "YANG.json",
+   "factsCovered": true,
+   "functions": {
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Mu()": {
+     "selector": "0xb5095168",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Pole(uint256)": {
+     "selector": "0x591257c5",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rho()": {
+     "selector": "0xa4566950",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "YAU": {
+   "sourceContract": "YAU",
+   "file": "07_yau.sol",
+   "address": "0x7e91d862A346659DaEEd93726e733C8C1347a225",
+   "abiFile": "YAU.json",
+   "factsCovered": true,
+   "functions": {
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Monopole(uint256)": {
+     "selector": "0xd89a0a23",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "React()": {
+     "selector": "0xe83d4f64",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Tau()": {
+     "selector": "0x4cde872d",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Theta()": {
+     "selector": "0x3b297416",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "YI": {
+   "sourceContract": "YI",
+   "file": "04_yi.sol",
+   "address": "0x4757438723055f14A1Af5C9651C2E37730F41A9E",
+   "abiFile": "YI.json",
+   "factsCovered": true,
+   "functions": {
+    "Bang(address)": {
+     "selector": "0xea673dd2",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Beta(string,string)": {
+     "selector": "0xa5c2ec1c",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "Bing(tuple)": {
+     "selector": "0xbe15b61c",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Kappa(address,address)": {
+     "selector": "0x4d3a5b71",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Psi()": {
+     "selector": "0x76fade90",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "React(tuple,uint64)": {
+     "selector": "0xbfd932cb",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Ring()": {
+     "selector": "0x87b3be7d",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "SHAFactoryInterface()": {
+     "selector": "0x2e426d34",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "SHIOFactoryInterface()": {
+     "selector": "0x0dd13230",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xi()": {
+     "selector": "0xa12204b0",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "ZHENG": {
+   "sourceContract": "ZHENG",
+   "file": "05_zheng.sol",
+   "address": "0x24E62C39e34d7fE2B7dF1162e1344eB6eb3b3e15",
+   "abiFile": "ZHENG.json",
+   "factsCovered": true,
+   "functions": {
+    "Eta()": {
+     "selector": "0x4209b07c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetRodByIdx(uint64)": {
+     "selector": "0x044278fa",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "InstallCone(uint64,tuple,uint64)": {
+     "selector": "0x9496f921",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": [
+      "SigmaAlreadyInstalled"
+     ]
+    },
+    "InstallRod(uint64,tuple,uint64)": {
+     "selector": "0xae62312d",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": [
+      "SigmaAlreadyInstalled"
+     ]
+    },
+    "Iodize(address)": {
+     "selector": "0xf2f8a809",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Mau(string,string,uint64,uint64,uint64)": {
+     "selector": "0xc94c3f85",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "ZHOU": {
+   "sourceContract": "ZHOU",
+   "file": "06_zhou.sol",
+   "address": "0x5cC318d0c01FeD5942B5ED2F53dB07727d36E261",
+   "abiFile": "ZHOU.json",
+   "factsCovered": true,
+   "functions": {
+    "Alpha(string,string)": {
+     "selector": "0x8161e8c5",
+     "mutability": "nonpayable",
+     "gate": "owners",
+     "metered": true,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Monopole()": {
+     "selector": "0x3cf93051",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "React(uint64)": {
+     "selector": "0x3b8052c9",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Upsilon()": {
+     "selector": "0x140c2fb5",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xi()": {
+     "selector": "0xa12204b0",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  },
+  "ZI": {
+   "sourceContract": "ZI",
+   "file": "domain/soeng/05_zi.sol",
+   "address": "0xCbAdd3C3957Bd9D6C036863CB053FEccf3D53338",
+   "abiFile": "ZI.json",
+   "factsCovered": true,
+   "functions": {
+    "Choa()": {
+     "selector": "0xa5754463",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "GetMarketRate(address)": {
+     "selector": "0x2b83b1fc",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "MotzkinPrime()": {
+     "selector": "0xd3dc2a0f",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Purchase(address,uint256)": {
+     "selector": "0x2499a533",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Redeem(address,uint256)": {
+     "selector": "0x222838db",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Rename(string,string)": {
+     "selector": "0x9dcbf7ea",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Spin(uint256)": {
+     "selector": "0x83cc3221",
+     "mutability": "nonpayable",
+     "gate": "public",
+     "metered": true,
+     "reverts": []
+    },
+    "Tethys()": {
+     "selector": "0xb4a2d927",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Type()": {
+     "selector": "0xff762044",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "Xiao()": {
+     "selector": "0x6fb7329c",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "addOwner(address)": {
+     "selector": "0x7065cb48",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "allowance(address,address)": {
+     "selector": "0xdd62ed3e",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "approve(address,uint256)": {
+     "selector": "0x095ea7b3",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "balanceOf(address)": {
+     "selector": "0x70a08231",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "decimals()": {
+     "selector": "0x313ce567",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "maxSupply()": {
+     "selector": "0xd5abeb01",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "mintToCap()": {
+     "selector": "0xf4e6c93f",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "name()": {
+     "selector": "0x06fdde03",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner(address)": {
+     "selector": "0x666e1b39",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "owner()": {
+     "selector": "0x8da5cb5b",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "renounceOwnership(address)": {
+     "selector": "0x38bf3cfa",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "symbol()": {
+     "selector": "0x95d89b41",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "totalSupply()": {
+     "selector": "0x18160ddd",
+     "mutability": "view",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transfer(address,uint256)": {
+     "selector": "0xa9059cbb",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    },
+    "transferFrom(address,address,uint256)": {
+     "selector": "0x23b872dd",
+     "mutability": "nonpayable",
+     "gate": null,
+     "metered": false,
+     "reverts": []
+    }
+   }
+  }
+ }
+}

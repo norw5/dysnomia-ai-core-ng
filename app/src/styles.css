@@ -1,0 +1,5530 @@
+/* ============================================================================
+   DYSNOMIA TERMINAL ng — styles
+   Chrome parity (session-42): the predecessor's ATROPA-999 skin ported onto
+   the rebuilt app — pure-black CRT base, #ffb000 amber primary, terminal
+   green / cyan / red accents, purple reserved for the AI core. DESIGN.md is
+   the normative doc; the token block below IS the pinned palette.
+   ========================================================================= */
+
+:root {
+  /* base chrome — dysnomia-ai-core index.html token set, ported 1:1 */
+  --bg: #050505;          /* body */
+  --bg-main: #000000;     /* content well */
+  --bg-panel: #0f0f0f;    /* panels */
+  --bg-head: #080808;     /* header */
+  --bg-nav: #0a0a0a;      /* module tab bar */
+  --bg-raised: #080808;   /* inputs' parent chrome */
+  --line: #333333;        /* dys-border */
+
+  /* session-60 DESIGN.md amendment: the primary accent is a CUSTOM PROPERTY
+     FAMILY. Amber is the LAW — the shipped default + system chrome; the
+     per-agent vessel override (sim/demo-scoped, `data-vessel` on :root)
+     re-points the whole family at once. --amber* remain as aliases so every
+     pre-existing rule re-themes with it. Purple is NOT part of the family —
+     it stays AI-core-only under every vessel. */
+  --accent: #ffb000;       /* the primary accent (amber by law) */
+  --accent-dim: #8a6200;
+  --accent-bright: #ffd24d;
+  --accent-pin: #6b4f00;   /* the pinned-widget border tone */
+  --accent-glow: rgba(255, 176, 0, 0.15);  /* hover washes */
+  --accent-wash: rgba(255, 176, 0, 0.08);  /* subtle fills */
+  --accent-faint: rgba(255, 176, 0, 0.05); /* hairline borders */
+  --amber: var(--accent);       /* dys-amber / dys-gold — alias */
+  --amber-dim: var(--accent-dim);
+  --amber-bright: var(--accent-bright);
+  --green: #00ff41;       /* dys-green — success / live */
+  --cyan: #00f0ff;        /* dys-cyan — active module / secondary data */
+  --red: #ff2a2a;         /* dys-red — danger */
+  --purple: #c084fc;      /* AI core family (purple-400) — NOT vessel-themable */
+  --purple-dim: #581c87;  /* purple-900 */
+  --purple-deep: #2e1065; /* purple-950 */
+  --text: #e0e0e0;
+  --text-dim: #8a8a8a;
+  --text-faint: #565656;
+  --sim: var(--cyan);
+  --ok: var(--green);
+  --err: var(--red);
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+  --sans: "Rajdhani", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---- the fleet vessels (session-60, sim/demo-scoped) ----
+   Registry mirror: app/src/state/vessel.ts (FLEET_VESSELS). Each block
+   re-points the accent family only — purple, green-as-success, cyan-as-
+   active-module and red-as-danger semantics stay untouched. */
+:root[data-vessel="vitruv"] {
+  --accent: #00f0ff;
+  --accent-dim: #0e7f8f;
+  --accent-bright: #7df3ff;
+  --accent-pin: #0d5661;
+  --accent-glow: rgba(0, 240, 255, 0.15);
+  --accent-wash: rgba(0, 240, 255, 0.08);
+  --accent-faint: rgba(0, 240, 255, 0.05);
+}
+
+:root[data-vessel="kestrel"] {
+  --accent: #00ff41;
+  --accent-dim: #0e8f2c;
+  --accent-bright: #84ffa8;
+  --accent-pin: #0d6123;
+  --accent-glow: rgba(0, 255, 65, 0.15);
+  --accent-wash: rgba(0, 255, 65, 0.08);
+  --accent-faint: rgba(0, 255, 65, 0.05);
+}
+
+:root[data-vessel="meridian"] {
+  --accent: #ffd24d;
+  --accent-dim: #a3821c;
+  --accent-bright: #ffe38a;
+  --accent-pin: #7d6416;
+  --accent-glow: rgba(255, 210, 77, 0.15);
+  --accent-wash: rgba(255, 210, 77, 0.08);
+  --accent-faint: rgba(255, 210, 77, 0.05);
+}
+
+:root[data-vessel="parallax"] {
+  --accent: #d7d7d7;
+  --accent-dim: #8f8f8f;
+  --accent-bright: #ffffff;
+  --accent-pin: #6f6f6f;
+  --accent-glow: rgba(215, 215, 215, 0.15);
+  --accent-wash: rgba(215, 215, 215, 0.08);
+  --accent-faint: rgba(215, 215, 215, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--amber);
+  color: #000;
+}
+
+/* old-app scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--amber);
+}
+
+/* old-app CRT scanlines (index.html recipe) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  opacity: 0.5;
+}
+
+.blink {
+  animation: blink-animation 1s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== the 3-tier header stack (old app layout) ===== */
+
+/* tier 1 — hardware strip */
+.hwstrip {
+  height: 1.5rem;
+  background: var(--bg-head);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  opacity: 0.7;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.hwstrip .group {
+  display: flex;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.hwstrip .net-online {
+  color: var(--green);
+}
+
+.hwstrip .net-offline {
+  color: var(--red);
+}
+
+/* tier 2 — main header */
+.mhead {
+  height: 4rem;
+  padding: 0 1rem 0 1.2rem;
+  border-bottom: 2px solid var(--amber);
+  background: var(--bg-head);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.mhead .brand {
+  cursor: default;
+  user-select: none;
+}
+
+.mhead .brand h1 {
+  margin: 0;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--amber);
+  line-height: 1;
+}
+
+.mhead .brand:hover h1 {
+  color: #fff;
+}
+
+.mhead .brand .sub {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+}
+
+.mhead .brand:hover .sub {
+  color: var(--amber);
+}
+
+.mhead .stats {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  min-width: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.stat .lbl {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.stat .val {
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.stat .val.dim {
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.stat .val.connect {
+  color: var(--red);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0;
+  animation: pulse-fast 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.stat .val.connect:hover {
+  color: #fff;
+}
+
+/* session-70: the header's global sync-engine control (pause/resume) —
+   the .connect button reset without its red-pulse semantics */
+.stat .val.syncbtn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0;
+}
+
+.stat .val.syncbtn:hover {
+  color: #fff;
+}
+
+@keyframes pulse-fast {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.mhead .toggles {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.htoggle {
+  border: 1px solid var(--line);
+  color: var(--text-faint);
+  background: none;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.htoggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+
+.htoggle.on-agent {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.htoggle.on-logs {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* tier 3 — module tabs */
+.modtabs {
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--line);
+  padding: 0.4rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  overflow-x: auto;
+  flex-shrink: 0;
+  scrollbar-width: none;
+}
+
+.modtabs::-webkit-scrollbar {
+  display: none;
+}
+
+.modtabs .module-label {
+  color: var(--cyan);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin-right: 0.8rem;
+  white-space: nowrap;
+}
+
+.modtabs .sep {
+  color: #262626;
+  margin-right: 0.6rem;
+}
+
+.modtab {
+  border: 1px solid transparent;
+  background: none;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.22rem 0.7rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.modtab:hover {
+  color: var(--text);
+}
+
+.modtab.active {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0, 240, 255, 0.08);
+}
+
+.modtab .tab-group {
+  color: var(--text-faint);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  margin-right: 0.35rem;
+}
+
+.modtab.active .tab-group {
+  color: rgba(0, 240, 255, 0.55);
+}
+
+/* ===== main grid ===== */
+
+.main {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  border-left: 4px solid var(--bg-head);
+  border-right: 4px solid var(--bg-head);
+  background: var(--bg-main);
+}
+
+.content {
+  overflow-y: auto;
+  padding: 1.2rem 1.6rem;
+  min-width: 0;
+}
+
+/* legacy aliases kept for e2e + compact rules */
+.rail {
+  display: contents;
+}
+
+.rail-item-wrap {
+  display: contents;
+}
+
+.rail-group,
+.rail-label,
+.rail-note {
+  display: none;
+}
+
+/* legacy topbar pieces still referenced by views */
+.chip {
+  border: 1px solid var(--line);
+  padding: 0.02rem 0.45rem;
+  border-radius: 2px;
+  letter-spacing: 0.12em;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.62rem;
+  white-space: nowrap;
+}
+
+/* the contextual `?` deep-link chip into LEARN (session-53, §6 form 2) */
+.learn-hint {
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  background: transparent;
+  border-radius: 50%;
+  width: 1.15rem;
+  height: 1.15rem;
+  line-height: 1;
+  padding: 0;
+  margin: 0 0.3rem;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.68rem;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.learn-hint:hover {
+  background: var(--accent-glow);
+}
+
+.chip-live {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.chip-sim {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: rgba(0, 240, 255, 0.08);
+}
+
+.chip-mode {
+  color: var(--text-dim);
+}
+
+.chip-yolo {
+  color: var(--red);
+  border-color: var(--red);
+  background: rgba(255, 42, 42, 0.1);
+  font-weight: 700;
+}
+
+.meta {
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+/* session-77: the utility classes the surfaces already referenced but the
+   language never defined — `.dim` is the DESIGN.md session-70 vocabulary
+   (dim secondary text), `.warn-text` the amber sibling of ok/err. */
+.dim {
+  color: var(--text-dim);
+}
+
+.meta.err {
+  color: var(--err);
+}
+
+.meta.right,
+.dim.right {
+  margin-left: auto;
+}
+
+/* ===== panels (old bordered-black-box idiom) ===== */
+
+.view h1 {
+  font-family: var(--mono);
+  color: var(--amber);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 1rem;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 0.5rem;
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.4rem;
+  max-width: 60rem;
+  position: relative;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid var(--amber);
+  border-left: 1px solid var(--amber);
+}
+
+.panel h2 {
+  font-family: var(--mono);
+  color: var(--amber);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  margin-top: 0;
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.3rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.kv dt {
+  color: var(--text-dim);
+}
+
+.kv dd {
+  margin: 0;
+  word-break: break-all;
+}
+
+.hint {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.rpc-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+
+.rpc-form input[type="url"] {
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 0.3rem 0.5rem;
+  min-width: 22rem;
+  font-family: var(--mono);
+}
+
+.rpc-form button {
+  background: var(--bg-raised);
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  font-family: var(--mono);
+}
+
+.rpc-form button:hover {
+  background: var(--amber);
+  color: #000;
+}
+
+.recipe {
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.recipe pre {
+  background: #000;
+  border: 1px solid var(--line);
+  padding: 0.6rem 0.8rem;
+  overflow-x: auto;
+}
+
+.recipe code {
+  font-family: var(--mono);
+  color: var(--amber-bright);
+  font-size: 0.78rem;
+}
+
+.perimeter {
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  width: 100%;
+}
+
+.perimeter th {
+  text-align: left;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--line);
+  padding: 0.3rem 0.5rem;
+}
+
+.perimeter td {
+  border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+  padding: 0.25rem 0.5rem;
+}
+
+.perimeter td.name {
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+.perimeter td.addr {
+  word-break: break-all;
+}
+
+.linkish {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: inherit;
+  padding: 0;
+  cursor: copy;
+}
+
+.linkish:hover {
+  color: var(--amber-bright);
+}
+
+.outlink {
+  color: var(--amber);
+  text-decoration: none;
+}
+
+.outlink:hover {
+  color: #fff;
+}
+
+/* ===== compact (pointer: coarse / narrow) — bottom tab bar + sheet ===== */
+
+@media (pointer: coarse), (max-width: 760px) {
+  .modtabs {
+    order: 3;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: none;
+    background: var(--bg-nav);
+    z-index: 400;
+    padding: 0.3rem 0.5rem;
+    justify-content: flex-start;
+  }
+
+  .modtabs .module-label,
+  .modtabs .sep,
+  .modtab .tab-group {
+    display: none;
+  }
+
+  .main {
+    border-left: none;
+    border-right: none;
+    margin-bottom: 2.4rem;
+  }
+
+  .mhead .stat.optional {
+    display: none;
+  }
+
+  .mhead {
+    height: 3.4rem;
+    padding: 0 0.7rem;
+  }
+
+  .mhead .brand h1 {
+    font-size: 1.1rem;
+  }
+
+  .mhead .stats {
+    gap: 0.8rem;
+  }
+
+  .content {
+    padding: 0.9rem;
+  }
+
+  .gutter,
+  .main > .dock,
+  .main > .logs-pane,
+  .main > .sidebar-pane {
+    display: none;
+  }
+
+  .studio-grid,
+  .arg-row,
+  .policy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== gate + wallet + studio (session 40, reskinned 42) ===== */
+
+.mono {
+  font-family: var(--mono);
+}
+
+.ok-text {
+  color: var(--ok);
+}
+
+.err-text {
+  color: var(--err);
+}
+
+/* session-77: fences/stops/mode notes — amber, never the hard-stop red */
+.warn-text {
+  color: var(--amber);
+}
+
+body.yolo .root::before {
+  content: "YOLO — per-action approval OFF";
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: var(--red);
+  color: #000;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 0.05rem 0.7rem;
+  border-radius: 0 0 3px 3px;
+}
+
+.topbar-btn {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 0.15rem 0.6rem;
+  cursor: pointer;
+}
+
+.topbar-btn:hover {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+.yolo-flag {
+  color: var(--red);
+}
+
+.yolo-banner {
+  border: 1px solid var(--red);
+  color: var(--red);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.82rem;
+  margin-bottom: 0.8rem;
+}
+
+/* gutters */
+
+.gutter {
+  background: transparent;
+  cursor: col-resize;
+  position: relative;
+  min-width: 6px;
+}
+
+.gutter::after {
+  content: "";
+  position: absolute;
+  inset: 0 2px;
+  background: var(--line);
+  opacity: 0.6;
+}
+
+.gutter:hover,
+.gutter:focus-visible {
+  outline: none;
+}
+
+.gutter:hover::after,
+.gutter:focus-visible::after {
+  background: var(--amber);
+  opacity: 1;
+}
+
+/* ===== AI core pane (old AgentPane idiom — purple) ===== */
+
+.dock {
+  background: var(--bg-panel);
+  border-left: 1px solid var(--purple-dim);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-dock {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  font-family: var(--mono);
+}
+
+/* session-60: the two-row header — [ AI_CORE ] + PROCESSING + tabs on the
+   title row, the model/keychip on its own line below (no three-line wrap) */
+.dock-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.6rem 0.8rem 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--purple-dim);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.dock-head-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.dock-head-row .dock-tabs {
+  margin-left: auto;
+}
+
+.dock-head-sub {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* session-65.3: FULL-AUTO rides the header's keychip row (right-aligned) —
+   the owner's call: an extra harness mode, not a per-message control */
+.dock-head-sub .apane-fullauto,
+.dock-head-sub .apane-stop.apane-fullauto-engaged {
+  margin-left: auto;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.dock-title {
+  color: var(--purple);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  font-size: 0.8rem;
+}
+
+.dock-title::before {
+  content: "[ ";
+  color: var(--purple-dim);
+}
+
+.dock-title::after {
+  content: " ]";
+  color: var(--purple-dim);
+}
+
+.dock-processing {
+  color: var(--purple);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  animation: pulse-fast 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.dock-tabs {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.dock-tab {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+}
+
+.dock-tab.active {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.apane-stream {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.9rem;
+  font-size: 0.74rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.apane-empty {
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: 2.4rem;
+}
+
+.apane-msg-user {
+  align-self: flex-end;
+  max-width: 85%;
+  background: var(--purple-deep);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 0.45rem 0.6rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.apane-msg-system {
+  color: var(--red);
+  border: 1px solid var(--red);
+  background: var(--bg-head);
+  padding: 0.45rem 0.6rem;
+  word-break: break-word;
+}
+
+/* session-65.3 (the owner's chrome round): system-row SEVERITIES — red is
+   reserved for HARD-STOP errors. Approvals/success render ok (green),
+   fences/stops warn (amber), mode switches + informational notes render
+   neutral. Classes only, existing tokens. */
+.apane-msg-system.apane-msg-info {
+  color: var(--text-dim);
+  border-color: var(--line);
+}
+
+.apane-msg-system.apane-msg-ok {
+  color: var(--ok);
+  border-color: var(--ok);
+}
+
+.apane-msg-system.apane-msg-warn {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+/* session-64: assistant answers get their OWN class — the old site's AI text
+   was gray (never red; red is for SYSTEM/error rows). Wraps the compact
+   pane markdown (headings cyan, strong/code purple — inert, no raw HTML). */
+.apane-msg-answer {
+  color: var(--text);
+  word-break: break-word;
+  line-height: 1.5;
+  padding: 0.15rem 0;
+}
+
+.apane-msg-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+/* session-75: the live STREAMING partial — one row re-rendered per frame
+   batch; the finalized message replaces it atomically. The cursor reuses
+   the dock-processing pulse family (purple = AI core; no new tokens). */
+.apane-streaming-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.95em;
+  background: var(--purple);
+  vertical-align: text-bottom;
+  margin-left: 0.1rem;
+  animation: pulse-fast 1.1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ---- pane markdown (session-64): old-site semantics, existing tokens ---- */
+
+.apane-md {
+  font-size: 0.82rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.apane-md-p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.apane-md-h {
+  color: var(--cyan);
+  font-size: 0.84rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0.35rem 0 0.1rem 0;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+  padding-bottom: 0.15rem;
+}
+
+.apane-md-ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.apane-md-ul li {
+  margin: 0;
+}
+
+.apane-md-ul li::marker {
+  color: var(--text-dim);
+  content: "· ";
+}
+
+.apane-md-strong,
+.apane-md strong {
+  color: var(--purple);
+  font-weight: 700;
+}
+
+.apane-md-code,
+.apane-md code {
+  color: var(--purple);
+  background: rgba(46, 16, 101, 0.35);
+  padding: 0 0.25rem;
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+
+.apane-md-link {
+  color: var(--cyan);
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+.apane-md-table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.apane-md-table {
+  border-collapse: collapse;
+  font-size: 0.76rem;
+  width: 100%;
+}
+
+.apane-md-table th,
+.apane-md-table td {
+  border: 1px solid rgba(138, 138, 138, 0.3);
+  padding: 0.15rem 0.4rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.apane-md-thead th {
+  color: var(--cyan);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.apane-md-pre {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(88, 28, 135, 0.4);
+  padding: 0.3rem 0.5rem;
+  overflow-x: auto;
+  font-size: 0.74rem;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.apane-md-rule {
+  border: none;
+  border-top: 1px solid rgba(138, 138, 138, 0.35);
+  margin: 0.3rem 0;
+}
+
+.apane-msg-hint {
+  color: var(--text-dim);
+  font-size: 0.68rem;
+}
+
+.apane-input {
+  padding: 0.7rem;
+  border-top: 1px solid var(--purple-dim);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* the old chatbox input box, faithfully: purple-950/10 wash, purple-900/50
+   border, focus → purple-700/80 border + black, rounded-sm */
+.apane-input-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: rgba(46, 16, 101, 0.1);
+  border: 1px solid rgba(88, 28, 135, 0.5);
+  border-radius: 2px;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.apane-input-box:focus-within {
+  border-color: rgba(126, 34, 206, 0.8);
+  background: #000;
+}
+
+.apane-input textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  color: #d8b4fe; /* purple-200 */
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding: 0.7rem 0.75rem 0.4rem;
+  min-height: 2.9rem;
+  /* session-77: CSS auto-grow (the 71.3 composer law extended to the pane)
+     — no per-keystroke scrollHeight read/write, no controlled re-render */
+  max-height: 9.5rem;
+  overflow-y: auto;
+  field-sizing: content;
+}
+
+.apane-input textarea::placeholder {
+  color: rgba(107, 33, 168, 0.55); /* purple-800 @ ~half */
+}
+
+.apane-input-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem 0.7rem;
+}
+
+/* old EXEC / STOP buttons: purple-500/20 wash + rounded-sm */
+.apane-exec {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc; /* purple-300 */
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  padding: 0.32rem 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.apane-exec:hover:not(:disabled) {
+  background: #a855f7; /* purple-500 */
+  color: #fff;
+  border-color: #a855f7;
+}
+
+.apane-exec:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.apane-stop {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171; /* red-400 */
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  padding: 0.32rem 1.1rem;
+  cursor: pointer;
+}
+
+.apane-stop:hover {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+/* session-65: the WHISPER channel (purple family — AI-core only) — the
+   queued-note row + the queue button while a run is busy */
+.apane-msg-whisper {
+  align-self: flex-end;
+  max-width: 85%;
+  background: var(--purple-deep);
+  border: 1px dashed var(--purple);
+  color: var(--purple);
+  padding: 0.45rem 0.6rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.apane-whisper-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  opacity: 0.75;
+  margin-right: 0.4rem;
+}
+
+.apane-whisper {
+  background: rgba(168, 85, 247, 0.12);
+  color: #c084fc; /* purple-300 */
+  border: 1px dashed rgba(168, 85, 247, 0.5);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  padding: 0.32rem 0.9rem;
+  cursor: pointer;
+}
+
+.apane-whisper:hover:not(:disabled) {
+  background: rgba(168, 85, 247, 0.3);
+}
+
+.apane-whisper:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* FULL-AUTO trigger (session-65, moved to the header session-65.3): the
+   engaged state reads as the halt it is (red + the cycle counter); the
+   idle state is a dim purple call — present, not shouty */
+.apane-fullauto {
+  background: rgba(168, 85, 247, 0.12);
+  color: #c084fc; /* purple-300 */
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  padding: 0.28rem 0.8rem;
+  cursor: pointer;
+}
+
+.apane-fullauto:hover {
+  background: rgba(168, 85, 247, 0.3);
+}
+
+.apane-fullauto-engaged {
+  animation: fullauto-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes fullauto-pulse {
+  0%,
+  100% {
+    border-color: rgba(239, 68, 68, 0.5);
+  }
+  50% {
+    border-color: #ef4444; /* red-500 */
+  }
+}
+
+/* session-74 THE STRATEGY LAYER: the operator OBJECTIVE row (classes only,
+   no new tokens — the input reuses the raised-panel/border idiom, the
+   engaged view is a dim chip under the header). Editable while disengaged;
+   while engaged it renders read-only (whisper `objective: …` steers live) */
+.fa-obj-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.3rem 0.8rem 0;
+}
+
+.fa-obj-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  flex: none;
+}
+
+.fa-obj-input {
+  flex: 1 1 240px;
+  min-width: 0;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 0.28rem 0.5rem;
+  border-radius: 2px;
+}
+
+.fa-obj-view {
+  flex: 1 1 240px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--amber);
+  border: 1px dashed rgba(255, 176, 0, 0.35);
+  border-radius: 2px;
+  padding: 0.22rem 0.5rem;
+}
+
+/* session-76: the engage-time CAPS MATH line — what the current FULL-AUTO
+   knobs imply in cycles, shown while DISENGAGED under the OBJECTIVE row
+   (classes only, no new tokens — the dim mono hint idiom) */
+.fa-caps-hint {
+  margin: 0;
+  padding: 0.15rem 0.8rem 0.25rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+/* the SYS ledger's menu line (the strategy layer's observability) */
+.fa-cycle-goals .fa-goals-mark {
+  color: var(--amber);
+}
+
+.dock-foot {
+  border-top: 1px solid var(--purple-dim);
+  padding: 0.4rem 0.8rem;
+}
+
+.dock-btn {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.15rem 0.6rem;
+  cursor: pointer;
+}
+
+.dock-btn:hover {
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+/* ===== SYSTEM_LOGS panel (old TerminalLog idiom) ===== */
+
+.logs-pane {
+  background: var(--bg-panel);
+  border-left: 1px solid rgba(0, 240, 255, 0.25);
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.logs-head {
+  padding: 0.45rem 0.7rem;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  background: rgba(0, 240, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tlog {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  background: #000;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+}
+
+.tlog-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  border-left: 2px solid var(--line);
+  padding-left: 0.5rem;
+  margin-bottom: 0.45rem;
+}
+
+.tlog-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tlog-top {
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.6;
+  font-size: 0.55rem;
+}
+
+.tlog-type {
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.tlog-item.type-error .tlog-type {
+  color: var(--red);
+}
+
+.tlog-item.type-success .tlog-type {
+  color: var(--green);
+}
+
+.tlog-item.type-gate .tlog-type {
+  color: var(--amber);
+}
+
+.tlog-item.type-wallet .tlog-type {
+  color: var(--purple);
+}
+
+.tlog-msg {
+  color: var(--text);
+  line-height: 1.3;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.tlog-data {
+  color: var(--text-dim);
+  border-top: 1px solid #161616;
+  margin-top: 0.2rem;
+  padding-top: 0.2rem;
+  word-break: break-all;
+  white-space: pre-wrap;
+  font-size: 0.58rem;
+}
+
+.tlog-empty {
+  color: var(--text-faint);
+  text-align: center;
+  margin-top: 2.4rem;
+  font-style: italic;
+}
+
+/* mobile agent sheet */
+
+.sheet-host {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 2.4rem; /* above the bottom tab bar */
+  height: 62vh;
+  z-index: 500;
+  pointer-events: none;
+  /* session-77: clip the closed sheet — translateY(100%) ends exactly at the
+     host's bottom edge, which left its head painting OVER the module tab bar
+     (the compact nav strip read as a phantom sheet). `clip` (never `hidden`:
+     hidden would become a scroll container that the pane's scrollIntoView
+     drags back into view). */
+  overflow: clip;
+}
+
+.sheet {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--purple);
+  transform: translateY(100%);
+  transition: transform 0.18s ease-out;
+  /* closed = fully passive: a translated-down sheet must not swallow taps
+     on the bottom-docked tab bar (found by the session-46 mobile e2e) */
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet.open {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.sheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--line);
+}
+
+/* modal + approval card */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  padding: 1rem;
+}
+
+.modal {
+  max-width: 44rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  margin-bottom: 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.btn {
+  background: var(--accent-wash);
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--amber);
+  color: #000;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--amber);
+  color: #000;
+  font-weight: 700;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--amber-bright);
+  color: #000;
+}
+
+.btn.danger {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: var(--red);
+  color: #fff;
+}
+
+.risk {
+  font-weight: 700;
+}
+
+.risk-standard {
+  color: var(--green);
+}
+
+.risk-read {
+  color: var(--text-dim);
+}
+
+.risk-privileged,
+.risk-unknown-contract,
+.risk-unknown-method {
+  color: var(--red);
+}
+
+.risk-value {
+  color: var(--amber-bright);
+}
+
+.policy-reasons {
+  margin: 0.2rem 0 0;
+  padding-left: 1rem;
+  color: var(--red);
+}
+
+.override {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  border: 1px solid var(--red);
+  padding: 0.5rem 0.7rem;
+  margin-top: 0.9rem;
+  color: var(--red);
+  font-size: 0.82rem;
+}
+
+.addr-full {
+  word-break: break-all;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+/* studio (session-78 rework: contract index | workspace | call form) */
+
+.view.studio {
+  container-type: inline-size;
+}
+
+.studio-grid {
+  display: grid;
+  grid-template-columns: minmax(13.5rem, 15.5rem) minmax(0, 1.05fr) minmax(0, 1.3fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.studio-grid > .panel {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+/* --- the contract index (the dropdown's replacement) --- */
+
+.studio-index {
+  position: sticky;
+  top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.studio-index-head,
+.studio-fn-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.studio-index-head h2,
+.studio-fn-head h2 {
+  margin: 0;
+}
+
+.studio-count {
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* session-79: the compact Studio tap path — a jump affordance appears only
+   when the single-column container puts the call form below the bounded
+   function index (desktop selection must never move the page). */
+.studio-fn-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.studio-jump-call {
+  display: none;
+}
+
+.studio-call {
+  scroll-margin-top: 0.6rem;
+}
+
+.studio-search {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.studio-contract-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 62vh;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  background: #000;
+}
+
+.studio-contract {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #1c1c1c;
+  color: var(--text);
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.studio-contract:hover {
+  background: var(--bg-raised);
+}
+
+.studio-contract.active {
+  background: var(--bg-raised);
+  box-shadow: inset 2px 0 0 var(--amber);
+}
+
+.studio-contract-name {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+}
+
+.studio-contract.active .studio-contract-name {
+  color: var(--amber);
+}
+
+.studio-contract-n {
+  font-size: 0.6rem;
+  color: var(--text-faint);
+}
+
+.studio-contract-sub {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  font-size: 0.58rem;
+  color: var(--text-dim);
+}
+
+.studio-contract-source {
+  color: var(--cyan);
+}
+
+.studio-facts-ok {
+  color: var(--green);
+}
+
+.studio-facts-none {
+  color: var(--red);
+}
+
+.studio-index-foot {
+  margin: 0.45rem 0 0;
+  font-size: 0.6rem;
+}
+
+.studio-empty-row {
+  padding: 0.5rem 0.6rem;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+}
+
+/* --- the contract workspace --- */
+
+.studio-contract-head {
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.studio-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.studio-contract-title {
+  margin: 0;
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+}
+
+.studio-source-tag {
+  font-size: 0.64rem;
+  color: var(--cyan);
+}
+
+.studio-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+.studio-chip-facts {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.studio-chip-nofacts {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.studio-address-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.studio-address {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  word-break: break-all;
+}
+
+.btn-mini {
+  font-size: 0.62rem;
+  padding: 0.18rem 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.studio-docs {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.studio-docs .hint {
+  margin: 0;
+  font-size: 0.63rem;
+}
+
+.studio-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin: 0.6rem 0 0.9rem;
+}
+
+.studio-stat {
+  border: 1px solid var(--line);
+  background: #000;
+  padding: 0.35rem 0.45rem;
+}
+
+.studio-stat-n {
+  display: block;
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  color: var(--amber);
+  line-height: 1.1;
+}
+
+.studio-stat-l {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.studio-fn-head {
+  margin-bottom: 0.45rem;
+}
+
+.studio-filters {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.studio-filter {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  padding: 0.18rem 0.45rem;
+  cursor: pointer;
+}
+
+.studio-filter:hover {
+  color: var(--text);
+}
+
+.studio-filter.active {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #000;
+}
+
+.studio-fn-list {
+  max-height: min(34rem, 56vh);
+}
+
+/* --- the call form --- */
+
+.studio-target-row {
+  margin-bottom: 0.8rem;
+}
+
+.studio-empty {
+  border: 1px dashed var(--line);
+  background: #050505;
+  padding: 0.8rem 0.9rem;
+}
+
+.studio-empty-kicker {
+  margin: 0 0 0.6rem;
+  color: var(--cyan);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.studio-flow {
+  list-style: none;
+  margin: 0 0 0.7rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.studio-flow li {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.studio-flow-n {
+  color: var(--cyan);
+  font-size: 0.66rem;
+}
+
+.studio-empty .hint {
+  margin: 0;
+}
+
+.studio-fn-active {
+  border: 1px solid var(--line);
+  background: #050505;
+  padding: 0.5rem 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.studio-fn-active-sig {
+  color: var(--amber);
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+
+.studio-fn-active-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+}
+
+/* 2-zone: the index rail persists; workspace + call form stack in the main
+   column (3 zones only when the container can afford the call rail) */
+@container (max-width: 72rem) {
+  .studio-grid {
+    grid-template-columns: minmax(12.5rem, 15rem) minmax(0, 1fr);
+  }
+
+  .studio-index {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .studio-workspace {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .studio-call {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+/* single column (compact): index → workspace → call form */
+@container (max-width: 46rem) {
+  .studio-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .studio-index,
+  .studio-workspace,
+  .studio-call {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .studio-index {
+    position: static;
+  }
+
+  .studio-contract-list {
+    max-height: 16rem;
+  }
+
+  .studio-fn-list {
+    max-height: 24rem;
+  }
+
+  .studio-jump-call {
+    display: inline-flex;
+  }
+
+  .studio-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fn-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 26rem;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+}
+
+.fn-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #1c1c1c;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.fn-row:hover {
+  background: var(--bg-raised);
+}
+
+.fn-row.active {
+  background: var(--bg-raised);
+  color: var(--amber);
+  box-shadow: inset 2px 0 0 var(--cyan);
+}
+
+.fn-sig {
+  flex: 1;
+  word-break: break-all;
+}
+
+.mut {
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--line);
+  padding: 0 0.3rem;
+  white-space: nowrap;
+}
+
+.mut-view,
+.mut-pure {
+  color: var(--text-dim);
+}
+
+.mut-nonpayable {
+  color: var(--amber);
+}
+
+.mut-payable {
+  color: var(--red);
+}
+
+.gate-chip {
+  font-size: 0.62rem;
+  color: var(--red);
+  border: 1px solid var(--red);
+  padding: 0 0.3rem;
+  white-space: nowrap;
+}
+
+.gate-chip.metered {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.fn-doc {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+
+.arg-row {
+  display: grid;
+  grid-template-columns: minmax(9rem, 14rem) 1fr;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.arg-row label {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--text-dim);
+  /* break only WHEN needed (long signatures); prose labels must wrap at
+     word boundaries — `break-all` split "empty" into "e / mpty" on compact */
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.arg-row input {
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 0.3rem 0.45rem;
+  width: 100%;
+}
+
+.studio-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin: 0.9rem 0;
+}
+
+.studio-result {
+  border: 1px solid var(--line);
+  background: #000;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+.studio-result pre {
+  margin: 0.4rem 0 0;
+  font-size: 0.74rem;
+  white-space: pre-wrap;
+}
+
+/* wallet + policy panels */
+
+.mode-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.btn.mode {
+  border-color: var(--line);
+  color: var(--text-dim);
+  background: transparent;
+}
+
+.btn.mode.active {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: var(--accent-wash);
+}
+
+/* session-77: an ACTIVE mode button hovering must not become amber-on-amber
+   (`.btn.mode.active`'s color beat `.btn:hover`'s black — the label vanished) */
+.btn.mode:hover:not(:disabled) {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #000;
+}
+
+.provider-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.wallet-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+  margin: 0.9rem 0;
+  max-width: 34rem;
+}
+
+.wallet-form label {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--text-dim);
+}
+
+.wallet-form input {
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 0.3rem 0.45rem;
+}
+
+.yolo-enter {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.yolo-enter input {
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--mono);
+  padding: 0.25rem 0.4rem;
+  width: 8rem;
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 10rem;
+  gap: 0.45rem 0.9rem;
+  align-items: start;
+  margin-bottom: 0.8rem;
+}
+
+.policy-grid label {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  line-height: 1.35;
+  color: var(--text-dim);
+  padding-top: 0.2rem;
+}
+
+.policy-grid input[class="mono"] {
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  padding: 0.25rem 0.4rem;
+}
+
+.policy-grid > input[type="checkbox"],
+.policy-grid > input[type="radio"] {
+  justify-self: start;
+  margin-top: 0.25rem;
+}
+
+/* ===== session-41: identity + onboarding, unified QING sidebar, map skeleton ===== */
+
+.sidebar-pane {
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--line);
+  background: var(--bg-panel);
+}
+
+.identity .panel h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.bal-table {
+  border-collapse: collapse;
+  margin: 0.6rem 0;
+  font-size: 0.8rem;
+}
+
+.bal-table th,
+.bal-table td {
+  border: 1px solid var(--line);
+  padding: 0.25rem 0.55rem;
+  text-align: right;
+}
+
+.bal-table th {
+  color: var(--text-dim);
+  font-weight: 400;
+  background: #000;
+}
+
+.bal-table tbody th {
+  text-align: left;
+}
+
+.bal-table td {
+  font-family: var(--mono);
+}
+
+.payload-pre {
+  max-height: 14rem;
+  overflow: auto;
+  border: 1px solid var(--line);
+  padding: 0.5rem;
+  font-size: 0.72rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.step-chain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.step {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+
+.step-dot {
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.step.done .step-dot {
+  color: var(--green);
+}
+
+.step.todo .step-dot {
+  color: var(--text-faint);
+}
+
+.step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.step.done .step-label {
+  color: var(--text-dim);
+  text-decoration: line-through;
+  text-decoration-color: var(--text-dim);
+}
+
+.step-label {
+  font-size: 0.85rem;
+}
+
+.step .hint {
+  font-size: 0.74rem;
+}
+
+.identity h3 {
+  margin: 1rem 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+/* --- unified venue sidebar --- */
+
+.venue-sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.venue-side-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.6rem 0.3rem;
+}
+
+.venue-side-head .dock-title {
+  color: var(--cyan);
+}
+
+.venue-side-head .dock-title::before,
+.venue-side-head .dock-title::after {
+  color: rgba(0, 240, 255, 0.35);
+}
+
+.venue-search {
+  margin: 0 0.6rem 0.5rem;
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 0.74rem;
+  padding: 0.3rem 0.45rem;
+  font-family: var(--mono);
+}
+
+.venue-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0.3rem 0.3rem 0.6rem;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+/* session-69.4 (the owner's find): the channels-mode MAIN-channel list must
+ * not flex-grow — two flex:1 lists split the sidebar 50/50, pushing the
+ * venue channels to the bottom half; the main list sizes to its one row */
+.venue-list-main {
+  flex: 0 0 auto;
+  overflow-y: visible;
+}
+
+.venue-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  width: 100%;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text);
+  text-align: left;
+  padding: 0.28rem 0.45rem;
+  cursor: pointer;
+  font-family: var(--mono);
+}
+
+.venue-row:hover {
+  border-color: var(--line);
+}
+
+.venue-row.active {
+  border-color: var(--amber);
+  background: var(--accent-wash);
+}
+
+.venue-name {
+  font-size: 0.78rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.venue-meta {
+  font-size: 0.66rem;
+  color: var(--text-dim);
+}
+
+.venue-empty {
+  padding: 0.4rem;
+}
+
+.venue-side-foot {
+  padding: 0.4rem 0.6rem 0.55rem;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.68rem;
+}
+
+/* --- MAP: the atlas canvas (QingMap render port, session-43) --- */
+
+.atlas-wrap {
+  position: relative;
+  border: 1px solid var(--line);
+  background: #000;
+  height: clamp(360px, 56vh, 780px);
+  margin-bottom: 0.45rem;
+  overflow: hidden;
+}
+
+/* COMPACT (session-60): the deck map widget variant — FILL the wrap the deck
+   cell gives it (no MAP page clamp, no stale canvas height); trimmed controls */
+.atlas-wrap.compact {
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 220px;
+  margin-bottom: 0.35rem;
+}
+
+.atlas-container {
+  position: absolute;
+  inset: 0;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.atlas-container.is-hover {
+  cursor: pointer;
+}
+
+.atlas-container.is-grabbing {
+  cursor: grabbing;
+}
+
+.atlas-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.atlas-hud {
+  position: absolute;
+  top: 0.55rem;
+  left: 0.55rem;
+  right: 0.55rem;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.atlas-hud > * {
+  pointer-events: auto;
+}
+
+/* session-78: the full MAP HUD reads as one instrument row — controls share
+   the same height/padding idiom (the deck's compact HUD is untouched). */
+.atlas-hud-full .atlas-btn,
+.atlas-hud-full .atlas-chip,
+.atlas-hud-full .atlas-gravity {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.6rem;
+  box-sizing: border-box;
+}
+
+.atlas-chip {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.82);
+  padding: 0.22rem 0.5rem;
+  white-space: nowrap;
+}
+
+.atlas-toggle {
+  display: flex;
+}
+
+.atlas-btn {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.82);
+  color: var(--text-dim);
+  border: 1px solid var(--line);
+  padding: 0.22rem 0.45rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.atlas-btn + .atlas-btn {
+  border-left: none;
+}
+
+.atlas-btn:hover {
+  color: var(--text);
+}
+
+.atlas-btn.active {
+  background: var(--cyan);
+  color: #000;
+  border-color: var(--cyan);
+}
+
+.atlas-btn.lock {
+  background: var(--amber);
+  color: #000;
+  border-color: var(--amber);
+}
+
+.atlas-gravity {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid var(--line);
+  padding: 0.22rem 0.45rem;
+  white-space: nowrap;
+}
+
+.atlas-gravity input[type="range"] {
+  width: 96px;
+  height: 0.9rem;
+  margin: 0;
+  accent-color: var(--cyan);
+}
+
+.atlas-help {
+  position: absolute;
+  bottom: 0.55rem;
+  left: 50%;
+  transform: translateX(-50%);
+  /* session-79: an auto width with left:50% shrink-to-fits against HALF the
+     container (the legend wrapped at 1600). max-content centers the true
+     one-line shape; max-width still wraps it on narrow canvases. */
+  width: max-content;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--text-dim);
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid var(--line);
+  padding: 0.2rem 0.6rem;
+  white-space: normal;
+  text-align: center;
+  max-width: calc(100% - 1.1rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.atlas-hint {
+  margin: 0 0.1rem 1rem;
+  font-size: 0.7rem;
+}
+
+.view.map h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* --- session-67: the map PAGE restructure — edge-to-edge + the click-HUD ---
+   The view-level panel frame is GONE on desktop: the atlas fills the main
+   container (the old site's map-in-main-container feel), selection surfaces
+   the compact venue card over the canvas, and the FULL panel opens from its
+   affordance as a right-side overlay drawer. No new tokens (the 63/64 law). */
+
+.map-stage {
+  position: relative;
+  min-height: 0;
+}
+
+@media (pointer: fine) and (min-width: 761px) {
+  .view.map {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .view.map > h1 {
+    flex: 0 0 auto;
+    margin-bottom: 0.8rem;
+  }
+
+  .map-stage {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .map-stage .atlas-wrap {
+    flex: 1 1 auto;
+    height: auto;
+    margin-bottom: 0;
+  }
+}
+
+/* the overlay layer hosting the venue card / the empty-state card.
+   session-78: the gesture legend now lives at the container bottom — the
+   card clears it (including the wrapped narrow-page shape). */
+.map-hud-layer {
+  position: absolute;
+  right: 0.55rem;
+  /* session-79: the atlas caption sits BELOW the wrap, so the legend's
+     drawable bottom is ~3.5rem above the STAGE bottom. Clear the wrapped
+     two-line legend shape (measured 84px at a 15px root) with margin. */
+  bottom: 6.2rem;
+  z-index: 5;
+  width: min(20rem, 70%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  pointer-events: none;
+}
+
+.map-hud-layer > * {
+  pointer-events: auto;
+}
+
+.map-empty-hud {
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+/* the venue click-HUD card (the old site's TARGET_LOCKED idiom) */
+.venue-hud {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid var(--cyan);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.55);
+}
+
+.venue-hud-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--cyan);
+  color: #000;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.16rem 0.5rem;
+}
+
+.venue-hud-x {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0 0.2rem;
+}
+
+.venue-hud-x:hover {
+  color: var(--red);
+}
+
+.venue-hud-body {
+  padding: 0.55rem 0.7rem 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.venue-hud-name {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+}
+
+.venue-hud-addr {
+  margin: 0;
+  font-size: 0.66rem;
+  word-break: break-all;
+}
+
+.venue-hud-coords {
+  border-top: 1px solid var(--line);
+  padding-top: 0.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.venue-hud-coords p {
+  margin: 0;
+  font-size: 0.66rem;
+}
+
+.venue-hud-chip {
+  align-self: flex-start;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--line);
+  padding: 0.08rem 0.4rem;
+}
+
+.venue-hud-chip.seed {
+  color: var(--amber);
+}
+
+.venue-hud-chip.live {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.venue-hud-chip.err {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.venue-hud-actions {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+/* the FULL-panel overlay drawer (desktop MAP) */
+.map-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(34rem, 92%);
+  z-index: 20;
+  background: var(--bg-panel);
+  border-left: 1px solid var(--cyan);
+  box-shadow: -14px 0 32px rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+  padding: 0 0.9rem 0.9rem;
+}
+
+.map-drawer-head {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--line);
+  color: var(--cyan);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 0 0.45rem;
+  margin-bottom: 0.7rem;
+}
+
+.map-drawer .venue-panel {
+  margin: 0;
+  max-width: none;
+}
+
+/* the deck map widget's card variant — overlays the bay's canvas area */
+.deck-map-canvas {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.venue-hud.deck {
+  position: absolute;
+  left: 0.45rem;
+  right: 0.45rem;
+  bottom: 0.45rem;
+  z-index: 5;
+}
+
+/* --- venue panel --- */
+
+.venue-panel .waat {
+  font-size: 0.66rem;
+  word-break: break-all;
+}
+
+.venue-panel h3 {
+  margin: 1rem 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+.venue-action {
+  border-top: 1px solid var(--line);
+  padding-top: 0.6rem;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+
+.venue-action .studio-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.eta-block {
+  border: 1px dashed var(--line);
+  padding: 0.5rem 0.6rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.eta-block h4 {
+  margin: 0 0 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+}
+
+/* session-77: every panel's fourth-level heading (the manage-drawer groups,
+   the venue tile blocks, the "venue created" result) was browser-default h4
+   — three type sizes away from its siblings. Converge on the cyan group-head
+   idiom (the eta block already had it). */
+.panel h4 {
+  margin: 0.75rem 0 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
+/* the eta block's own head sits tight under its dashed frame */
+.panel .eta-block h4 {
+  margin: 0 0 0.3rem;
+}
+
+.eta-block p {
+  margin: 0.2rem 0;
+}
+
+.explain {
+  margin: 0.35rem 0;
+}
+
+.explain summary {
+  cursor: pointer;
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  width: fit-content;
+}
+
+.explain p {
+  margin: 0.3rem 0 0;
+}
+
+/* legacy feed styles — still used by the LOGS panel's raw rows if rendered */
+.feed {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0.6rem;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  font-size: 0.72rem;
+}
+
+.feed-empty {
+  color: var(--text-dim);
+  padding: 0.6rem 0.2rem;
+}
+
+.feed-item {
+  display: grid;
+  grid-template-columns: 7.2rem 1fr auto;
+  gap: 0.4rem;
+  padding: 0.22rem 0.2rem;
+  border-bottom: 1px solid #161616;
+}
+
+.feed-kind {
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+.feed-item.kind-gate.error .feed-kind,
+.feed-item.kind-gate\.error .feed-kind {
+  color: var(--red);
+}
+
+.feed-item.kind-gate.receipt .feed-kind,
+.feed-item.kind-gate\.receipt .feed-kind {
+  color: var(--green);
+}
+
+.feed-item.kind-gate.token-cap .feed-kind,
+.feed-item.kind-gate\.token-cap .feed-kind {
+  color: var(--red);
+}
+
+.feed-line {
+  color: var(--text);
+  word-break: break-word;
+}
+
+.feed-t {
+  color: var(--text-dim);
+}
+
+.dock-chat {
+  padding: 1rem;
+}
+
+/* ============================================================================
+   CHAT view (session-44 — IA-PLAN §10 item 5): terminal-style world + venue
+   channels. Seed archive + live tail, the untrusted-content fence, inert
+   text with DOMPurify-guarded out-links only. CRT idiom, pinned tokens.
+   ========================================================================= */
+
+.view.chat h1 {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* --- session-71: the chat DESIGN OVERHAUL — the module IS the chat surface.
+   No panel-inside-a-container nesting (the MAP session-67 precedent): the
+   view is height-bounded on desktop, the message list fills the main
+   container, the composer docks to the bottom. All new classes reuse the
+   existing token families (HANDLE_COLORS + SIGIL_PALETTE precedents) — no
+   new tokens. Two display layouts: IRC (the 44 idiom) + RICH bubbles. */
+
+@media (pointer: fine) and (min-width: 761px) {
+  .view.chat {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    gap: 0.7rem;
+  }
+
+  .view.chat > h1 {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+  }
+}
+
+.chat-surface {
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+  flex: 1;
+  border: 1px solid var(--line);
+  background: #000;
+  padding: 0.7rem 0.9rem;
+}
+
+.chat-main-row {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative; /* the user pane's overlay anchor */
+}
+
+.chat-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.5rem;
+}
+
+.chat-head h2 {
+  margin: 0;
+}
+
+.chat-head .hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.7rem;
+}
+
+.chat-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.chat-chip {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  background: var(--bg-head);
+  white-space: nowrap;
+}
+
+.chat-chip.seed {
+  color: var(--amber);
+  border-color: var(--amber-dim);
+}
+
+.chat-chip.live {
+  color: var(--green);
+  border-color: #1d4d24;
+}
+
+.chat-chip.trunc {
+  color: var(--amber-bright);
+  border-color: var(--amber-dim);
+}
+
+.chat-chip.err {
+  color: var(--red);
+  border-color: #5a1616;
+}
+
+/* clickable chips (the sync catch-up control + the layout toggle) */
+.chat-chip-btn {
+  cursor: pointer;
+  font-family: var(--mono);
+}
+
+.chat-chip-btn:hover {
+  color: var(--amber-bright);
+  border-color: var(--amber-dim);
+}
+
+.chat-chip-btn.on {
+  color: var(--amber);
+  border-color: var(--amber);
+  background: var(--accent-faint);
+}
+
+.chat-chip-btn.paused {
+  color: var(--text-dim);
+}
+
+.chat-layout-toggle {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+/* the native search row (browser find-in-page cannot see paged content) */
+.chat-search {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.chat-search input[type="search"] {
+  flex: 1 1 14rem;
+  min-width: 10rem;
+}
+
+.chat-search-count {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* the §7.4 untrusted-content fence — always on, impossible to miss */
+.chat-fence {
+  margin: 0.5rem 0 0;
+  padding: 0.3rem 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  color: var(--amber-bright);
+  background: var(--accent-faint);
+  border-left: 3px solid var(--amber);
+  border-top: 1px solid var(--accent-glow);
+  border-bottom: 1px solid var(--accent-glow);
+}
+
+.chat-scroll {
+  flex: 1;
+  /* 71.1: NO rigid min-height — the height-bounded surface flexes the list
+     (the old 260px floor pre-dates the bounded layout; under an
+     over-constrained column it flex-overflowed ONTO the docked composer) */
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.5rem 0.4rem 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  width: 100%;
+}
+
+/* session-80: the jump-to-newest affordance — only while scrolled up,
+   centered above the composer (clear of the right-side user pane) */
+.chat-scroll-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--chat-composer-reserve, 0) + 0.55rem);
+  z-index: 7;
+  background: rgba(0, 0, 0, 0.92);
+  border-color: var(--amber-dim);
+  color: var(--amber);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  padding: 0.22rem 0.75rem;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.65);
+}
+
+/* the seamless-pagination sentinel (2px — presence, not pixels) */
+.chat-sentinel {
+  height: 2px;
+}
+
+.chat-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.2rem 0 0.8rem;
+}
+
+.chat-divider {
+  color: var(--text-faint);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.chat-divider.live-boundary {
+  color: var(--green);
+  border-top: 1px dashed #1d4d24;
+  margin: 0.3rem 0 0.45rem;
+}
+
+.chat-line {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  padding: 0.14rem 0.3rem;
+  border-left: 2px solid transparent;
+  overflow-wrap: anywhere;
+}
+
+.chat-line:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.chat-line.mine {
+  border-left-color: var(--green);
+  background: rgba(0, 255, 65, 0.03);
+}
+
+.chat-line.system {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* search hits: amber wash; the active match carries the border + stronger
+   wash. session-79: attributes (applied by ChatView's O(matches) DOM pass),
+   not React props — the render-all list never re-renders for a search. */
+/* the gate: both rules only match while the search list owns the scroll.
+   One root attribute flip paints a commit; clearing is one flip too. */
+.chat-scroll[data-searching] .chat-line[data-search-hit] {
+  background: rgba(255, 176, 0, 0.08);
+}
+
+.chat-scroll[data-searching] .chat-line[data-search-active] {
+  background: rgba(255, 176, 0, 0.2);
+  border-left-color: var(--amber);
+}
+
+/* the handle is a BUTTON (opens the user pane) styled as the old text */
+.chat-handle-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+}
+
+.chat-handle-btn:hover {
+  text-decoration: underline solid;
+}
+
+/* --- the RICH layout (session-71): sigil pfp + head row + bubble body --- */
+.chat-line.rich {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.3rem 0.3rem 0.38rem;
+  border-left: 2px solid transparent;
+  overflow-wrap: anywhere;
+}
+
+.chat-rich-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  font-size: 0.7rem;
+}
+
+.chat-rich-soul {
+  font-size: 0.66rem;
+  opacity: 0.85;
+}
+
+.chat-rich-time {
+  color: var(--text-faint);
+  font-size: 0.64rem;
+  white-space: nowrap;
+}
+
+.chat-sigil {
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  display: inline-block;
+}
+
+.chat-bubble {
+  margin-left: 1.55rem; /* clears the 22px sigil + gap */
+  padding: 0.32rem 0.6rem;
+  border: 1px solid var(--line);
+  background: var(--bg-panel);
+  white-space: pre-wrap;
+  max-width: 60rem;
+}
+
+.chat-bubble.mine {
+  border-color: #1d4d24;
+  background: rgba(0, 255, 65, 0.04);
+}
+
+.chat-bubble.system {
+  border-style: dashed;
+  color: var(--text-faint);
+  font-style: italic;
+  background: transparent;
+}
+
+.chat-blk {
+  color: var(--text-faint);
+  font-size: 0.66rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chat-soul {
+  font-size: 0.66rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.chat-handle {
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.chat-body {
+  flex: 1;
+  min-width: 0;
+  white-space: pre-wrap;
+}
+
+/* out-links inside untrusted chat: visibly external, opened in new tabs,
+   href guaranteed http(s) by the DOMPurify fence (ui/safeContent.tsx) */
+a.chat-link {
+  color: var(--cyan);
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+}
+
+a.chat-link:hover {
+  color: var(--amber-bright);
+}
+
+a.chat-tx {
+  color: var(--text-faint);
+  font-size: 0.66rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+a.chat-tx:hover {
+  color: var(--amber);
+}
+
+.chat-tail-note {
+  margin: 0.5rem 0.3rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.7rem;
+  border: 1px dashed var(--line);
+  color: var(--text-dim);
+}
+
+.chat-tail-note.err-text {
+  border-color: #5a1616;
+}
+
+.chat-foot {
+  border-top: 1px solid var(--line);
+  padding-top: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.chat-foot .hint {
+  margin: 0;
+}
+
+/* --- the right side user pane (session-71; OVERLAY since 71.1 — opening
+   it must not resize the 8k-row list: an in-flow sibling forced a full
+   reflow both ways, which read as the pane "lagging") --- */
+.chat-user-pane {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 19rem;
+  max-width: 60%;
+  z-index: 6;
+  background: var(--bg-panel);
+  border-left: 1px solid var(--amber-dim);
+  padding: 0.5rem 0.6rem 0.3rem 0.8rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* --- the slim composer (session-71.1): ONE line — input + count + arm + DRY + SEND ---
+   71.2: the input is an AUTO-GROW textarea (one line → up to ~7, then it
+   scrolls; Enter sends, Shift+Enter breaks the line) and outcomes ride a
+   floating toast that never shifts the layout. */
+.world-composer {
+  position: relative;
+}
+
+.chat-composer-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chat-composer-input {
+  flex: 1 1 16rem;
+  min-width: 12rem;
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.45;
+  min-height: 2.1rem;
+  max-height: 9.2rem;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  /* CSS auto-grow (71.3): no per-keystroke JS layout work — the DOM value
+     is the source of truth (the ref pattern), so typing re-renders NOTHING */
+  field-sizing: content;
+}
+
+.composer-target-hints {
+  min-height: 1rem;
+}
+
+/* the floating outcome toast — absolute, right-aligned above the input row */
+.composer-toast {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  margin-bottom: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.22rem 0.55rem;
+  border: 1px solid var(--line);
+  background: var(--bg-head);
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+  z-index: 8;
+}
+
+.composer-toast.ok {
+  border-color: #1d4d24;
+  color: var(--text-dim);
+}
+
+.composer-toast.err {
+  border-color: #5a1616;
+}
+
+.composer-toast.fade {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chat-composer-target {
+  margin: 0 0 0.35rem;
+}
+
+.chat-composer-target .chat-composer-name {
+  color: var(--text);
+}
+
+.chat-arm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chat-arm.off {
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+
+.chat-arm input[type="checkbox"] {
+  accent-color: var(--amber);
+}
+
+.chat-user-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chat-user-id {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.chat-user-handle {
+  margin: 0;
+  font-family: var(--mono);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.chat-user-fence {
+  margin-top: auto;
+}
+
+/* compact: the chat scroller shares the single column; keep it usable */
+@media (pointer: coarse), (max-width: 760px) {
+  .chat-scroll {
+    min-height: 200px;
+  }
+
+  .chat-line {
+    flex-wrap: wrap;
+  }
+
+  .chat-blk {
+    font-size: 0.6rem;
+  }
+
+  .chat-bubble {
+    margin-left: 0;
+  }
+
+  .chat-user-pane {
+    position: static;
+    width: 100%;
+    max-width: none;
+    max-height: 40vh;
+    border-left: none;
+    border-top: 1px solid var(--line);
+    background: #000;
+    padding: 0.5rem 0.2rem 0.3rem;
+  }
+
+  /* the composer stays reachable in the scrolling column */
+  .chat-foot {
+    position: sticky;
+    bottom: 0;
+    background: #000;
+  }
+}
+
+/* ============================================================================
+   DIRECTORY (skeleton, session-44 — IA-PLAN §5): census browse + read-only
+   entity profiles. Reuses the venue-list idiom; one anonymous live batch.
+   ========================================================================= */
+
+.view.directory {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.view.directory h1 {
+  margin-bottom: 0;
+}
+
+.dir-lau {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.dir-list-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 0;
+}
+
+.dir-lau-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  border: 1px solid #161616;
+  padding: 0.3rem;
+}
+
+.dir-qing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 480px;
+}
+
+@media (pointer: coarse), (max-width: 760px) {
+  .dir-lau {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---- agent deck: AI_CORE core tab + SYS tab (session-46 rename) + THE DECK ---- */
+
+.apane-keychip {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+/* session-64: the INTENT strip — a labeled strip, not a fold mimic: amber
+   left bar + the INTENT chip, the literal `▸ plan:` prefix stripped */
+.apane-msg-intent {
+  font-size: 0.82rem;
+  padding: 0.22rem 0.5rem;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-faint);
+  color: var(--accent-bright);
+  margin: 0.25rem 0 0.1rem 0;
+  letter-spacing: 0.02em;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.apane-intent-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  padding: 0 0.25rem;
+  flex: none;
+}
+
+.apane-intent-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.apane-msg-reasoning {
+  margin: 0.2rem 0;
+  opacity: 0.65;
+}
+
+.apane-msg-reasoning summary {
+  cursor: pointer;
+  font-size: 0.74rem;
+  color: #b39ddb;
+  letter-spacing: 0.05em;
+}
+
+.apane-msg-reasoning pre {
+  font-size: 0.72rem;
+  max-height: 160px;
+  overflow: auto;
+  padding: 0.25rem 0.5rem 0.25rem 0.9rem;
+  color: #9e9e9e;
+  white-space: pre-wrap;
+}
+
+.apane-msg-tool {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  border-left: 2px solid #7e57c2;
+  color: #b39ddb;
+  margin: 0.25rem 0;
+}
+
+/* session-64 old-site semantics: CALLING purple, RESULT cyan, errors red */
+.apane-tool-calling {
+  cursor: pointer;
+  color: #b39ddb;
+}
+
+.apane-tool-result {
+  cursor: pointer;
+  color: var(--cyan);
+}
+
+.apane-toolresult-err {
+  color: #ff5252;
+}
+
+.apane-tool-name {
+  color: #9575cd;
+  letter-spacing: 0.05em;
+}
+
+.apane-msg-toolresult summary {
+  cursor: pointer;
+  font-size: 0.78rem;
+  padding-left: 0.75rem;
+}
+
+.apane-msg-toolresult summary.apane-tool-result {
+  color: var(--cyan);
+}
+
+.apane-msg-toolresult pre {
+  font-size: 0.72rem;
+  max-height: 180px;
+  overflow: auto;
+  padding: 0.25rem 0.5rem 0.25rem 0.9rem;
+  color: #7ac74f;
+  opacity: 0.85;
+}
+
+.apane-msg-toolresult pre.apane-toolresult-err {
+  color: #ff5252;
+  opacity: 0.9;
+}
+
+.apane-msg-err {
+  color: #ff5252 !important;
+}
+
+.gm-tab {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0.6rem;
+  min-height: 0;
+}
+
+.gm-panel h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+/* session-77: the SYS tab's section heads were browser-default sans h3s
+   (larger than every panel title in the app); converge them on the panel
+   heading idiom — mono, amber, small */
+.gm-panel h3 {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--amber);
+}
+
+.gm-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  max-height: 260px;
+  overflow-y: auto;
+  font-size: 0.75rem;
+}
+
+.gm-feed-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0.5rem;
+  border-bottom: 1px dotted #161616;
+  padding: 0.1rem 0;
+}
+
+.gm-feed-line {
+  color: #9e9e9e;
+}
+
+/* session-69: the full-auto cycle ledger rows — the stacked gm-feed idiom
+ * (the 7-column table was too wide for the narrow side pane) */
+.fa-cycle {
+  border-bottom: 1px dotted #161616;
+  padding: 0.2rem 0;
+}
+
+.fa-cycle-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+}
+
+.fa-cycle .gm-feed-line {
+  margin-top: 0.1rem;
+}
+
+.gm-kind {
+  color: var(--accent);
+}
+
+.gm-kind-err {
+  color: #ff5252;
+}
+
+.gm-kind-policy {
+  color: #40c4ff;
+}
+
+.gm-kind-send {
+  color: #7ac74f;
+}
+
+.gm-kind-spend {
+  color: #b39ddb;
+}
+
+.gm-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.gm-step.done {
+  color: #7ac74f;
+}
+
+.gm-step.err {
+  color: #ff5252;
+}
+
+.gm-step.active {
+  color: var(--accent);
+}
+
+.gm-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.gm-bar {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 0.6rem;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #9e9e9e;
+}
+
+.gm-bar-track {
+  height: 6px;
+  background: #161616;
+  border: 1px solid #222;
+}
+
+.gm-bar-fill {
+  height: 100%;
+  background: var(--accent);
+}
+
+.gm-bar-fill.warn {
+  background: #ff5252;
+}
+
+.check-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.78rem;
+  color: #9e9e9e;
+}
+
+/* ---- THE DECK (session-46, IA-PLAN §7.11): the agent workspace view ---- */
+/* session-63 SLOT REDESIGN (owner round at the 62.1 close): a SEMI-FIXED
+   instrument panel with typed bays — the auto-flow grid is gone. Column 1
+   is the identity CHROME; columns 2 (slightly wider) + 3 each carry a
+   SHORT top bay + a TALL bottom bay. The deck FITS the screen (overflow
+   lives INSIDE bays). */
+
+.deck-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr);
+  grid-template-rows: minmax(8rem, 0.85fr) minmax(13rem, 1.5fr);
+  grid-template-areas:
+    "col2-top col3-top"
+    "col2-bottom col3-bottom";
+  gap: 0.8rem;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.bay {
+  border: 1px solid #2a2a2a;
+  background: #050505;
+  padding: 0.55rem 0.8rem 0.8rem 0.8rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden; /* the head never bleeds over a neighbor bay */
+}
+
+.bay--short {
+  grid-area: col2-top;
+}
+
+.bay--tall {
+  grid-area: col2-bottom;
+}
+
+.bay[data-slot="col3-top"] {
+  grid-area: col3-top;
+}
+
+.bay[data-slot="col3-bottom"] {
+  grid-area: col3-bottom;
+}
+
+.bay.locked {
+  border-color: var(--accent-pin);
+}
+
+.bay.locked::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--accent-pin);
+  opacity: 0.7;
+}
+
+.bay.empty {
+  border-style: dashed;
+  border-color: #222;
+}
+
+/* overflow lives INSIDE the bay */
+.bay-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.bay-body > * {
+  min-width: 0;
+}
+
+.bay-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  row-gap: 0.2rem;
+  gap: 0.35rem;
+  border-bottom: 1px dotted #222;
+  padding-bottom: 0.3rem;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.bay-label {
+  color: #b39ddb;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.bay-picker {
+  background: #000;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.05rem 0.3rem;
+  max-width: 9.5rem;
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+.bay-picker:hover {
+  border-color: var(--accent-dim);
+}
+
+.bay-origin {
+  white-space: nowrap;
+  flex: 0 1 auto;
+}
+
+.bay-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.bay-actions .btn {
+  font-size: 0.68rem;
+  padding: 0.05rem 0.4rem;
+}
+
+.bay-empty-note {
+  margin: auto 0;
+  text-align: center;
+}
+
+.deck-empty {
+  max-width: 640px;
+}
+
+/* ===== session-57: the deck composition — passport pane + onboarding ===== */
+/* session-63: THREE columns — the identity chrome + the two bay columns */
+
+.deck-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1.06fr) minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: stretch;
+}
+
+/* the bays span the two right columns */
+.deck-main {
+  grid-column: 2 / 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* desktop (fine pointer, wide): the deck FITS the screen — bounded rows all
+   the way down; the page itself never scrolls (session-60 owner rule) */
+@media (pointer: fine) and (min-width: 761px) {
+  .view.deck {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .view.deck > h1 {
+    flex: 0 0 auto;
+    margin-bottom: 0.8rem;
+  }
+
+  .deck-layout {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .deck-passport {
+    overflow-y: auto;
+    min-height: 0;
+  }
+}
+
+.deck-passport {
+  border: 1px solid #2a2a2a;
+  border-top: 2px solid var(--accent);
+  background: #050505;
+  padding: 0.7rem 0.8rem 0.8rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: sticky;
+  top: 0.5rem;
+}
+
+.passport-head {
+  margin: 0;
+  color: #00f0ff;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  border-bottom: 1px dotted #222;
+  padding-bottom: 0.35rem;
+}
+
+.passport-id {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  text-align: center;
+  border-bottom: 1px dotted #222;
+  padding-bottom: 0.55rem;
+}
+
+/* the old site's centered identity block: big bordered sigil, the name +
+   symbol + soul id beneath (ideas only, never code) */
+.passport-id .passport-id-text {
+  align-items: center;
+}
+
+.passport-soul-id {
+  color: #8a8a8a;
+  letter-spacing: 0.12em;
+  font-size: 0.66rem;
+}
+
+.passport-sigil {
+  border: 2px solid #333;
+  width: 96px;
+  height: 96px;
+  flex: 0 0 auto;
+}
+
+.passport-username {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  overflow-wrap: anywhere;
+}
+
+.passport-id-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.passport-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-top: 1px dotted #222;
+  padding-top: 0.4rem;
+}
+
+.passport-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.passport-row-label {
+  color: #8a8a8a;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.passport-copy {
+  background: none;
+  border: 1px solid transparent;
+  color: #e0e0e0;
+  font-size: 0.72rem;
+  padding: 0.05rem 0.3rem;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.3rem;
+  align-items: baseline;
+}
+
+.passport-copy:hover:not(:disabled) {
+  border-color: #333;
+  color: #00f0ff;
+}
+
+.passport-copy:disabled {
+  color: #565656;
+  cursor: default;
+}
+
+.passport-copy-mark {
+  color: #00f0ff;
+  font-size: 0.68rem;
+}
+
+.passport-ledger {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.72rem;
+}
+
+.passport-ledger th,
+.passport-ledger td {
+  padding: 0.12rem 0.25rem;
+  text-align: right;
+  border-bottom: 1px dotted #1c1c1c;
+}
+
+.passport-ledger thead th {
+  color: #8a8a8a;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  font-size: 0.66rem;
+}
+
+.passport-ledger tbody th,
+.passport-ledger tfoot th {
+  text-align: left;
+  color: #8a8a8a;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  font-size: 0.66rem;
+}
+
+.passport-ledger tfoot td {
+  border-bottom: none;
+  padding-top: 0.3rem;
+}
+
+.passport-yuan {
+  color: var(--accent);
+}
+
+.passport-saat {
+  border-top: 1px dotted #222;
+  padding-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* session-66: the STATUS block — home QING + the DSS bundler rows and the
+   compact deploy affordance (classes only, no new tokens — DESIGN.md) */
+.passport-status {
+  border-top: 1px dotted #222;
+  padding-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.passport-status .kv {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.15rem 0.5rem;
+  align-items: baseline;
+}
+
+.passport-status .kv dt {
+  color: #8a8a8a;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+}
+
+.passport-status .kv dd {
+  text-align: right;
+  font-size: 0.7rem;
+}
+
+.passport-deploy-btn {
+  font-size: 0.68rem;
+  padding: 0.15rem 0.4rem;
+}
+
+/* session-63: the power-token constellation rows fill the freed ledger
+   space (the design-time call — one anonymous MARKET Power-tab batch) */
+.passport-power {
+  border-top: 1px dotted #222;
+  padding-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.passport-power .dim {
+  color: #565656;
+}
+
+.passport-foot {
+  margin-top: auto;
+  border-top: 1px dotted #222;
+  padding-top: 0.4rem;
+}
+
+/* the old site's LAU_METRICS pulsing ● — a live-data tell, not decoration */
+.passport-live-dot {
+  color: var(--green);
+  animation: blink 1.6s steps(2, start) infinite;
+}
+
+.passport-saat .kv {
+  margin: 0;
+}
+
+.passport-nooperator p {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+.onboarding-hint {
+  margin-left: 1.4rem;
+  font-size: 0.7rem;
+}
+
+.onb-done {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* session-65.2: the onboarding CONTROLS block (preferences + CTAs) — sits
+   ABOVE the checklist (the owner's layout call: the tall checklist scrolls
+   inside the bay and used to push the CTAs out of view) */
+.onb-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.55rem 0.6rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+}
+
+.onb-controls .arg-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: stretch;
+}
+
+.onb-controls input {
+  background: var(--bg-head);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.45rem;
+}
+
+.onb-controls .studio-actions {
+  margin-top: 0.15rem;
+}
+
+/* the monitor's head row + refresh control (71.2 polish — IRC-flavored,
+   compact; the ⟳ rides the head, spins while a read is in flight) */
+.deck-chat-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px dotted #222;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
+}
+
+.deck-chat-channel {
+  color: var(--amber);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.deck-refresh {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1;
+  padding: 0.12rem 0.34rem;
+  cursor: pointer;
+}
+
+.deck-refresh:hover {
+  color: var(--amber-bright);
+  border-color: var(--amber-dim);
+}
+
+.deck-refresh:disabled {
+  cursor: wait;
+}
+
+.deck-refresh .spin {
+  display: inline-block;
+  animation: deck-refresh-spin 1s linear infinite;
+  color: var(--amber);
+}
+
+@keyframes deck-refresh-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* multi-line messages WRAP (up to two lines) then clamp — never a
+   horizontal scroller (the owner's find) */
+.deck-chat-lines li {
+  overflow-x: hidden;
+}
+
+.deck-chat-body {
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.deck-chat-fence {
+  font-size: 0.6rem;
+  margin: 0.3rem 0 0;
+}
+
+.deck-chat-lines {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.78rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.deck-kb-hits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+}
+
+.deck-kb-excerpt {
+  font-size: 0.72rem;
+  color: #9e9e9e;
+  white-space: pre-wrap;
+  max-height: 120px;
+  overflow-y: auto;
+  border-left: 2px solid #222;
+  padding-left: 0.5rem;
+  margin: 0.2rem 0 0 0;
+}
+
+.deck-intent {
+  font-size: 0.8rem;
+  color: var(--accent-bright);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.5rem;
+}
+
+/* session-60: the deck map widget — the canvas FILLS the cell (the compact
+   atlas variant); the old 260px canvas clamp predated the AtlasCanvas port
+   and pancaked the render inside its taller wrap */
+.deck-map {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* the L1 plan widget (§7.11.4) */
+.plan-send-badge {
+  margin-left: 0.45rem;
+  padding: 0 0.35rem;
+  border: 1px solid #ff5252;
+  color: #ff5252;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.plan-step-err {
+  margin: 0.15rem 0 0 1.1rem;
+  font-size: 0.72rem;
+}
+
+@media (pointer: coarse), (max-width: 760px) {
+  /* compact: single column, the page scrolls, bays size naturally */
+  .view.deck {
+    height: auto;
+    display: block;
+  }
+
+  .deck-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-template-areas: none;
+    flex: 0 0 auto;
+  }
+
+  .bay,
+  .bay--short,
+  .bay--tall,
+  .bay[data-slot="col3-top"],
+  .bay[data-slot="col3-bottom"] {
+    grid-area: auto;
+    min-height: 11rem;
+  }
+
+  .bay .deck-map {
+    min-height: 360px;
+  }
+
+  .deck-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .deck-main {
+    grid-column: auto;
+  }
+
+  .deck-passport {
+    position: static;
+  }
+}
+
+/* ===== session-48: MARKET / LEARN / the world composer ===== */
+
+.view.market,
+.view.learn {
+  max-width: 76rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+  margin-bottom: 0.8rem;
+}
+
+.kv-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.82rem;
+}
+
+.kv-table th,
+.kv-table td {
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.kv-table thead th {
+  color: var(--amber);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kv-table td .hint {
+  margin: 0.15rem 0 0;
+}
+
+.power-key {
+  color: var(--amber);
+  letter-spacing: 0.04em;
+}
+
+.market-power .panel,
+.market-assets .panel,
+.market-pairs .panel {
+  max-width: 60rem;
+}
+
+.market-venue-rate .kv {
+  margin-bottom: 0;
+}
+
+.pairs-table-wrap table {
+  min-width: 46rem;
+}
+
+/* LEARN — the guide corpus, terminal style */
+.learn-body {
+  display: grid;
+  grid-template-columns: minmax(15rem, 19rem) minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.learn-index ul {
+  list-style: none;
+  margin: 0.4rem 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.learn-filter {
+  width: 100%;
+  margin: 0.55rem 0 0;
+}
+
+.learn-file {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text);
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.learn-file:hover {
+  border-color: var(--line);
+}
+
+.learn-file.active {
+  border-color: var(--amber);
+  background: var(--accent-wash);
+}
+
+.learn-file-name {
+  color: var(--amber);
+  font-size: 0.72rem;
+}
+
+.learn-file-title {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.learn-doc {
+  max-width: none;
+  width: 100%;
+}
+
+.learn-doc-body {
+  max-width: 46rem;
+}
+
+.guide-h {
+  color: var(--amber);
+  margin: 1.4rem 0 0.5rem;
+}
+
+.guide-p {
+  margin: 0.55rem 0;
+  line-height: 1.55;
+}
+
+.guide-ul {
+  margin: 0.55rem 0 0.55rem 1.1rem;
+  line-height: 1.55;
+}
+
+.guide-ul li {
+  margin: 0.2rem 0;
+}
+
+.guide-ul .guide-ul {
+  margin: 0.25rem 0 0.25rem 0.9rem;
+}
+
+.guide-table-wrap {
+  overflow-x: auto;
+  margin: 0.8rem 0;
+}
+
+.guide-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+.guide-table th,
+.guide-table td {
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.guide-table tr.guide-thead th {
+  color: var(--amber);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.guide-pre {
+  border: 1px dashed var(--line);
+  padding: 0.6rem 0.8rem;
+  margin: 0.7rem 0;
+  overflow-x: auto;
+  font-size: 0.75rem;
+  /* session-77: quotes + code fences wrap instead of clipping mid-sentence
+     (the README's opening blockquote was cut at the first line end) */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.guide-rule {
+  border: 0;
+  border-top: 1px dashed var(--line);
+  margin: 1rem 0;
+}
+
+.guide-code {
+  color: var(--cyan);
+}
+
+.guide-link {
+  border-bottom: 1px dotted var(--cyan);
+  color: var(--cyan);
+}
+
+/* the glossary dotted-underline dictionary pass */
+.gl-term {
+  border-bottom: 1px dotted var(--amber);
+  cursor: help;
+}
+
+/* the CHOA.Chat world composer */
+.world-composer .arg-row {
+  margin: 0.6rem 0;
+}
+
+.world-composer .studio-actions {
+  margin-top: 0.5rem;
+}
+
+/* ===== session-60: the fleet vessel picker (SIM-only surface) ===== */
+
+.vessel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  max-width: 34rem;
+}
+
+.vessel-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+
+.vessel-opt:hover {
+  border-color: var(--accent-dim);
+}
+
+.vessel-opt.active {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+}
+
+.vessel-swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid #000;
+  flex: 0 0 auto;
+  display: inline-block;
+}
+
+@media (max-width: 1100px) {
+  .learn-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ===== session-62/63: the replay transport → the SLIM HEADER strip ===== */
+/* (63: the deck-level bar dies; the control condenses to ONE LINE in the
+   hardware-strip row's spare space — visible only while armed) */
+
+.replay-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: auto;
+  min-width: 0;
+  overflow: hidden;
+  opacity: 1; /* the armed strip lifts the hwstrip's dim */
+}
+
+.replay-strip .btn {
+  font-size: 0.6rem;
+  padding: 0 0.35rem;
+  letter-spacing: 0.04em;
+}
+
+.replay-badge {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.05rem 0.4rem;
+  letter-spacing: 0.14em;
+  font-size: 0.6rem;
+  white-space: nowrap;
+}
+
+.replay-seek-track--slim {
+  width: clamp(6rem, 16vw, 14rem);
+  flex: 0 1 auto;
+}
+
+.replay-seek-track {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+}
+
+.replay-seek-track input[type="range"] {
+  flex: 1 1 auto;
+  accent-color: var(--accent);
+}
+
+.replay-count {
+  white-space: nowrap;
+}
+
+/* score-snapshot ticks — the round boundaries on the tape */
+.replay-tick {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 0.55rem;
+  transform: translate(-50%, -50%);
+  background: var(--accent);
+  pointer-events: none;
+}
+
+.replay-speeds {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.replay-speed-on {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-wash);
+}
+
+.replay-filter-select {
+  background: #000;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  padding: 0 0.2rem;
+  max-width: 7rem;
+}
+
+.replay-readout {
+  font-size: 0.62rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 18rem;
+}
+
+.replay-actor {
+  font-weight: 600;
+}
+
+/* ===== session-63: the INLINE approval envelope + the old-site tool idiom ===== */
+
+.apane-approval {
+  border: 1px solid var(--amber);
+  background: rgba(255, 176, 0, 0.05);
+  color: var(--amber);
+  padding: 0.6rem 0.7rem;
+  margin: 0.6rem 0;
+  box-shadow: 0 0 15px rgba(255, 191, 0, 0.12);
+}
+
+.apane-approval .kv dt {
+  color: var(--amber);
+  opacity: 0.75;
+}
+
+.apane-approval-head {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  border-bottom: 1px solid rgba(255, 176, 0, 0.3);
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.4rem;
+}
+
+/* the old site's calling-tool row: a fold carrying PARAMETERS */
+.apane-msg-tool summary,
+.apane-msg-toolresult summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.apane-msg-tool summary::-webkit-details-marker,
+.apane-msg-toolresult summary::-webkit-details-marker {
+  display: none;
+}
+
+.apane-tool-calling {
+  color: #7dd3fc;
+}
+
+.apane-tool-name {
+  letter-spacing: 0.04em;
+}
+
+.apane-tool-params {
+  border-top: 1px dotted #333;
+  margin-top: 0.3rem;
+  padding-top: 0.3rem;
+}
+
+.apane-params-label {
+  color: #565656;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.15rem;
+}
+
+.apane-tool-params pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.72rem;
+  color: #9e9e9e;
+}
+
+/* ===== session-62.1: the replayed conversation in the AI_CORE pane ===== */
+
+.apane-replay-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  border: 1px dashed var(--accent-dim);
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.apane-msg-turn.replay-turn {
+  border: 1px solid var(--line);
+  border-left-width: 3px;
+  padding: 0.15rem 0.5rem;
+  margin: 0.6rem 0 0.3rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+}
+
+/* ============================================================================
+   SESSION-77 — THE PREMIUM UI POLISH + FACE-LIFT PASS (classes only, no new
+   tokens). Cross-surface convergence, not a re-theme: the form-control
+   foundation, keyboard focus, reading rhythm inside panels, the module-tab
+   color law (purple is AI-core ONLY), and the compact-width repairs whose
+   original rules sat BEFORE the base rules they meant to override.
+   ========================================================================= */
+
+/* ---- the form-control foundation ----
+   `:where()` keeps this at zero specificity so every existing contextual
+   rule (`.arg-row input`, `.policy-grid …`, `.rpc-form …`, `.apane-input
+   textarea`, the chat composer) still wins; this only catches the controls
+   that previously fell through to the browser's dark UA chrome (the persona
+   textarea, the manage-drawer selects, the SYS notes field, …). */
+:where(input:not([type="checkbox"], [type="radio"], [type="range"]), select, textarea) {
+  background: #000;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.45rem;
+  border-radius: 2px;
+}
+
+:where(input, select, textarea)::placeholder {
+  color: var(--text-faint);
+}
+
+:where(input, select, textarea):focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent-dim);
+}
+
+:where(input[type="checkbox"], input[type="radio"]) {
+  accent-color: var(--accent);
+  width: 0.95rem;
+  height: 0.95rem;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+:where(input[type="range"]) {
+  accent-color: var(--accent);
+}
+
+:where(input, select, textarea):disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* keyboard-reachable by design (DESIGN.md): every control gets the same
+   visible focus ring, not just the browser default */
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---- module-level sub-tabs (MARKET / DIRECTORY) ----
+   a real bar with a terminal hit area; the AI_CORE pane's own dock-head tabs
+   are untouched (main-header chrome, out of scope) */
+.view > .dock-tabs {
+  gap: 0.35rem;
+  border-bottom: 1px dotted #222;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.15rem;
+}
+
+.view > .dock-tabs .dock-tab {
+  font-size: 0.72rem;
+  padding: 0.28rem 0.8rem;
+}
+
+.view > .dock-tabs .dock-tab.active {
+  background: rgba(0, 240, 255, 0.08);
+}
+
+/* header actions are subordinate to the panel title (refresh/clear buttons
+   were the same weight as body buttons and fought the heading) */
+.panel h2 > .btn,
+.panel h3 > .btn {
+  font-size: 0.68rem;
+  padding: 0.12rem 0.55rem;
+  letter-spacing: 0.04em;
+}
+
+/* session-77: the DIRECTORY profiles' subheads ("seed facts", "live state")
+   were browser-default h3s while every other panel used the dim mono idiom;
+   same for the SETTINGS SIM-overlay block. */
+.dir-lau h3,
+.dir-qing h3 {
+  margin: 1rem 0 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.sim-overlay-block h3 {
+  margin: 0 0 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+/* ---- clickable row + table affordances ---- */
+.venue-row:not(.active):hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.kv-table tbody tr:hover,
+.perimeter tbody tr:hover,
+.bal-table tbody tr:hover,
+.passport-ledger tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ---- reading rhythm inside panels ----
+   the settings/identity/venue panels carry long normative paragraphs; the
+   old unspaced `.hint` paragraphs ran together. Paragraphs only — inline
+   `.hint` spans keep their tight row behavior. */
+.panel > p.hint,
+.panel > .hint:not(span) {
+  line-height: 1.45;
+  margin: 0.35rem 0;
+}
+
+/* the SYS tab's note field (`.field` was referenced but never defined) */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.field textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+/* SETTINGS carries the longest normative copy in the app: give every note a
+   quiet left rule so the wall reads as annotations, not as run-on prose */
+.view.settings .panel > p.hint {
+  border-left: 2px solid #1c1c1c;
+  padding-left: 0.6rem;
+}
+
+/* ---- the module-tab color law ----
+   MARKET + DIRECTORY reuse the pane's `.dock-tabs` idiom, but the active
+   `.dock-tab` is PURPLE — the AI-core-only family. Module-level sub-tabs
+   take the active-module cyan instead. (The AI_CORE pane keeps purple.) */
+.view .dock-tab.active {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* ---- the compact repairs ----
+   the session-42 compact block sits BEFORE the component rules it meant to
+   override, so `.studio-grid` / `.arg-row` / `.policy-grid` stayed
+   multi-column on a 430px screen. Restated here (later = winning). */
+@media (pointer: coarse), (max-width: 760px) {
+  .studio-grid,
+  .arg-row,
+  .policy-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .policy-grid > label,
+  .arg-row > label {
+    padding-top: 0.15rem;
+  }
+
+  .policy-grid > input:not([type="checkbox"]):not([type="radio"]),
+  .arg-row input,
+  .arg-row select,
+  .arg-row textarea {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .policy-grid > input[type="checkbox"],
+  .policy-grid > input[type="radio"] {
+    justify-self: start;
+  }
+
+  .mode-row {
+    flex-wrap: wrap;
+  }
+
+  .mode-row .btn.mode {
+    flex: 1 1 100%;
+    white-space: normal;
+  }
+
+  /* the compact sidebar is a picker, not the page: bound the venue rows so
+     MAP / CHAT / MARKET's primary surface is not pushed below 50 rows */
+  .view > .venue-sidebar .venue-list {
+    max-height: 34vh;
+  }
+
+  .view > .venue-sidebar .venue-side-foot {
+    display: none;
+  }
+
+  /* CHAT is THE surface at every width (session-71's law): on compact the
+     channel picker becomes a bounded strip and the chat fills the rest, so
+     the docked composer is on screen instead of one page-scroll below the
+     header. (Previously the 50-row list pushed the whole module down.) */
+  .view.chat {
+    height: 100%;
+    min-height: 40rem; /* short compact viewports page-scroll instead of
+                          crushing the docked composer under the tab bar */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .view.chat > h1 {
+    flex: 0 0 auto;
+    margin-bottom: 0.4rem;
+  }
+
+  .view.chat > .venue-sidebar {
+    flex: 0 0 auto;
+    height: 24vh;
+    min-height: 8.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .view.chat > .venue-sidebar .venue-list {
+    max-height: none;
+  }
+
+  .view.chat .chat-surface {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .view.chat .chat-scroll {
+    min-height: 0;
+  }
+
+  /* the IRC row must not squeeze the body into a 90px column beside the
+     nowrap block/soul/handle chips: on compact the body claims its OWN line
+     (basis leaves room for the trailing explorer link) */
+  .view.chat .chat-line {
+    flex-wrap: wrap;
+  }
+
+  .view.chat .chat-body {
+    flex: 1 1 calc(100% - 2.6rem);
+  }
+
+  /* the route-explainer is reference copy, not chat content — reclaim the
+     vertical space for the message scroller; the §7.4 fence stays */
+  .view.chat .chat-head > div > .hint {
+    display: none;
+  }
+
+  /* session-78: the gesture legend is a bottom overlay of the atlas wrap at
+     every width — the old compact in-flow workaround died with the move. */
+
+  .atlas-btn,
+  .atlas-chip {
+    font-size: 0.65rem;
+    padding: 0.28rem 0.5rem;
+  }
+}
+
+/* short viewports (a 640px-tall phone / a squat desktop window): the
+   bounded chat cannot fit its head + composer; let the module page scroll
+   instead of crushing the scroller under the sticky foot. */
+@media (max-height: 700px) {
+  .view.chat {
+    height: auto;
+    min-height: 0;
+    display: block;
+  }
+
+  .view.chat > .venue-sidebar {
+    height: 24vh;
+    min-height: 8.5rem;
+  }
+
+  .view.chat .chat-surface {
+    flex: none;
+    height: 420px;
+    min-height: 420px;
+  }
+
+  .view.chat .chat-foot {
+    position: static;
+  }
+}
+
+/* ============================================================================
+   SESSION-77.1 — THE COMPOSER LAYOUT DECOUPLING (owner follow-up; classes
+   only, no new tokens). The composer was a FLEX SIBLING of the 8k-row scroll
+   container: every input event dirtied the chat surface's flex layout and
+   Chrome re-laid out the whole message list (measured on the 8,083-row world
+   channel: 32.2ms task / 10.7ms layout per keystroke, 0 mutations in the
+   list — React was NOT re-rendering it; hiding rows from layout removed the
+   cost; fixed-height textarea/contain/overflow-anchor did not help).
+   The composer now overlays a FIXED bottom reserve, so its own growth can no
+   longer change the scroller's size: 1.3ms task / 0.1ms layout per keystroke.
+   The reserve is the 1-LINE footer height; auto-grow overlays the list (the
+   standard chat pattern), and the user pane's bottom follows the reserve.
+   Disabled composer = no .world-composer = the footer stays in flow.
+   `:has()` degrades gracefully to the old in-flow layout where unsupported.
+   ========================================================================= */
+
+.chat-surface {
+  position: relative;
+}
+
+.chat-surface:has(.world-composer) {
+  --chat-composer-reserve: 4.5rem;
+}
+
+/* venue mode adds the "open MAP → venue actions" hint under the composer */
+.chat-surface:has(.world-composer):has(.chat-foot > p.hint) {
+  --chat-composer-reserve: 6rem;
+}
+
+.chat-main-row {
+  padding-bottom: var(--chat-composer-reserve, 0);
+}
+
+/* the overlay pane must stop above the composer, not under it */
+.chat-user-pane {
+  bottom: var(--chat-composer-reserve, 0);
+}
+
+.chat-surface:has(.world-composer) .chat-foot {
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.7rem;
+  z-index: 5;
+  background: #000;
+}
+
+/* the two-line composer at phone widths needs the taller reserve */
+@media (max-width: 520px) {
+  .chat-surface:has(.world-composer) {
+    --chat-composer-reserve: 6.5rem;
+  }
+
+  .chat-surface:has(.world-composer):has(.chat-foot > p.hint) {
+    --chat-composer-reserve: 9.5rem;
+  }
+}
+
+/* ============================================================================
+   SESSION-78 — CENTERED CONTENT COLUMNS + the LEARN DEV REFERENCE source
+   ========================================================================= */
+
+/* THE CENTERED CONTENT LAW (session-78): DECK / MAP / CHAT stay edge-to-edge
+   by design; every other view centers ONE view-level column inside
+   main.content (equal side margins) and its panels fill that column — no
+   left-hugging panel stack, no inner right gap. Compact keeps full width. */
+@media (min-width: 761px) {
+  .view.view-center {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+  }
+
+  .view.identity.view-center,
+  .view.settings.view-center,
+  .view.placeholder.view-center {
+    max-width: 60rem;
+  }
+
+  .view.studio.view-center {
+    max-width: 88rem;
+  }
+
+  .view.view-center .panel {
+    max-width: none;
+  }
+}
+
+/* LEARN's source switch (GUIDE ↔ DEV REFERENCE) — classes only, cyan = the
+   module-level active color (purple stays AI-core-only). */
+.learn-sources {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin: 0 0 0.8rem;
+}
+
+.learn-source {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  padding: 0.28rem 0.7rem;
+  cursor: pointer;
+}
+
+.learn-source:hover {
+  color: var(--text);
+}
+
+.learn-source.active {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(0, 240, 255, 0.08);
+}
+
+/* the 50-file dev index scrolls beside the doc instead of pushing it down */
+@media (min-width: 1101px) {
+  .learn-index {
+    position: sticky;
+    top: 0.6rem;
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
+  }
+}
+
+/* the sticky contract rail is a desktop-pointer affordance; a coarse-pointer
+   single-column layout (the 77 compact block) keeps it in flow */
+@media (pointer: coarse), (max-width: 760px) {
+  .studio-index {
+    position: static;
+  }
+}
+
+/* ============================================================================
+   SESSION-81 — the SIM layer bootstrap panel (classes only, no new tokens)
+   ========================================================================= */
+.sim-checks,
+.sim-steps {
+  list-style: none;
+  margin: 0.6rem 0;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.sim-steps {
+  list-style: decimal;
+  padding-left: 1.4rem;
+}
+
+.sim-checks li,
+.sim-steps li {
+  overflow-wrap: anywhere;
+}
+
+.sim-checks li.ok .mono {
+  color: var(--green);
+}
+
+.recipe-code {
+  background: #000;
+  border: 1px solid var(--line);
+  padding: 0.6rem 0.8rem;
+  overflow-x: auto;
+  margin: 0.35rem 0 0.8rem;
+}
+
+.recipe-code code {
+  font-family: var(--mono);
+  color: var(--amber-bright);
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+#sim-player-amount {
+  width: 10rem;
+}

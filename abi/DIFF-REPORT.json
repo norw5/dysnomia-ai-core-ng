@@ -1,0 +1,173 @@
+{
+ "_meta": {
+  "tool": "tools/dys_abi_gen.py",
+  "config": {
+   "version": "0.8.21",
+   "runs": 200,
+   "evm": "shanghai"
+  },
+  "contracts": 67,
+  "note": "canonical ABIs from the pinned solc compile of the recovered tree; supersedes dysnomia-ai-core docs/ABI (which carries the CHOA.Chat (string) bug)"
+ },
+ "diff_vs_old_docs_abi": {
+  "SHA": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "SHIO": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "YI": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "ZHENG": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "ZHOU": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "YAU": {
+   "new_only": [
+    "Monopole",
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": [
+    "Monopole",
+    "Shio"
+   ]
+  },
+  "YANG": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "SIU": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "VOID": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": [
+    "Clear",
+    "Sign"
+   ]
+  },
+  "atropaMath": {
+   "new_only": [],
+   "old_only": [
+    "MotzkinPrime",
+    "Random",
+    "hashWith",
+    "modExp64"
+   ]
+  },
+  "CHAN": {
+   "new_only": [
+    "MotzkinPrime",
+    "OptIn",
+    "OptedIn",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "CHOA": {
+   "new_only": [
+    "Chat",
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": [
+    "Chat"
+   ]
+  },
+  "RING": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "MAI": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "XIA": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "SEI": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  },
+  "CHEON": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": [
+    "Choa"
+   ]
+  },
+  "META": {
+   "new_only": [
+    "MotzkinPrime",
+    "Xiao",
+    "owner"
+   ],
+   "old_only": []
+  }
+ }
+}

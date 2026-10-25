@@ -1,0 +1,9 @@
+{
+ "version": "0.8.21",
+ "evmVersion": "shanghai",
+ "optimizer": {
+  "enabled": true,
+  "runs": 200
+ },
+ "note": "the session-31 pinned toolchain; 0.8.21 rejects cancun; used by tools/dys_abi_gen.py and the never-deployed-layer fork fixtures"
+}

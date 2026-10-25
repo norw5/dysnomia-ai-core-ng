@@ -1,0 +1,75 @@
+[
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "UserToken",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
+  "inputs": [],
+  "name": "InsufficientLAUBalance",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "Unauthorized",
+  "type": "error"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "string",
+    "name": "text",
+    "type": "string"
+   }
+  ],
+  "name": "chat",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "string",
+    "name": "text",
+    "type": "string"
+   }
+  ],
+  "name": "chatAndSnipe",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "tokenAddress",
+    "type": "address"
+   }
+  ],
+  "name": "setLAU",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "amount",
+    "type": "uint256"
+   }
+  ],
+  "name": "withdrawLAU",
+  "outputs": [],
+  "stateMutability": "payable",
+  "type": "function"
+ }
+]

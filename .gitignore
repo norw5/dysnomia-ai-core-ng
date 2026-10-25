@@ -1,0 +1,43 @@
+# dependencies + build output
+node_modules/
+dist/
+
+# local env / secrets (the example template SHIPS)
+.env
+.env.*
+!.env.example
+*.local
+
+# internal planning + design docs — not part of the deployment
+/AGENTS.md
+/NEXT_SESSION_PROMPT.md
+/DESIGN.md
+/HARNESS.md
+/docs/
+
+# test + local run output
+test-results/
+playwright-report/
+blob-report/
+coverage/
+__pycache__/
+*.pyc
+.DS_Store
+
+# harness output: fork runs, the generated runner bundle, compiler caches/out
+harness/runs/
+harness/runner/
+harness/fixtures/*/cache/
+harness/fixtures/*/out/
+harness/fixtures/*/out-direct/
+
+# the old-app reference copy (when present; read-only, never ships)
+dysnomia-ai-core/
+
+# dev-only session probe scripts
+/app/repro*.mjs
+/app/traceextract.mjs
+
+# stale seed-era integrity manifest (references docs/pre-app files;
+# regenerate deliberately if you want to ship a checksum manifest)
+/CHECKSUMS.sha256

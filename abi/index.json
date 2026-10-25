@@ -1,0 +1,7361 @@
+{
+ "VMREQ": {
+  "file": "00b_vmreq.sol",
+  "address": null,
+  "selectors": {
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x604a6fa9": {
+    "name": "Random",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x1686f265": {
+    "name": "View",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xfa6bcfec": {
+    "name": "hashWith",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x3148f14f": {
+    "name": "modExp",
+    "types": "uint256,uint256,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x53df6e35": {
+    "name": "modExp64",
+    "types": "uint64,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "DYSNOMIA": {
+  "file": "01_dysnomia_v2.sol",
+  "address": null,
+  "selectors": {
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "atropaMath": {
+  "file": "RandomGenerator.sol",
+  "address": null,
+  "selectors": {
+   "0x3148f14f": {
+    "name": "modExp",
+    "types": "uint256,uint256,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "SHA": {
+  "file": "02_sha.sol",
+  "address": null,
+  "selectors": {
+   "0xf6671de4": {
+    "name": "Adduct",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0xc2bea95f": {
+    "name": "Avail",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x46dd4401": {
+    "name": "Bond",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x467e251f": {
+    "name": "Conify",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x72d229fd": {
+    "name": "Conjugate",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x9b3d54e4": {
+    "name": "Dynamo",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xb40619de": {
+    "name": "Form",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x834e9480": {
+    "name": "Fuse",
+    "types": "uint64,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7db9510e": {
+    "name": "Polarize",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xf302d97f": {
+    "name": "React",
+    "types": "uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x3e9f6444": {
+    "name": "Saturate",
+    "types": "uint64,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x1686f265": {
+    "name": "View",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "SHAFactory": {
+  "file": "02c_shafactory.sol",
+  "address": "0x4208333d65a90577e3da39b84d6a95eb9db717d2",
+  "selectors": {
+   "0x210a6a1e": {
+    "name": "New",
+    "types": "string,string,address",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "SHIO": {
+  "file": "03_shio.sol",
+  "address": "0xe843765114992e18061498aed708537ce9d924fa",
+  "selectors": {
+   "0x4970204f": {
+    "name": "Cone",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x85da8ff8": {
+    "name": "Generate",
+    "types": "uint64,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x089c10b0": {
+    "name": "Isolate",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0xece1af6b": {
+    "name": "Isomerize",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0xdaeee482": {
+    "name": "Log",
+    "types": "uint64,uint64,string",
+    "mutability": "nonpayable"
+   },
+   "0x95fb8190": {
+    "name": "Magnetize",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x03443a15": {
+    "name": "Manifold",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x3cf93051": {
+    "name": "Monopole",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x3b8052c9": {
+    "name": "React",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xa4566950": {
+    "name": "Rho",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x25a28a8f": {
+    "name": "Rod",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "SHIOFactory": {
+  "file": "03c_shiofactory.sol",
+  "address": "0x5063d2a97960dde8dc5e3e5a69aaa379c6301f1c",
+  "selectors": {
+   "0x485830ae": {
+    "name": "New",
+    "types": "address,address,address",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "YI": {
+  "file": "04_yi.sol",
+  "address": "0x4757438723055f14a1af5c9651c2e37730f41a9e",
+  "selectors": {
+   "0xea673dd2": {
+    "name": "Bang",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xa5c2ec1c": {
+    "name": "Beta",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xbe15b61c": {
+    "name": "Bing",
+    "types": "tuple",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x4d3a5b71": {
+    "name": "Kappa",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x76fade90": {
+    "name": "Psi",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xbfd932cb": {
+    "name": "React",
+    "types": "tuple,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x87b3be7d": {
+    "name": "Ring",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2e426d34": {
+    "name": "SHAFactoryInterface",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x0dd13230": {
+    "name": "SHIOFactoryInterface",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa12204b0": {
+    "name": "Xi",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "ZHENG": {
+  "file": "05_zheng.sol",
+  "address": "0x24e62c39e34d7fe2b7df1162e1344eb6eb3b3e15",
+  "selectors": {
+   "0x4209b07c": {
+    "name": "Eta",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x044278fa": {
+    "name": "GetRodByIdx",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x9496f921": {
+    "name": "InstallCone",
+    "types": "uint64,tuple,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xae62312d": {
+    "name": "InstallRod",
+    "types": "uint64,tuple,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xf2f8a809": {
+    "name": "Iodize",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xc94c3f85": {
+    "name": "Mau",
+    "types": "string,string,uint64,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "ZHOU": {
+  "file": "06_zhou.sol",
+  "address": "0x5cc318d0c01fed5942b5ed2f53db07727d36e261",
+  "selectors": {
+   "0x8161e8c5": {
+    "name": "Alpha",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x3cf93051": {
+    "name": "Monopole",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x3b8052c9": {
+    "name": "React",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x140c2fb5": {
+    "name": "Upsilon",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa12204b0": {
+    "name": "Xi",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "YAU": {
+  "file": "07_yau.sol",
+  "address": "0x7e91d862a346659daeed93726e733c8c1347a225",
+  "selectors": {
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd89a0a23": {
+    "name": "Monopole",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xe83d4f64": {
+    "name": "React",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x4cde872d": {
+    "name": "Tau",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x3b297416": {
+    "name": "Theta",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "YANG": {
+  "file": "08_yang.sol",
+  "address": "0xb702b3ec6d9de1011be963efe30a28b6ddfbe011",
+  "selectors": {
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xb5095168": {
+    "name": "Mu",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x591257c5": {
+    "name": "Pole",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xa4566950": {
+    "name": "Rho",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "SIU": {
+  "file": "09_siu.sol",
+  "address": "0x43136735603d4060f226c279613a4dd97146937c",
+  "selectors": {
+   "0x27bacc40": {
+    "name": "Aura",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x01d03071": {
+    "name": "Miu",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x76fade90": {
+    "name": "Psi",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "VOID": {
+  "file": "10_void.sol",
+  "address": "0x965b0d74591bf30327075a247c47dbf487dcff08",
+  "selectors": {
+   "0xe774b3a4": {
+    "name": "AddLibrary",
+    "types": "string,address",
+    "mutability": "nonpayable"
+   },
+   "0x00b660ef": {
+    "name": "Alias",
+    "types": "address,string",
+    "mutability": "nonpayable"
+   },
+   "0xcabda747": {
+    "name": "Alias",
+    "types": "tuple",
+    "mutability": "view"
+   },
+   "0x1618ced2": {
+    "name": "Alias",
+    "types": "tuple,string",
+    "mutability": "nonpayable"
+   },
+   "0xed70e46c": {
+    "name": "Alias",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x21516fc4": {
+    "name": "Chat",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x1097e579": {
+    "name": "Enter",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x68f9c787": {
+    "name": "Enter",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xb502e567": {
+    "name": "GetAttribute",
+    "types": "string",
+    "mutability": "view"
+   },
+   "0xd9270a5a": {
+    "name": "GetLibraryAddress",
+    "types": "string",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x0738f4da": {
+    "name": "Log",
+    "types": "address,string",
+    "mutability": "nonpayable"
+   },
+   "0xcf34ef53": {
+    "name": "Log",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0xe7c4b151": {
+    "name": "Log",
+    "types": "uint64,string",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x9ff43001": {
+    "name": "Nu",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xdf5cb7b4": {
+    "name": "SetAttribute",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "LAU": {
+  "file": "11_lau.sol",
+  "address": null,
+  "selectors": {
+   "0x00b660ef": {
+    "name": "Alias",
+    "types": "address,string",
+    "mutability": "nonpayable"
+   },
+   "0xcabda747": {
+    "name": "Alias",
+    "types": "tuple",
+    "mutability": "view"
+   },
+   "0x1618ced2": {
+    "name": "Alias",
+    "types": "tuple,string",
+    "mutability": "nonpayable"
+   },
+   "0xed70e46c": {
+    "name": "Alias",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x21516fc4": {
+    "name": "Chat",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x8e3bb9fb": {
+    "name": "CurrentArea",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x4209b07c": {
+    "name": "Eta",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xac8f5ead": {
+    "name": "Leave",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x85bcb519": {
+    "name": "On",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x088aee78": {
+    "name": "Saat",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xc584460d": {
+    "name": "Username",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xc6bf2b65": {
+    "name": "Username",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x414c3935": {
+    "name": "Void",
+    "types": "bool,bool",
+    "mutability": "nonpayable"
+   },
+   "0x884edad9": {
+    "name": "Withdraw",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "LAUFactory": {
+  "file": "11c_laufactory.sol",
+  "address": "0xba6ccd38992839aee20d5bf9125b1d94190b091c",
+  "selectors": {
+   "0x8c6dc5ec": {
+    "name": "New",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xf4f6c22c": {
+    "name": "Void",
+    "types": "",
+    "mutability": "view"
+   }
+  }
+ },
+ "IAlchemicalGold": {
+  "file": "OnChainDatabaseManager.sol",
+  "address": null,
+  "selectors": {
+   "0x9dc29fac": {
+    "name": "burn",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x40c10f19": {
+    "name": "mint",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "IRandomGenerator": {
+  "file": "OnChainDatabaseManager.sol",
+  "address": null,
+  "selectors": {
+   "0x64e0dabc": {
+    "name": "getRandomValues",
+    "types": "",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "OnChainDatabaseManager": {
+  "file": "OnChainDatabaseManager.sol",
+  "address": null,
+  "selectors": {
+   "0x166f4e0e": {
+    "name": "aggregateField",
+    "types": "uint8,uint8",
+    "mutability": "view"
+   },
+   "0xbcdb692c": {
+    "name": "aggregateFieldTable",
+    "types": "uint16,uint8,uint8",
+    "mutability": "view"
+   },
+   "0x1cb5d379": {
+    "name": "buySalt",
+    "types": "uint16,uint8",
+    "mutability": "nonpayable"
+   },
+   "0xf9aeb88d": {
+    "name": "calculateField",
+    "types": "uint16,uint256,uint256,uint8,uint8",
+    "mutability": "nonpayable"
+   },
+   "0xd070d195": {
+    "name": "columnWritePermissions",
+    "types": "uint16,uint8,address",
+    "mutability": "view"
+   },
+   "0xdf4894f8": {
+    "name": "deleteRecord",
+    "types": "uint16",
+    "mutability": "nonpayable"
+   },
+   "0x9b4ff665": {
+    "name": "deleteRecordTable",
+    "types": "uint16,uint16",
+    "mutability": "nonpayable"
+   },
+   "0x68ee94c7": {
+    "name": "diyatContract",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x15b3156c": {
+    "name": "enforceUniqueField",
+    "types": "uint16,uint8,uint8",
+    "mutability": "nonpayable"
+   },
+   "0x0999045a": {
+    "name": "enforceUniqueFieldTable",
+    "types": "uint16,uint16,uint8,uint8",
+    "mutability": "nonpayable"
+   },
+   "0x3bf516bf": {
+    "name": "executeDecay",
+    "types": "uint16",
+    "mutability": "nonpayable"
+   },
+   "0x0cb3ccb9": {
+    "name": "getCustomField",
+    "types": "uint16,uint8,uint8",
+    "mutability": "view"
+   },
+   "0x455a6d3a": {
+    "name": "getCustomFieldTable",
+    "types": "uint16,uint16,uint8,uint8",
+    "mutability": "view"
+   },
+   "0xebd56c14": {
+    "name": "getRecord",
+    "types": "uint16",
+    "mutability": "view"
+   },
+   "0x19e734f3": {
+    "name": "getRecordTable",
+    "types": "uint16,uint16",
+    "mutability": "view"
+   },
+   "0x2a9335c6": {
+    "name": "getStorageSlot",
+    "types": "uint16",
+    "mutability": "pure"
+   },
+   "0x8955bf1c": {
+    "name": "getStorageSlot",
+    "types": "uint16,uint16",
+    "mutability": "pure"
+   },
+   "0x94002b57": {
+    "name": "goldToken",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xc56462f3": {
+    "name": "insertRecord",
+    "types": "uint16,uint8,uint8,bytes32",
+    "mutability": "nonpayable"
+   },
+   "0x9bf795da": {
+    "name": "insertRecordTable",
+    "types": "uint16,uint16,uint8,uint8,bytes32",
+    "mutability": "nonpayable"
+   },
+   "0xcf810d32": {
+    "name": "joinAndCompareFields",
+    "types": "uint16,uint8,uint16,uint8",
+    "mutability": "view"
+   },
+   "0x366eeb24": {
+    "name": "joinAndCompareFieldsTable",
+    "types": "uint16,uint16,uint8,uint16,uint16,uint8",
+    "mutability": "view"
+   },
+   "0xdfef2e75": {
+    "name": "lastDecayBlock",
+    "types": "uint16",
+    "mutability": "view"
+   },
+   "0xd67b5a52": {
+    "name": "migrateSchema",
+    "types": "uint8",
+    "mutability": "nonpayable"
+   },
+   "0x5ee6a4fc": {
+    "name": "migrateSchemaTable",
+    "types": "uint16,uint8",
+    "mutability": "nonpayable"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7a2a4d61": {
+    "name": "queryRecordsByFlag",
+    "types": "uint8",
+    "mutability": "view"
+   },
+   "0x54dd4e47": {
+    "name": "queryRecordsByFlagTable",
+    "types": "uint16,uint8",
+    "mutability": "view"
+   },
+   "0xdcbad90d": {
+    "name": "randomGenerator",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x19da83a8": {
+    "name": "recordList",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x19af9eaf": {
+    "name": "registerCheckConstraint",
+    "types": "uint16,uint8,uint8,uint8",
+    "mutability": "nonpayable"
+   },
+   "0x8a90f5fe": {
+    "name": "rollbackRecord",
+    "types": "uint16",
+    "mutability": "nonpayable"
+   },
+   "0xb3fb550b": {
+    "name": "rollbackRecordTable",
+    "types": "uint16,uint16",
+    "mutability": "nonpayable"
+   },
+   "0xdca29f63": {
+    "name": "setColumnWritePermission",
+    "types": "uint16,uint8,address,bool",
+    "mutability": "nonpayable"
+   },
+   "0xeb6a7fe1": {
+    "name": "setDiyatContract",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xd06816a1": {
+    "name": "setGoldToken",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x4bc19fee": {
+    "name": "setRandomGenerator",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xb623d106": {
+    "name": "setSystemRegistry",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xe99978b2": {
+    "name": "sortedRecordsByLead",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0xac74abc4": {
+    "name": "systemRegistry",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x14506910": {
+    "name": "tableCheckConstraints",
+    "types": "uint16,uint8",
+    "mutability": "view"
+   },
+   "0x77088aa2": {
+    "name": "tableRecordList",
+    "types": "uint16,uint256",
+    "mutability": "view"
+   },
+   "0xd73f011e": {
+    "name": "tableSortedRecordsByLead",
+    "types": "uint16,uint256",
+    "mutability": "view"
+   },
+   "0x8ebfbd28": {
+    "name": "transmute",
+    "types": "uint16,uint8,uint8,uint8,uint8",
+    "mutability": "nonpayable"
+   },
+   "0xf32a8d87": {
+    "name": "validateCheckConstraint",
+    "types": "uint16,uint8,uint8",
+    "mutability": "view"
+   },
+   "0xbecee5e4": {
+    "name": "verifyForeignKey",
+    "types": "uint16,uint8",
+    "mutability": "view"
+   },
+   "0xc63dacc1": {
+    "name": "verifyForeignKeyTable",
+    "types": "uint16,uint16,uint8",
+    "mutability": "view"
+   },
+   "0x1d2d872c": {
+    "name": "verifyWritePermission",
+    "types": "uint16,uint8,address",
+    "mutability": "view"
+   },
+   "0x657282dc": {
+    "name": "virtualJoinView",
+    "types": "uint16,uint16",
+    "mutability": "view"
+   },
+   "0xd2b9cba9": {
+    "name": "virtualJoinViewTable",
+    "types": "uint16,uint16,uint16,uint16",
+    "mutability": "view"
+   }
+  }
+ },
+ "ILau": {
+  "file": "RandomGenerator.sol",
+  "address": null,
+  "selectors": {
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   }
+  }
+ },
+ "RandomGenerator": {
+  "file": "RandomGenerator.sol",
+  "address": null,
+  "selectors": {
+   "0x64e0dabc": {
+    "name": "getRandomValues",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0xc6b70df5": {
+    "name": "lauAddress",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x49fbdcae": {
+    "name": "mathAddress",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xdc5d2ebb": {
+    "name": "randomValues",
+    "types": "uint256",
+    "mutability": "view"
+   }
+  }
+ },
+ "SolidityCreate2Factory": {
+  "file": "SolidityCreate2Factory.sol",
+  "address": null,
+  "selectors": {
+   "0x3e4b9f7a": {
+    "name": "computeAddress",
+    "types": "bytes,bytes32",
+    "mutability": "view"
+   },
+   "0x4af63f02": {
+    "name": "deploy",
+    "types": "bytes,bytes32",
+    "mutability": "payable"
+   }
+  }
+ },
+ "VirtualDisk": {
+  "file": "VirtualDisk.sol",
+  "address": null,
+  "selectors": {
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x07225b4d": {
+    "name": "blockCount",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xecc62612": {
+    "name": "readSector",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x711b8359": {
+    "name": "writeSector",
+    "types": "uint256,bytes32[8]",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "H2O": {
+  "file": "domain/assets/h2o.sol",
+  "address": null,
+  "selectors": {
+   "0x0ef67887": {
+    "name": "Balance",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x0f6798a5": {
+    "name": "Mint",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x94573097": {
+    "name": "War",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "VITUS": {
+  "file": "domain/assets/vitus.sol",
+  "address": null,
+  "selectors": {
+   "0x0ef67887": {
+    "name": "Balance",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x0f6798a5": {
+    "name": "Mint",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x5b6b431d": {
+    "name": "Withdraw",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x2d67bb91": {
+    "name": "World",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "CHO": {
+  "file": "domain/dan/01_cho.sol",
+  "address": "0xb6be11f0a788014c1f68c92f8d6ccc1abf78f2ab",
+  "selectors": {
+   "0x7fac92c1": {
+    "name": "AddContractOwner",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0x7c2bcc81": {
+    "name": "AddLibraryOwner",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x9377a2c3": {
+    "name": "AddSystemAddress",
+    "types": "string,address",
+    "mutability": "nonpayable"
+   },
+   "0xac5bd44f": {
+    "name": "Addresses",
+    "types": "string",
+    "mutability": "view"
+   },
+   "0x1ca30a2f": {
+    "name": "Aliases",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x37a2e752": {
+    "name": "Enter",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x40c48dfa": {
+    "name": "Entropy",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x60844f9d": {
+    "name": "GetAddressBySoul",
+    "types": "uint64",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x5ee0f654": {
+    "name": "GetUser",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x37820e7a": {
+    "name": "GetUserBySoul",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0xe1ed6e72": {
+    "name": "GetUserSoul",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xe80c28bf": {
+    "name": "GetUserTokenAddress",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xf0f80d26": {
+    "name": "Gua",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x4431fbc4": {
+    "name": "Luo",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x85bcb519": {
+    "name": "On",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xdc8849d0": {
+    "name": "Qu",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x3b8052c9": {
+    "name": "React",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0xeedf25f0": {
+    "name": "ReactUser",
+    "types": "uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x929c6ca9": {
+    "name": "Reactor",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x997e9282": {
+    "name": "Recall",
+    "types": "tuple",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x088aee78": {
+    "name": "Saat",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xfcef603d": {
+    "name": "VerifyUserTokenPermissions",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xf4f6c22c": {
+    "name": "Void",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x9909afed": {
+    "name": "has",
+    "types": "address,string",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "setaddresses": {
+  "file": "domain/dan/02c_systemaddresses.sol",
+  "address": null,
+  "selectors": {}
+ },
+ "QING": {
+  "file": "domain/dan/03_qing.sol",
+  "address": null,
+  "selectors": {
+   "0x989ae288": {
+    "name": "AddMarketRate",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xdfffcc74": {
+    "name": "Admitted",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x7b166306": {
+    "name": "AllowCROWS",
+    "types": "bool",
+    "mutability": "nonpayable"
+   },
+   "0xdf42e80e": {
+    "name": "Asset",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x0aae7978": {
+    "name": "BouncerDivisor",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xb340a780": {
+    "name": "Chat",
+    "types": "address,string",
+    "mutability": "nonpayable"
+   },
+   "0x6872fc3c": {
+    "name": "Cho",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xfbe5a232": {
+    "name": "CoverCharge",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x40c48dfa": {
+    "name": "Entropy",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x8dd6363c": {
+    "name": "GWAT",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x20bc1aa2": {
+    "name": "GetQing",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x0764c80c": {
+    "name": "Join",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xec557f40": {
+    "name": "Map",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5ca77c4": {
+    "name": "NoCROWS",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa138da0b": {
+    "name": "Waat",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x884edad9": {
+    "name": "Withdraw",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x37d74ffe": {
+    "name": "bouncer",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x5256bfe7": {
+    "name": "removeGuest",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x3c7e0c00": {
+    "name": "setBouncerDivisor",
+    "types": "uint16",
+    "mutability": "nonpayable"
+   },
+   "0x7dfe96f3": {
+    "name": "setCoverCharge",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x0d4ec845": {
+    "name": "setGuestlist",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x328d13e3": {
+    "name": "setStaff",
+    "types": "address,bool",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "RosenfeldQing": {
+  "file": "domain/dan/03c_rosenfeld_qing.sol",
+  "address": null,
+  "selectors": {
+   "0x989ae288": {
+    "name": "AddMarketRate",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xdfffcc74": {
+    "name": "Admitted",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x7b166306": {
+    "name": "AllowCROWS",
+    "types": "bool",
+    "mutability": "nonpayable"
+   },
+   "0xdf42e80e": {
+    "name": "Asset",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x0aae7978": {
+    "name": "BouncerDivisor",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xb340a780": {
+    "name": "Chat",
+    "types": "address,string",
+    "mutability": "nonpayable"
+   },
+   "0x6872fc3c": {
+    "name": "Cho",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xfbe5a232": {
+    "name": "CoverCharge",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x40c48dfa": {
+    "name": "Entropy",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x8dd6363c": {
+    "name": "GWAT",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x20bc1aa2": {
+    "name": "GetQing",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x0764c80c": {
+    "name": "Join",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xec557f40": {
+    "name": "Map",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5ca77c4": {
+    "name": "NoCROWS",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xdbade91d": {
+    "name": "RosenfeldTensor",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6bfa69e4": {
+    "name": "SoengStresses",
+    "types": "address,address,address,address",
+    "mutability": "view"
+   },
+   "0xe490da74": {
+    "name": "SubType",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa4656198": {
+    "name": "SymmetrizeAllSoeng",
+    "types": "address,address,address,address",
+    "mutability": "view"
+   },
+   "0xd031f11c": {
+    "name": "SymmetrizeCurrents",
+    "types": "uint256,uint256,uint256",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa138da0b": {
+    "name": "Waat",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x884edad9": {
+    "name": "Withdraw",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x37d74ffe": {
+    "name": "bouncer",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x5256bfe7": {
+    "name": "removeGuest",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x3c7e0c00": {
+    "name": "setBouncerDivisor",
+    "types": "uint16",
+    "mutability": "nonpayable"
+   },
+   "0x7dfe96f3": {
+    "name": "setCoverCharge",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x0d4ec845": {
+    "name": "setGuestlist",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x328d13e3": {
+    "name": "setStaff",
+    "types": "address,bool",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "WAR": {
+  "file": "domain/dan/04_war.sol",
+  "address": null,
+  "selectors": {
+   "0x8293989e": {
+    "name": "CO2",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xe24893a2": {
+    "name": "Faa",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6e69adcf": {
+    "name": "Water",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2d67bb91": {
+    "name": "World",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "ABILookupToken": {
+  "file": "domain/dan/ABILookupToken.sol",
+  "address": null,
+  "selectors": {
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xeb8d92d0": {
+    "name": "getSignature",
+    "types": "bytes4",
+    "mutability": "view"
+   },
+   "0x756928ec": {
+    "name": "isRegistered",
+    "types": "bytes4",
+    "mutability": "view"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x1650d6a3": {
+    "name": "registerABI",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   }
+  }
+ },
+ "IABILookupToken": {
+  "file": "domain/dan/ABILookupToken.sol",
+  "address": null,
+  "selectors": {
+   "0xeb8d92d0": {
+    "name": "getSignature",
+    "types": "bytes4",
+    "mutability": "view"
+   },
+   "0x756928ec": {
+    "name": "isRegistered",
+    "types": "bytes4",
+    "mutability": "view"
+   },
+   "0x1650d6a3": {
+    "name": "registerABI",
+    "types": "string",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "CHOInterface": {
+  "file": "domain/dan/pkminter.sol",
+  "address": null,
+  "selectors": {
+   "0x5ee0f654": {
+    "name": "GetUser",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0xe80c28bf": {
+    "name": "GetUserTokenAddress",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xfcef603d": {
+    "name": "VerifyUserTokenPermissions",
+    "types": "address",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "PKMinter": {
+  "file": "domain/dan/pkminter.sol",
+  "address": null,
+  "selectors": {
+   "0x502cff93": {
+    "name": "BureauMinter",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6872fc3c": {
+    "name": "Cho",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd23e5433": {
+    "name": "FederalMinter",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7fd5e7ff": {
+    "name": "GetStandardTokenParent",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x56239c79": {
+    "name": "GetTreasuryTokenOwner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd05b76c1": {
+    "name": "IndexMinter",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x638847a7": {
+    "name": "MRPK",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6b171106": {
+    "name": "New",
+    "types": "string,string,uint8,address[],bytes32,bytes[]",
+    "mutability": "nonpayable"
+   },
+   "0x80280063": {
+    "name": "PersonalMinter",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x4853ae1b": {
+    "name": "Transfer",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0xfd934782": {
+    "name": "TreasuryMinter",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x5f5c5585": {
+    "name": "TreasuryTokens",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   }
+  }
+ },
+ "TT": {
+  "file": "domain/dan/pkminter.sol",
+  "address": null,
+  "selectors": {
+   "0x6872fc3c": {
+    "name": "Cho",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x0bd0d444": {
+    "name": "Complexity",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18bee97e": {
+    "name": "Creator",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x34c73884": {
+    "name": "Mint",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x25d52469": {
+    "name": "PKIMinter",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3c8dd69": {
+    "name": "Parent",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xe78f8fb1": {
+    "name": "PublicKeys",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x392055e0": {
+    "name": "UsedNonces",
+    "types": "bytes32",
+    "mutability": "view"
+   },
+   "0x211ee76a": {
+    "name": "ValidateSignatures",
+    "types": "bytes32,bytes[]",
+    "mutability": "nonpayable"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x9990843e": {
+    "name": "_ho",
+    "types": "address,address,uint256",
+    "mutability": "view"
+   },
+   "0x94710cda": {
+    "name": "_hu",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xc2a4276c": {
+    "name": "_mathlib",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x0a504439": {
+    "name": "ha",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0xc7883f13": {
+    "name": "ho",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xd3df2e3e": {
+    "name": "hu",
+    "types": "address,uint8",
+    "mutability": "nonpayable"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xf3fef3a3": {
+    "name": "withdraw",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "TTI": {
+  "file": "domain/dan/pkminter.sol",
+  "address": null,
+  "selectors": {
+   "0x18bee97e": {
+    "name": "Creator",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3c8dd69": {
+    "name": "Parent",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x075d4782": {
+    "name": "publish",
+    "types": "",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "MAP": {
+  "file": "domain/map.sol",
+  "address": "0xd3a7a95012edd46ea115c693b74c5e524b3dda75",
+  "selectors": {
+   "0x6872fc3c": {
+    "name": "Cho",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xb3ffa83e": {
+    "name": "Forbid",
+    "types": "address,bool",
+    "mutability": "nonpayable"
+   },
+   "0xa59d7f4d": {
+    "name": "Forbidden",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xb93ae85f": {
+    "name": "GetMapQing",
+    "types": "int256,int256",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x20bc1aa2": {
+    "name": "GetQing",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0xec557f40": {
+    "name": "Map",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xddb59200": {
+    "name": "New",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x5261d74a": {
+    "name": "Offset",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x9909afed": {
+    "name": "has",
+    "types": "address,string",
+    "mutability": "view"
+   },
+   "0x230b3790": {
+    "name": "hasOwner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "CHAN": {
+  "file": "domain/sky/01_chan.sol",
+  "address": "0xe250bf9729076b14a8399794b61c72d0f4aefcd8",
+  "selectors": {
+   "0xd0ba60d1": {
+    "name": "AddYue",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xfcfcea45": {
+    "name": "OptIn",
+    "types": "address,bool",
+    "mutability": "nonpayable"
+   },
+   "0xd70d37e6": {
+    "name": "OptedIn",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x7a9bd221": {
+    "name": "ReactYue",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x2621e0f8": {
+    "name": "TransferYue",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x313d246b": {
+    "name": "Xie",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18025d89": {
+    "name": "Yan",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x35cb27d7": {
+    "name": "YueForceTransfer",
+    "types": "address,address,address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xe4606fde": {
+    "name": "YueMintToOrigin",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xc4a3ab27": {
+    "name": "YueWithdraw",
+    "types": "address,address,address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "CHOA": {
+  "file": "domain/sky/02_choa.sol",
+  "address": "0x0f5a352fd4ca4850c2099c15b3600ff085b66197",
+  "selectors": {
+   "0xb340a780": {
+    "name": "Chat",
+    "types": "address,string",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x74ff4718": {
+    "name": "Play",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x6456147b": {
+    "name": "Sei",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd6047e37": {
+    "name": "Yuan",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "RING": {
+  "file": "domain/sky/03_ring.sol",
+  "address": "0x1574c84ec7fa78fc6c749e1d242dbde163675e72",
+  "selectors": {
+   "0x4209b07c": {
+    "name": "Eta",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x50acdbdc": {
+    "name": "Moments",
+    "types": "uint64",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa7b7ae01": {
+    "name": "Pang",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2d8fab5f": {
+    "name": "Phobos",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "CABSMarketMachine": {
+  "file": "domain/sky/CABSMarketMachine.sol",
+  "address": null,
+  "selectors": {
+   "0xfe31ceca": {
+    "name": "CABSAccounts",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x4be52276": {
+    "name": "activeTrades",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xc71ac312": {
+    "name": "evaluateAndSettle",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x1b1fb286": {
+    "name": "folkloreCPUAddress",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x813ad083": {
+    "name": "nextTradeId",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x356f9dfd": {
+    "name": "refundEscrow",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x82e46343": {
+    "name": "setBoundAddresses",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0x9175bcbd": {
+    "name": "stageEscrow",
+    "types": "address,address,uint256,uint256,uint256,uint256,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xae082b70": {
+    "name": "zmachineAddress",
+    "types": "",
+    "mutability": "view"
+   }
+  }
+ },
+ "IFolkloreCPU": {
+  "file": "domain/sky/CABSMarketMachine.sol",
+  "address": null,
+  "selectors": {
+   "0x7861d269": {
+    "name": "peek",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x8029e7c0": {
+    "name": "poke",
+    "types": "uint256,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "IZMachine": {
+  "file": "domain/sky/CABSMarketMachine.sol",
+  "address": null,
+  "selectors": {
+   "0xffb51b58": {
+    "name": "getObjectProperty",
+    "types": "uint256,uint256,address",
+    "mutability": "view"
+   }
+  }
+ },
+ "QI": {
+  "file": "domain/soeng/01_qi.sol",
+  "address": "0x4d9ce396be95dbc5f71808c38107eb7422fd9a03",
+  "selectors": {
+   "0x05d3d596": {
+    "name": "Eris",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x6ba5a0d9": {
+    "name": "ReactSoul",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x48b582c7": {
+    "name": "ReactWaat",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xbafd8d4a": {
+    "name": "Zuo",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "MAI": {
+  "file": "domain/soeng/02_mai.sol",
+  "address": "0xc48b0a4e79ef302c8eb5be71f562d08fb8e6a3d8",
+  "selectors": {
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x84d0643e": {
+    "name": "Qi",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x743a3e5e": {
+    "name": "React",
+    "types": "uint64,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "XIA": {
+  "file": "domain/soeng/03_xia.sol",
+  "address": "0x7f4a4dd4a6f233d2d82be38b2f9fc0fef46f25fa",
+  "selectors": {
+   "0x43116354": {
+    "name": "Charge",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0xfff3be7d": {
+    "name": "Fomalhaute",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xbebbe7bb": {
+    "name": "Mai",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "XIE": {
+  "file": "domain/soeng/04_xie.sol",
+  "address": "0x4df51741f2926525a21bf63e4769ba70633d2792",
+  "selectors": {
+   "0xa60d57c8": {
+    "name": "Fornax",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x07cd2de8": {
+    "name": "Power",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xc42564ea": {
+    "name": "Xia",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "ZI": {
+  "file": "domain/soeng/05_zi.sol",
+  "address": "0xcbadd3c3957bd9d6c036863cb053feccf3d53338",
+  "selectors": {
+   "0xa5754463": {
+    "name": "Choa",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x83cc3221": {
+    "name": "Spin",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0xb4a2d927": {
+    "name": "Tethys",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "PANG": {
+  "file": "domain/soeng/06_pang.sol",
+  "address": "0xee25ccd41671f3b67d660cf6532085586aec8457",
+  "selectors": {
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xd5220cc9": {
+    "name": "Push",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7c396cc0": {
+    "name": "Zi",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "GWAT": {
+  "file": "domain/soeng/07_gwat.sol",
+  "address": null,
+  "selectors": {
+   "0xb8b982b8": {
+    "name": "GetMapGwat",
+    "types": "int256,int256",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x6912b95f": {
+    "name": "Gwat",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x94573097": {
+    "name": "War",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "SEI": {
+  "file": "domain/tang/01_sei.sol",
+  "address": "0x3dc54d46e030c42979f33c9992348a990acb6067",
+  "selectors": {
+   "0x031d11f4": {
+    "name": "Chan",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x1cb77ea7": {
+    "name": "Chi",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x78519019": {
+    "name": "Start",
+    "types": "address,string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "CHEON": {
+  "file": "domain/tang/02_cheon.sol",
+  "address": "0x3d23084ca3f40465553797b5138cfc456e61fb5d",
+  "selectors": {
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x6456147b": {
+    "name": "Sei",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x753a0c09": {
+    "name": "Su",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "META": {
+  "file": "domain/tang/03_meta.sol",
+  "address": "0xe77bdae31b2219e032178d88504cc0170a5b9b97",
+  "selectors": {
+   "0xd5215e06": {
+    "name": "Beat",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x87b3be7d": {
+    "name": "Ring",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "WORLD": {
+  "file": "domain/world.sol",
+  "address": null,
+  "selectors": {
+   "0xdc192860": {
+    "name": "Bun",
+    "types": "int256,int256,address",
+    "mutability": "view"
+   },
+   "0xc4d0b30c": {
+    "name": "Buzz",
+    "types": "int256,address,address",
+    "mutability": "view"
+   },
+   "0x51d95507": {
+    "name": "Cheon",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x99790fb6": {
+    "name": "Code",
+    "types": "int256,int256,address",
+    "mutability": "nonpayable"
+   },
+   "0xafdc1eb3": {
+    "name": "Distribute",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xec557f40": {
+    "name": "Map",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd2717183": {
+    "name": "Meta",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xe11e8dd8": {
+    "name": "Tail",
+    "types": "address,uint256",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xce29ab3c": {
+    "name": "Vitus",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x8cdb15df": {
+    "name": "Whitelist",
+    "types": "address,address,bool",
+    "mutability": "nonpayable"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "YUE": {
+  "file": "domain/yue.sol",
+  "address": null,
+  "selectors": {
+   "0xc253aded": {
+    "name": "Bar",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x031d11f4": {
+    "name": "Chan",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xe2c10145": {
+    "name": "ChangeOrigin",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x7f3c46c0": {
+    "name": "GetAssetRate",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xb3bde122": {
+    "name": "Hong",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x518945cd": {
+    "name": "Hung",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0xc7a68962": {
+    "name": "IsValidAsset",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x773495b9": {
+    "name": "MintToOrigin",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xc11a4b47": {
+    "name": "Origin",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x6bc32fe2": {
+    "name": "React",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x9b1bfa7f": {
+    "name": "Withdraw",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xc1c25bc5": {
+    "name": "hasMint",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "DSS": {
+  "file": "etc/DysnomiaSelfSnipe.sol",
+  "address": null,
+  "selectors": {
+   "0xde8caa1e": {
+    "name": "chat",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0xd43d6b6d": {
+    "name": "chatAndSnipe",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x5bf134a1": {
+    "name": "setLAU",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x83b3151c": {
+    "name": "withdrawLAU",
+    "types": "uint256",
+    "mutability": "payable"
+   }
+  }
+ },
+ "IERC20": {
+  "file": "etc/DysnomiaSelfSnipe.sol",
+  "address": null,
+  "selectors": {
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "ILAU": {
+  "file": "etc/DysnomiaSelfSnipe.sol",
+  "address": null,
+  "selectors": {
+   "0x21516fc4": {
+    "name": "Chat",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "ATTRIBUTE": {
+  "file": "lib/attribute.sol",
+  "address": null,
+  "selectors": {
+   "0xb77f5f8e": {
+    "name": "Alias",
+    "types": "uint64,tuple",
+    "mutability": "view"
+   },
+   "0x9139ab2c": {
+    "name": "Alias",
+    "types": "uint64,address",
+    "mutability": "view"
+   },
+   "0x7a7d1aee": {
+    "name": "Alias",
+    "types": "uint64,tuple,string",
+    "mutability": "nonpayable"
+   },
+   "0xd25f5a5d": {
+    "name": "Alias",
+    "types": "uint64,address,string",
+    "mutability": "nonpayable"
+   },
+   "0xec254223": {
+    "name": "Get",
+    "types": "uint64,string",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x7bde8743": {
+    "name": "Set",
+    "types": "uint64,string,string",
+    "mutability": "nonpayable"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4f6c22c": {
+    "name": "Void",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xbe193345": {
+    "name": "addAttribute",
+    "types": "string,uint8",
+    "mutability": "nonpayable"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x37714208": {
+    "name": "removeAttribute",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "ENCRYPT": {
+  "file": "lib/encrypt.sol",
+  "address": null,
+  "selectors": {
+   "0x4317c04a": {
+    "name": "Decrypt",
+    "types": "uint64,uint64,uint64,bytes",
+    "mutability": "nonpayable"
+   },
+   "0x8cfbf772": {
+    "name": "Decrypt",
+    "types": "uint64,uint64,uint64,string",
+    "mutability": "nonpayable"
+   },
+   "0x22f607c9": {
+    "name": "Encapsulate",
+    "types": "tuple,uint64,uint64,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x1227290d": {
+    "name": "Encrypt",
+    "types": "uint64,uint64,string,string",
+    "mutability": "nonpayable"
+   },
+   "0x18afcee8": {
+    "name": "Encrypt",
+    "types": "uint64,uint64,bytes,bytes",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd8be150f": {
+    "name": "Prune",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x98c7299f": {
+    "name": "Saat",
+    "types": "bytes",
+    "mutability": "pure"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4f6c22c": {
+    "name": "Void",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf9a76e48": {
+    "name": "Zheng",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x8ef323b3": {
+    "name": "hashKey",
+    "types": "bytes",
+    "mutability": "nonpayable"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "Hecke": {
+  "file": "lib/heckemeridians.sol",
+  "address": "0x29a924d9b0233026b9844f2afeb202f1791d7593",
+  "selectors": {
+   "0x3353268d": {
+    "name": "Compliment",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xfd9b726a": {
+    "name": "GetMeridian",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x8dd75fb8": {
+    "name": "GetWaat",
+    "types": "int256",
+    "mutability": "view"
+   },
+   "0x4c2ef291": {
+    "name": "Meridians",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "MultiOwnable": {
+  "file": "lib/multiownable.sol",
+  "address": null,
+  "selectors": {
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "COREREACTIONSLIB": {
+  "file": "lib/reactions_core.sol",
+  "address": null,
+  "selectors": {
+   "0x225b031d": {
+    "name": "BLACK",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xe02758ca": {
+    "name": "BRIGHTNESS",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6872fc3c": {
+    "name": "Cho",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf17c6581": {
+    "name": "Entropy",
+    "types": "tuple",
+    "mutability": "nonpayable"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x93654ab3": {
+    "name": "HUE",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x997367f6": {
+    "name": "HYUN",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xcc54a383": {
+    "name": "Initialize",
+    "types": "tuple",
+    "mutability": "nonpayable"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf1c55fc3": {
+    "name": "OperatorReact",
+    "types": "tuple,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x6920dfac": {
+    "name": "React",
+    "types": "tuple,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x676a8ccc": {
+    "name": "ReactBang",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x693d90aa": {
+    "name": "ReactEris",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x828434fe": {
+    "name": "ReactFomalhaute",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0xa510c73a": {
+    "name": "ReactFornax",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x5b785333": {
+    "name": "ReactLai",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0x85425f9a": {
+    "name": "ReactLe",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0xfc7cd61e": {
+    "name": "ReactShioCone",
+    "types": "address,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x679b9538": {
+    "name": "ReactShioRod",
+    "types": "address,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xb54ac04c": {
+    "name": "ReactToBang",
+    "types": "tuple,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xe697552b": {
+    "name": "ReactToLai",
+    "types": "tuple,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xe7a2a51a": {
+    "name": "ReactToLe",
+    "types": "tuple,uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x5816ca53": {
+    "name": "ReactToNew",
+    "types": "tuple,uint64[3]",
+    "mutability": "nonpayable"
+   },
+   "0xea72b887": {
+    "name": "ReactToTalk",
+    "types": "tuple",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x379aa3cf": {
+    "name": "RegisterChoForTalk",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x2228dae1": {
+    "name": "SHUTTER",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4f6c22c": {
+    "name": "Void",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x57177625": {
+    "name": "WHITE",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "Registry": {
+  "file": "lib/registry.sol",
+  "address": null,
+  "selectors": {
+   "0x4d84c524": {
+    "name": "AddressToBytes",
+    "types": "address",
+    "mutability": "pure"
+   },
+   "0x93a8333e": {
+    "name": "Count",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x60cd2685": {
+    "name": "Get",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x645558f2": {
+    "name": "Get",
+    "types": "bytes",
+    "mutability": "view"
+   },
+   "0xf8d9fb93": {
+    "name": "GetHashByIndex",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0x18825d63": {
+    "name": "Inserted",
+    "types": "uint256",
+    "mutability": "view"
+   },
+   "0xa249bc3d": {
+    "name": "Inserted",
+    "types": "uint64",
+    "mutability": "view"
+   },
+   "0xce6ec8ef": {
+    "name": "Inserted",
+    "types": "string",
+    "mutability": "view"
+   },
+   "0xd55bc7ae": {
+    "name": "Inserted",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0xd56a2f8a": {
+    "name": "Inserted",
+    "types": "bytes",
+    "mutability": "view"
+   },
+   "0x007dc6ab": {
+    "name": "Register",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x0cde0a5f": {
+    "name": "Register",
+    "types": "uint64,string",
+    "mutability": "nonpayable"
+   },
+   "0x150754ac": {
+    "name": "Register",
+    "types": "string,bytes",
+    "mutability": "nonpayable"
+   },
+   "0x2fa0b74a": {
+    "name": "Register",
+    "types": "bytes,bytes",
+    "mutability": "nonpayable"
+   },
+   "0x3e49fb7e": {
+    "name": "Register",
+    "types": "string,address",
+    "mutability": "nonpayable"
+   },
+   "0x4872755a": {
+    "name": "Register",
+    "types": "string,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x4e2ce3a6": {
+    "name": "Register",
+    "types": "uint64,address",
+    "mutability": "nonpayable"
+   },
+   "0x6ba0831d": {
+    "name": "Register",
+    "types": "address,string",
+    "mutability": "nonpayable"
+   },
+   "0x711029f8": {
+    "name": "Register",
+    "types": "uint256,string",
+    "mutability": "nonpayable"
+   },
+   "0x71fca080": {
+    "name": "Register",
+    "types": "address,uint64",
+    "mutability": "nonpayable"
+   },
+   "0x7e7dd325": {
+    "name": "Register",
+    "types": "uint64,bytes",
+    "mutability": "nonpayable"
+   },
+   "0x943cc8f1": {
+    "name": "Register",
+    "types": "uint64,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x963de085": {
+    "name": "Register",
+    "types": "string,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x98ada70a": {
+    "name": "Register",
+    "types": "address,address",
+    "mutability": "nonpayable"
+   },
+   "0xa902c0ee": {
+    "name": "Register",
+    "types": "uint256,address",
+    "mutability": "nonpayable"
+   },
+   "0xa9bb1252": {
+    "name": "Register",
+    "types": "uint64,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xbf6a48f4": {
+    "name": "Register",
+    "types": "address,bytes",
+    "mutability": "nonpayable"
+   },
+   "0xd6192e29": {
+    "name": "Register",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0xdb61df3e": {
+    "name": "Register",
+    "types": "uint256,bytes",
+    "mutability": "nonpayable"
+   },
+   "0xe09781f4": {
+    "name": "Register",
+    "types": "uint256,uint64",
+    "mutability": "nonpayable"
+   },
+   "0xe23550ce": {
+    "name": "Register",
+    "types": "uint256,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x2ac6faa6": {
+    "name": "Remove",
+    "types": "bytes",
+    "mutability": "nonpayable"
+   },
+   "0x476e4aa4": {
+    "name": "Remove",
+    "types": "uint256",
+    "mutability": "nonpayable"
+   },
+   "0x834a2d47": {
+    "name": "Remove",
+    "types": "string",
+    "mutability": "nonpayable"
+   },
+   "0x9ce8431e": {
+    "name": "Remove",
+    "types": "uint64",
+    "mutability": "nonpayable"
+   },
+   "0xbe7c7ac3": {
+    "name": "Remove",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x821cdcb4": {
+    "name": "Uint256ToBytes",
+    "types": "uint256",
+    "mutability": "pure"
+   },
+   "0x11d6bbe6": {
+    "name": "Uint64ToBytes",
+    "types": "uint64",
+    "mutability": "pure"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   }
+  }
+ },
+ "STRINGLIB": {
+  "file": "lib/stringlib.sol",
+  "address": null,
+  "selectors": {
+   "0x6560aee3": {
+    "name": "CaseInsensitiveCompare",
+    "types": "bytes1,bytes1",
+    "mutability": "pure"
+   },
+   "0x01158b0c": {
+    "name": "CheckAcronym",
+    "types": "string,string",
+    "mutability": "pure"
+   },
+   "0x87f7ea3d": {
+    "name": "CheckAcronym",
+    "types": "bytes,string",
+    "mutability": "pure"
+   },
+   "0x48ca15c1": {
+    "name": "CheckPalindrome",
+    "types": "string",
+    "mutability": "pure"
+   },
+   "0x583079ba": {
+    "name": "CheckPalindrome",
+    "types": "bytes",
+    "mutability": "pure"
+   },
+   "0x2b83b1fc": {
+    "name": "GetMarketRate",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x44ecc3f9": {
+    "name": "Hex",
+    "types": "bytes32",
+    "mutability": "pure"
+   },
+   "0x4637b7a2": {
+    "name": "Hex",
+    "types": "uint256",
+    "mutability": "pure"
+   },
+   "0xa4a95566": {
+    "name": "Hex",
+    "types": "bytes",
+    "mutability": "pure"
+   },
+   "0xe05a627c": {
+    "name": "Hex",
+    "types": "address",
+    "mutability": "pure"
+   },
+   "0xd3dc2a0f": {
+    "name": "MotzkinPrime",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x2499a533": {
+    "name": "Purchase",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x7dbbd60f": {
+    "name": "RandomAcronym",
+    "types": "uint8",
+    "mutability": "nonpayable"
+   },
+   "0x222838db": {
+    "name": "Redeem",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x9dcbf7ea": {
+    "name": "Rename",
+    "types": "string,string",
+    "mutability": "nonpayable"
+   },
+   "0x3b6ca187": {
+    "name": "Reverse",
+    "types": "bytes",
+    "mutability": "pure"
+   },
+   "0xe3cc97b3": {
+    "name": "Reverse",
+    "types": "string",
+    "mutability": "pure"
+   },
+   "0x27fd3ae2": {
+    "name": "String",
+    "types": "uint256",
+    "mutability": "pure"
+   },
+   "0xff762044": {
+    "name": "Type",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x6fb7329c": {
+    "name": "Xiao",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x7065cb48": {
+    "name": "addOwner",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0xdd62ed3e": {
+    "name": "allowance",
+    "types": "address,address",
+    "mutability": "view"
+   },
+   "0x095ea7b3": {
+    "name": "approve",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x70a08231": {
+    "name": "balanceOf",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x313ce567": {
+    "name": "decimals",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xebdae5f9": {
+    "name": "log10",
+    "types": "uint256",
+    "mutability": "pure"
+   },
+   "0xd5abeb01": {
+    "name": "maxSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xf4e6c93f": {
+    "name": "mintToCap",
+    "types": "",
+    "mutability": "nonpayable"
+   },
+   "0x06fdde03": {
+    "name": "name",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x666e1b39": {
+    "name": "owner",
+    "types": "address",
+    "mutability": "view"
+   },
+   "0x8da5cb5b": {
+    "name": "owner",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x38bf3cfa": {
+    "name": "renounceOwnership",
+    "types": "address",
+    "mutability": "nonpayable"
+   },
+   "0x95d89b41": {
+    "name": "symbol",
+    "types": "",
+    "mutability": "view"
+   },
+   "0x18160ddd": {
+    "name": "totalSupply",
+    "types": "",
+    "mutability": "view"
+   },
+   "0xa9059cbb": {
+    "name": "transfer",
+    "types": "address,uint256",
+    "mutability": "nonpayable"
+   },
+   "0x23b872dd": {
+    "name": "transferFrom",
+    "types": "address,address,uint256",
+    "mutability": "nonpayable"
+   }
+  }
+ }
+}
