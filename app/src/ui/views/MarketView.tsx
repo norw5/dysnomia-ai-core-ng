@@ -156,7 +156,7 @@ function PowerTab({ chain, snapshot }: { chain: ChainState; snapshot: PlayerSnap
           </table>
         </div>
         <div className="hint" data-testid="market-power-notes">
-          Fornax — the ladder's constant; the deployed Goldilocks ceiling is REAL (kb §2) · Eris — QI divides by it ·
+          Fornax — the ladder's constant; the old Goldilocks ceiling is source-only (session-82.1) · Eris — QI divides by it ·
           Fomalhaute — XIA's modulus, carries world chat · Tethys — CHO itself (ZI's modulus).
         </div>
         <button className="btn" disabled={power.loading || account === null} onClick={power.refresh} data-testid="market-power-refresh">

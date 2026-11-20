@@ -64,6 +64,14 @@ Effects: `Beat` — one RING.Eta + one PANG.Push + two modExps + one division;
 note the overwrite quirk: `Charge = Charge_ring × Charge_push ÷ Iota_ring`.
 Meter once. Requires the caller to hold a YUE (RING.Eta path).
 
+> **ng-correction (session 82)**: the live `Panic(0x12)` floor is NOT caller
+> age. `RING.Eta` computes `Iota`/`Chao` from four token balances
+> (`Fomalhaute`/WorldChatSHIO + `Fornax` at the LAU; `CHO` + `Phobos` for the
+> Yuan moduli). A fresh LAU can seed them and Beat immediately; the target
+> venue's Yuan only shapes the output. The old "lineage" reading was the
+> correlation (established wallets hold the seed). See
+> `kb/deployed-semantics.md` §3; the live proof is tx `0x081247c8…`.
+
 **Source-version note — the Yeo direction is RESOLVED: deployed runs
 `Yeo = Yeo / Chao`**: the recovered community docs (`[ext]`,
 snapshot 2026-04-20) hash an older `03_meta.sol` whose inlined `Beat` body
@@ -82,11 +90,21 @@ A second independent consumer corroborates the direction
 (`[ext]`, the owner's own playbooks): the owner's revised Beat guide (the
 playbooks2/ revision, mid-2026) teaches `Yeo = Chao / Yeo` with "no upper
 ceiling for Fornax" — the final-tree direction — while his earlier
-`strategy/` set teaches the deployed direction including the Fornax
-Goldilocks ceiling that only exists under it. His project consumed the
-post-deploy repo state (the same late revision our recovery carries, dated
+`strategy/` set teaches the deployed direction including the April/source
+Fornax Goldilocks ceiling (the session-82.1 fork sweep finds the deployed
+third revision does NOT apply that cap — see the ng-correction below). His
+project consumed the post-deploy repo state (the same late revision our
+recovery carries, dated
 to the single commit `f9f284988`) after first working from the
 deployed behavior — the same conclusion from a second direction.
+
+> **ng-correction (session-82.1)**: the "Fornax Goldilocks ceiling" is the
+> APRIL/source formula (`Max_Fornax = Xia.Charge(Phobos) × LAU.Entropy`),
+> not a deployed cap. A controlled fork sweep (Fornax 1e15..1e22 with the
+> four-token seed) kept `Eta.Chao = 1`; Beat succeeded at every level except
+> a 1e19 state where Iota zeroed consistently (Panic 0x12 — a modExp/entropy draw). Do
+> not encode a deployed Fornax cap; preview and retry. See
+> `kb/deployed-semantics.md` §2/§3.
 
 ## 6. Integration notes
 

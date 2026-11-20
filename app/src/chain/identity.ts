@@ -327,7 +327,7 @@ export function isUserNotEnteredError(e: unknown): boolean {
  * Your moment line for the identity profile: CHO.GetUserSoul (simulated
  * from the account — tx.origin-keyed) then RING.Moments(soul) (anonymous
  * view). The moment is REFRESHED by each RING.Eta() call — a tiny per-player
- * monument, not a live oracle.
+ * monument, NOT an input to Eta (the Beat gate is the token seed).
  */
 export async function readPlayerMoment(client: PublicClient, account: Address): Promise<PlayerMoment> {
   const soulData = encodeFunctionData({ abi: getUserSoulAbi, functionName: "GetUserSoul" });

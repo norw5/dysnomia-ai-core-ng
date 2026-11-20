@@ -137,12 +137,20 @@ export function forkBlockOf(nodeInfo: unknown): number | null {
   return null;
 }
 
+/** anvil_nodeInfo carries the active hardfork (`hardFork`: "Shanghai"/"Cancun"/…) */
+export function hardForkOf(nodeInfo: unknown): string | null {
+  if (nodeInfo === null || typeof nodeInfo !== "object") return null;
+  const o = nodeInfo as Record<string, unknown>;
+  const v = o["hardFork"] ?? o["hardfork"] ?? o["hard_fork"];
+  return typeof v === "string" && v.trim().length > 0 ? v.trim() : null;
+}
+
 // ---------------------------------------------------------------------------
 // preflight
 // ---------------------------------------------------------------------------
 
 export interface PreflightCheck {
-  id: "build" | "rpc" | "chain" | "anvil" | "perimeter" | "pin" | "overlay";
+  id: "build" | "rpc" | "chain" | "anvil" | "hardfork" | "perimeter" | "pin" | "overlay";
   label: string;
   ok: boolean;
   detail: string;
@@ -279,6 +287,26 @@ export async function preflightSimBootstrap(opts: PreflightOpts): Promise<Prefli
   });
   if (!isAnvil) reasons.push("the node is not anvil (or does not expose anvil_nodeInfo)");
 
+  // PulseChain is a Shanghai chain: the fork MUST be Shanghai. A Cancun/
+  // Prague-pinned anvil rejects eth_call on PulseChain headers (HARNESS.md:
+  // blob-gas fields) and can execute Cancun-only opcodes in fixtures. Check
+  // it before any deploy; an absent hardFork field is an honest "cannot
+  // verify", not a pass/fail.
+  const hardFork = hardForkOf(nodeInfo);
+  const hardForkOk = hardFork === null || /^shanghai$/i.test(hardFork);
+  checks.push({
+    id: "hardfork",
+    label: "Shanghai hardfork (PulseChain)",
+    ok: hardForkOk,
+    detail:
+      hardFork === null
+        ? "not reported by anvil_nodeInfo — cannot verify; start anvil with --hardfork shanghai"
+        : hardForkOk
+          ? `anvil_nodeInfo hardFork = ${hardFork}`
+          : `anvil_nodeInfo hardFork = ${hardFork} — PulseChain is Shanghai; restart with --hardfork shanghai`,
+  });
+  if (!hardForkOk) reasons.push(`the anvil hardfork is ${hardFork}, not Shanghai — restart with --hardfork shanghai`);
+
   const forkBlock = forkBlockOf(nodeInfo);
   const pinOk = forkBlock === null || forkBlock === SUGGESTED_PIN;
   checks.push({
@@ -310,7 +338,7 @@ export async function preflightSimBootstrap(opts: PreflightOpts): Promise<Prefli
     detail: overlayLabel,
   });
 
-  const ok = entryEnabled && local && chainOk && isAnvil && perimeterOk;
+  const ok = entryEnabled && local && chainOk && isAnvil && hardForkOk && perimeterOk;
   return {
     ok,
     checks,

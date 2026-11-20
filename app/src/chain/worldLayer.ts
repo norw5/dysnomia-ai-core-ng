@@ -17,8 +17,9 @@ import { simAddr, type SimLayerName } from "@/chain/simMode";
  * - Tail(venue, 1) is the cauda probe — position 1 is the first creator
  *   slot; 0 = no claim chain (pre-claim).
  * - Beat's outputs (the VITUS mint + the Buzz credit) are Yuan-weighted and
- *   need the caller's ladder lineage (the Eta fresh floor) — a fresh caller
- *   sees an honest readiness note, not a silent zero.
+ *   need the caller's Eta token seed (Fomalhaute/WorldChatSHIO + Fornax at
+ *   the LAU; CHO + Phobos for the Yuan moduli) — an unseeded caller sees an
+ *   honest readiness note, not a silent zero.
  * - the WAR CO2 counter is the one system-wide cumulative-activity ledger.
  */
 

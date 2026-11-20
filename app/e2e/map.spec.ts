@@ -13,14 +13,14 @@ async function connectA(page: import("@playwright/test").Page) {
 }
 
 test.describe("MAP — atlas canvas (offline seed render)", () => {
-  test("canvas paints the 917-node atlas with HUD + controls", async ({ page }) => {
+  test("canvas paints the 942-node atlas with HUD + controls", async ({ page }) => {
     await page.addInitScript(MOCK_PROVIDER_INIT);
     await page.goto("/");
     await page.getByTestId("rail-map").click();
 
     const canvas = page.getByTestId("atlas-canvas");
     await expect(canvas).toBeVisible({ timeout: 10_000 });
-    await expect(page.getByTestId("atlas-hud")).toContainText("940");
+    await expect(page.getByTestId("atlas-hud")).toContainText("942");
 
     // the CANONICAL framing is the default (kb §9, the session-48 map fix):
     // fold-fraction ±180° × |lat|/pole — uniform fill, not the legacy

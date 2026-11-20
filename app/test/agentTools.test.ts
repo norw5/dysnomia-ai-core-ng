@@ -6,6 +6,7 @@ import { NEW_QING_TOPIC } from "@/chain/venueDeed";
 import { pendingLau, resetPendingLauForTests, setPendingLau } from "@/state/pendingLau";
 import { setHomeVenue, resetHomeVenueForTests } from "@/state/homeVenue";
 import { addr } from "@config/addresses";
+import { DSS_FIXED_CREATION, type DssValidation } from "@/chain/dssDesk";
 import { toolByName, toolSpecs, type AgentToolContext } from "@/agent/tools";
 
 /**
@@ -705,6 +706,122 @@ describe("session-66 dss_snipe (the world-channel write path, §7.4-fenced)", ()
     const ctx = fakeCtx({ chatToolsEnabled: true, dss: DSS, snapshot: ctxWithSnapshot().snapshot! });
     const out = await toolByName("get_state")!.execute({}, ctx);
     expect(out.dss).toEqual(DSS);
+  });
+});
+
+describe("session-82.1 dss_setup (deploy or adopt — the contract has no getter)", () => {
+  const DSS = "0x5555555555555555555555555555555555555555" as `0x${string}`;
+  const other = "0x9999999999999999999999999999999999999999" as `0x${string}`;
+  const okValidation: DssValidation = {
+    ok: true,
+    code: "match",
+    owner: ACCT,
+    ownerMatches: true,
+    lau: LAU,
+    lauMatches: true,
+    reason: null,
+  };
+
+  it("is ALWAYS advertised (a setup action, not a chat post; dss_snipe stays §7.4-gated)", () => {
+    expect(toolSpecs(false).map((t) => t.function.name)).toContain("dss_setup");
+    expect(toolSpecs(true).map((t) => t.function.name)).toContain("dss_setup");
+  });
+
+  it("adopts a validated existing DSS and makes it visible to dss_snipe in the SAME ctx", async () => {
+    let captured: { dss: string; lau: string; source?: string | undefined } | null = null;
+    let live: `0x${string}` | null = null;
+    const ctx = fakeCtx({
+      chatToolsEnabled: true,
+      snapshot: ctxWithSnapshot().snapshot!,
+      dssValidate: async () => okValidation,
+      captureDss: (r) => {
+        captured = { dss: r.dss, lau: r.lau, source: r.source };
+        live = r.dss;
+      },
+      resolveDss: () => live,
+    });
+    const out = await toolByName("dss_setup")!.execute({ address: DSS }, ctx);
+    expect(out.mode).toBe("ADOPT");
+    expect(out.status).toBe("captured");
+    expect(out.dss).toEqual(DSS);
+    expect(captured).toEqual({ dss: DSS, lau: LAU, source: "import" });
+    expect(live).toEqual(DSS);
+
+    const snipe = await toolByName("dss_snipe")!.execute({ message: "world hl" }, ctx);
+    expect(snipe.dss).toEqual(DSS);
+    expect(snipe.mode).toBe("DRYRUN");
+  });
+
+  it("refuses a DSS that does not validate (owner/LAU/runtime) without capturing", async () => {
+    let captured = false;
+    const ctx = fakeCtx({
+      snapshot: ctxWithSnapshot().snapshot!,
+      dssValidate: async () => ({ ...okValidation, ok: false, lau: other, lauMatches: false, reason: `the DSS binds ${other}, not your LAU ${LAU}` }),
+      captureDss: () => {
+        captured = true;
+      },
+    });
+    const out = await toolByName("dss_setup")!.execute({ address: DSS }, ctx);
+    expect(out.mode).toBe("ADOPT");
+    expect(out.error).toContain("binds");
+    expect(captured).toBe(false);
+  });
+
+  it("rejects a malformed address without any chain read", async () => {
+    let validated = false;
+    const ctx = fakeCtx({
+      snapshot: ctxWithSnapshot().snapshot!,
+      dssValidate: async () => {
+        validated = true;
+        return okValidation;
+      },
+    });
+    const out = await toolByName("dss_setup")!.execute({ address: "0x1234" }, ctx);
+    expect(out.error).toContain("not a 0x");
+    expect(validated).toBe(false);
+  });
+
+  it("deploys: DRYRUN by default, send=true creates and captures the receipt address", async () => {
+    const dry = fakeCtx({ snapshot: ctxWithSnapshot().snapshot! });
+    const dryOut = await toolByName("dss_setup")!.execute({}, dry);
+    expect(dryOut.mode).toBe("DEPLOY");
+    expect(dry.__requests).toHaveLength(1);
+    expect(dry.__requests[0]!.to).toBeNull();
+    expect(dry.__requests[0]!.data.startsWith(DSS_FIXED_CREATION)).toBe(true);
+    expect(dry.__requests[0]!.data.slice(-64)).toEqual(LAU.slice(2).toLowerCase().padStart(64, "0"));
+
+    let captured: { dss: string; source?: string | undefined } | null = null;
+    let sent: { to: string | null; data: string } | null = null;
+    const ctx = fakeCtx({
+      snapshot: ctxWithSnapshot().snapshot!,
+      dssValidate: async () => okValidation,
+      captureDss: (r) => {
+        captured = { dss: r.dss, source: r.source };
+      },
+      gateSend: async (req) => {
+        sent = { to: req.to, data: req.data };
+        return {
+          status: "sent",
+          envelope: {} as never,
+          txHash: "0xabc",
+          receipt: { status: "success", gasUsed: 600_000n, logs: [], blockNumber: 27_674_001n, contractAddress: DSS },
+          receiptError: null,
+          movements: [],
+          capBreaches: [],
+        };
+      },
+    });
+    const out = await toolByName("dss_setup")!.execute({ send: true }, ctx);
+    expect(sent!.to).toBeNull();
+    expect(out.mode).toBe("DEPLOY");
+    expect(out.dss).toEqual(DSS);
+    expect(captured).toEqual({ dss: DSS, source: "deploy" });
+    expect(ctx.dss).toEqual(DSS);
+  });
+
+  it("needs a LAU and refuses honestly", async () => {
+    const out = await toolByName("dss_setup")!.execute({}, fakeCtx());
+    expect(out.error).toContain("LAU");
   });
 });
 

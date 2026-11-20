@@ -62,10 +62,13 @@ from agent_runner import deploy_at_overlay, impersonated_send, onboard_agent  # 
 
 FX = HERE / "fixtures"
 
-# Proven-aged wallets (the 65.5 live survey + the kb's Beat caller): nonzero
-# Eta slots + historical successful Beats. The DEFAULT is the kb's proven
-# caller (13 attempts / 6 successes). Used by --aged for fork demos of the
-# caller-lineage-gated surfaces (Beat above all).
+# Proven Beat-capable wallets (the 65.5 live survey + the kb's Beat caller):
+# their LAUs carry the four-token Eta seed (Fomalhaute/Fornax at the LAU,
+# CHO/Phobos in the Yuan-counted places) and they have historical successful
+# Beats. The DEFAULT is the kb's proven caller (13 attempts / 6 successes).
+# Used by --aged for fork demos of the Eta-seeded surfaces (Beat above all).
+# (Session-82 correction: this is a token seed, not a stored age — a fresh
+# account can be seeded with four transfers.)
 AGED_WALLETS: dict[str, dict] = {
     "0x7B10aEbd3EdCaA60e587df49023f1E36502ac4f7": {"label": "kb's proven Beat caller (big slots, 6 successful Beats)", "default": True},
     "0xde74fe2d87755284A97042b75A1ee286eA4eF185": {"label": "big slots, 2 successful Beats", "default": False},
@@ -100,19 +103,19 @@ def main():
     ap.add_argument(
         "--aged", nargs="?", const="auto", default=None, metavar="ADDR",
         help=(
-            "also prepare an AGED account for caller-lineage demos (Beat!): funds it, "
+            "also prepare a proven Beat-capable (token-seeded) account for demos: funds it, "
             "impersonates it on anvil, reads its Eta slots + LAU/YUE. 'auto' or an address "
             "from the proven list. The app cannot sign as it (we hold no key) — harness/"
             "script flows CAN via anvil impersonation. Composes with --onboard (both actors)."
         ),
     )
-    ap.add_argument("--aged-beat", action="store_true", help="with --aged: also run a REAL committed Beat as the aged wallet (default venue: Phobos) — the caller-lineage proof")
+    ap.add_argument("--aged-beat", action="store_true", help="with --aged: also run a REAL committed Beat as the seeded wallet (default venue: Phobos) — the Eta-seed proof")
     ap.add_argument(
         "--aged-transfer", nargs="?", const="auto", default=None, metavar="ADDR",
         help=(
-            "hand a FORK COPY of an aged account to THIS wallet (the app key) via the "
+            "hand a FORK COPY of a proven Beat-capable account to THIS wallet (the app key) via the "
             "system's own transfer path: LAU.addOwner + CHAN.TransferYue + CHO.Enter + a "
-            "YUE token top-up — the wallet then reads AGED Eta slots and can Beat through "
+            "YUE token top-up — the wallet then reads the LAU's token-seeded Eta slots and can Beat through "
             "the app + THE gate. Fork-only simulation (the real owner's chain is untouched). "
             "NOT combinable with --onboard/--venue (the wallet must be YUE-less)."
         ),
@@ -123,7 +126,7 @@ def main():
     if args.venue:
         args.onboard = True
     if args.aged_transfer and (args.onboard or args.venue):
-        raise HarnessError("--aged-transfer needs a YUE-less wallet — drop --onboard/--venue (the wallet receives the aged LAU/YUE instead)")
+        raise HarnessError("--aged-transfer needs a YUE-less wallet — drop --onboard/--venue (the wallet receives the proven LAU/YUE instead)")
 
     meta = {
         "started": datetime.now(timezone.utc).isoformat(),
@@ -229,7 +232,7 @@ def main():
 
         venue = phase("venue: MockAsset + MAP.New + Join", make_venue)
 
-    # ---- the optional AGED actor (caller-lineage demos: Beat) ----
+    # ---- the optional AGED actor (Eta-seeded demos: Beat) ----
     aged: dict = {}
     if args.aged or args.aged_transfer:
         pick = args.aged or args.aged_transfer
@@ -238,12 +241,12 @@ def main():
         elif pick.lower() in {a.lower() for a in AGED_WALLETS}:
             aged_addr = next(a for a in AGED_WALLETS if a.lower() == pick.lower())
         elif pick.startswith("0x") and len(pick) == 42:
-            aged_addr = pick  # any custom wallet — read its lineage honestly
+            aged_addr = pick  # any custom wallet — read its Eta honestly
         else:
             raise HarnessError(f"--aged: unknown wallet {pick!r} (use 'auto', an address, or one of {list(AGED_WALLETS)})")
 
         def aged_lineage():
-            # the lineage preflight: Eta slots (simulated from the aged wallet)
+            # the Eta preflight: slots simulated from the seeded wallet
             raw = chain.eth_call(canon.address("RING"), canon.data("RING", "Eta", "", []), frm=aged_addr)
             words = [raw[2 + i * 64 : 2 + (i + 1) * 64] for i in range(4)]
             slots = [str(int(w, 16)) for w in words]
@@ -251,8 +254,8 @@ def main():
             yue = chain.view("CHAN", "Yan", "address", [aged_addr], ["address"])
             if all(s == "0" for s in slots[1:]):
                 raise HarnessError(
-                    f"the aged wallet {aged_addr} reads FRESH slots {slots} on this fork — "
-                    "Beat would panic 0x12; pick a proven wallet (auto) or drop the aged flags"
+                    f"the wallet {aged_addr} reads UNSEEDED slots {slots} on this fork — "
+                    "Beat would panic 0x12; pick a seeded wallet (auto) or seed the four legs"
                 )
             return {
                 "addr": aged_addr,
@@ -261,7 +264,7 @@ def main():
                 "yue": yue if int(yue, 16) != 0 else None,
             }
 
-        aged = phase(f"aged lineage verified ({aged_addr[:10]}…)", aged_lineage)
+        aged = phase(f"Eta seed verified ({aged_addr[:10]}…)", aged_lineage)
 
         if args.aged:
             def prep_aged():
@@ -282,16 +285,17 @@ def main():
                         raise HarnessError(f"the aged Beat REVERTED (gas {int(rc['gasUsed'], 16)}) — see the receipt {rc['transactionHash']}")
                     return {"tx": rc["transactionHash"], "gas": int(rc["gasUsed"], 16)}
 
-                beat = phase("aged Beat COMMITTED (the caller-lineage proof)", aged_beat)
+                beat = phase("aged Beat COMMITTED (the Eta-seed proof)", aged_beat)
                 aged["beat_tx"] = beat["tx"]
                 aged["beat_gas"] = beat["gas"]
 
         if args.aged_transfer:
-            # the system's OWN transfer path (fork-proven, session-65.6): the aging
-            # rides the YUE (the vault reactor) and moves with TransferYue; the
-            # identity needs LAU ownership + CHO.Enter; ZeroHoldings needs the
-            # wallet to hold its own YUE token. Fork-only: the real owner's
-            # chain is untouched.
+            # the system's OWN transfer path (fork-proven, session-65.6;
+            # mechanism corrected session-82): the Beat gate rides the
+            # LAU's token seed, so keep the aged LAU and remap the wallet
+            # to it. TransferYue moves the vault; LAU ownership + CHO.Enter
+            # move the identity; ZeroHoldings needs the wallet to hold its
+            # own YUE token. Fork-only: the real owner's chain is untouched.
             def transfer_aged():
                 lau, yue = aged["lau"], aged["yue"]
                 # 1. LAU ownership -> the wallet (Enter's gate)

@@ -20,34 +20,90 @@ account token — Take it to gain the owners' surface.
 ## What Beat reads (the honest target list)
 
 - **Fornax (YI's Psi, the FornaxSHIO channel)** — `XIE.Power` quotients:
-  Omicron = Fornax(you) ÷ your Entropy, Omega = Fornax(the venue) ÷ the
-  venue's Entropy. On your home QING BOTH sides are yours to grow: hold
-  Fornax yourself, and the venue's own Fornax balance raises Omega.
+  Omicron = Fornax(LAU) ÷ your live Entropy, Omega = Fornax(the venue) ÷
+  the venue's Entropy. On your home QING BOTH sides are yours to grow:
+  park Fornax at your LAU (it is also a hard gate leg), and the venue's
+  own Fornax balance raises Omega.
 - **Tethys (= CHO itself)** — Dione = Tethys(QING) ÷ Entropy (zi.sol:37).
   CHO parked at your venue counts.
 - **Yuan modulus** — ZI/PANG divide by Yuan: `1×wallet + 10×LAU + 40×YUE`.
   Holdings parked in the YUE count 40× — never move rewards to the wallet
   for power reasons.
-- **Caller lineage, NOT holdings** — the Beat floor is CALLER state: fresh
-  callers get Eta (14,0,0,0) and Beat panics 0x12 at ANY funding level.
-  No token purchase fixes this, and neither does rebalancing between
-  wallet/LAU/YUE (the 1/10/40 Yuan weights shape OUTPUT size only; a
-  zero-Yuan caller Beats fine). Aged callers (months of vault-advancing
-  activity) Beat fine with Yeo rounding to 0 early. A fresh caller
-  CANNOT be aged on demand — it is per-Soul history, the historical
-  aging path (CHOA.Chat while the buffer was non-empty) is dead while
-  the buffer is empty, and the fork-harness recipe is impersonating an
-  aged EOA (the app never fakes lineage). Check `get_venue`'s
-  Eta-readiness before budgeting anything — if `beatReady` is false,
-  say so plainly and skip the doomed send.
+- **The Eta TOKEN SEED — the real gate (session-82 correction)** — a
+  fresh LAU can Beat today; "age/lineage" was a misreading of the token
+  balances. The four legs:
+  - **Fomalhaute = the WorldChatSHIO (`0x7aE7…`) AT THE LAU** —
+    nonzero (≥ 2 wei) makes the `XIA.Charge` modExp modulus nonzero, so
+    a zero MAI exponent yields 1 → `Chao`/`Charge1` nonzero.
+  - **Fornax (`0xF6C5…`) AT THE LAU** — feeds `XIE.Power`'s Omicron;
+    it must clear the live `Entropy` divisor.
+  - **CHO (Tethys)** — hold enough that `Yuan` ≥ 2 (wallet counts 1×,
+    LAU 10×, YUE 40×).
+  - **Phobos (the first QING)** — hold enough that `Yuan(Phobos)` ≥ 2
+    (same 1/10/40 weights).
+  Remove any one leg and `Eta` returns zero Iota or zero Chao; Beat
+  panics 0x12 (`Charge = … / Iota1` or `Yeo = Yeo / Chao`). The target
+  venue's Yuan is NOT a revert gate — a seeded caller can Beat a venue
+  it holds none of and gets `(0,0,0,0)` outputs, so Beat your home QING
+  or an established venue according to the output you want. The live
+  proof: a 21-minute-old LAU bought 0.0015 of each and landed a
+  successful Beat (`0x081247c8…`); the cited wallet now previews
+  `Beat(Phobos)` as `(14, 0, ~6.1e14, ~1.06e15)`. Check `get_venue`'s
+  Eta-readiness before budgeting; if `beatReady` is false, name the
+  missing seed legs (or say the wallet has no YUE at all) instead of
+  claiming the account is too young.
 
 ## Amounts + acquisition honesty
 
-- The **Fornax Goldilocks ceiling is REAL** on the deployed system (kb §2) —
-  an agent that buys Fornax past the ceiling WILL revert. Acquire
-  conservatively, in steps, preview-first; there is no sanctioned in-app
-  Fornax market, so acquisition is an open-market (DEX) act outside this
-  app's surfaces. Figures stay WPLS-anchored; never pseudo-USD.
+- **Acquisition is now an in-app DEX leg (session-83)**: `swap_pls_for_token`
+  turns native PLS into any ERC-20 through PulseX V2 (router
+  `0x165C…`, WPLS `0xA107…`) via THE gate. It is EXACT-OUTPUT
+  (`swapETHForExactTokens`): ask for exactly the amount, the router refunds
+  unused PLS, and the send carries quote × (1 + 100 bps) as the value cap.
+  The native route has **NO approve leg**. The seed recipe (four swaps;
+  then Beat in the NEXT run — the default per-run send cap is 4):
+  1. `swap_pls_for_token({token:"FOMALHAUTE", amountOutWei:"2", recipient:"lau"})`
+  2. `swap_pls_for_token({token:"FORNAX", amountOutWei:"1000000000000000", recipient:"lau"})`
+  3. `swap_pls_for_token({token:"CHO", amountOutWei:"2", recipient:"wallet"})`
+  4. `swap_pls_for_token({token:"PHOBOS", amountOutWei:"2", recipient:"wallet"})`
+  The Fornax leg is a STARTING point, not a guarantee: the live per-soul
+  `Entropy` divisor can demand more, so preview `run_beat` after the four
+  legs and retry a larger Fornax exact-output (`2e15`, `8e15`, … — a
+  geometric ramp) on a zero Iota; with the default 4-send cap the retry is
+  a new run. The pools are thin; the tool refuses a
+  quote above its price-impact guard (`maxImpactBps`, default 5%) and
+  honors `maxPls`. At the session-83 pin the four buys cost ~674 PLS of
+  Fornax + dust for the rest (quotes move; always quote fresh). Figures
+  stay WPLS-anchored; never pseudo-USD.
+- **No static Fornax ceiling on the deployed third revision** (session-82.1):
+  the old `Max_Fornax = Xia.Charge(Phobos) × LAU.Entropy` ceiling is the
+  April/source formula. A controlled fork sweep (Fornax 1e15..1e22 with the
+  four-token seed) kept `Eta.Chao = 1`; Beat succeeded at every level except
+  a 1e19 state where `Iota` zeroed consistently (`Panic(0x12)` — a modExp/entropy draw,
+  not a cap). Preview every send and retry a zero draw; do not buy "up to a
+  formula ceiling" or stop below one. Figures stay WPLS-anchored; never
+  pseudo-USD.
+- **Exact floors (fork-pinned, session-82.1)**:
+  - `Fomalhaute` at the LAU: **2 wei** (1 wei → `Chao=0` → `Yeo/Chao`
+    panics; the old ">=1 wei" is off by one).
+  - `CHO` / `Phobos` Yuan: **≥2** — 1 wei in the WALLET gives `Yuan=1` and
+    fails; 1 wei at the LAU counts 10, at the YUE 40.
+  - `Fornax` at the LAU: above the live `Entropy` draw; 1e15 worked, a
+    1e19 state zeroed Iota consistently on the same fork — preview/retry.
+  - The target QING's Yuan is **not a revert gate**: zero target holdings
+    succeed with `(0,0,0,0)`; the venue's own Tethys/Entropy sets Dione.
+- **Dione is the venue's own Tethys/Entropy** — target a venue with a
+  nonzero CHO balance; only the QING owner can `Withdraw`, so NEVER send
+  CHO to an unowned QING (the old guides' donation trap is real). A
+  successful Beat with `Dione=0` is a no-map-output success.
+- **Phobos is the universal accumulator** — every Beat forces a
+  `Yue.React(Phobos)`, so its Hypobar grows with network activity. Targeting
+  Phobos can give the largest territory but is volatile and its underlying
+  asset is thin/expensive; the home QING is the stable alternative.
+- **Modulus-trap heuristic** (community lore): flat whole-token Yuan
+  balances can zero `modExp` outputs on some draws; odd/fractional amounts
+  and previews reduce the surprise. The old "10%" figure is not a measured
+  law — our 1e19 flat Fornax state zeroed Iota while 1e20/1e22 succeeded.
 - The whole oracle ladder is AT CAP (metered call counters) — at-cap
   contracts KEEP WORKING; only the self-mint stopped. Never gate a Beat on
   "contract at cap".

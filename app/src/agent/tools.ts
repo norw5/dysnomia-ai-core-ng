@@ -7,11 +7,11 @@ import {
 import { addr } from "@config/addresses";
 import { loadAbi } from "@/chain/abiLoad";
 import { makeClient } from "@/chain/client";
-import { affectionApproveData, AFFECTION_UNIT, dssChatAndSnipeData } from "@/chain/dssDesk";
+import { affectionApproveData, AFFECTION_UNIT, captureDssFromReceipt, dssChatAndSnipeData, encodeDssDeploy, predictDssAddress, resolveDssDeployment, validateDss, type DssValidation } from "@/chain/dssDesk";
 import { FACTS } from "@/chain/facts";
 import { fmtAmt, readWalletLau, readWalletYue, usernameError, type PlayerSnapshot } from "@/chain/identity";
 import { loadEntityProfile } from "@/chain/entityProfile";
-import { loadVenueState, readEtaSlots, isEtaNoLineageError } from "@/chain/venueState";
+import { loadVenueState, readEtaSlots, etaReadiness, isEtaNoLineageError, isEtaZeroHoldingsError } from "@/chain/venueState";
 import { decodeNewQing, encodeTake, liveVenueRow, readCreatePrecheck } from "@/chain/venueDeed";
 import { loadRenderRows } from "@/state/atlas";
 import { currentVenue, setCurrentVenue } from "@/state/venueStore";
@@ -39,6 +39,7 @@ import {
 import { DASHBOARD_TOOLS } from "@/agent/dashboardTools";
 import { DESK_TOOLS } from "@/agent/deskTools";
 import { MOVE_TOOLS } from "@/agent/moveTools";
+import { SWAP_TOOLS } from "@/agent/swapTools";
 import { SIM_TOOLS as SIM_TOOLS_LIST } from "@/agent/simTools";
 import { PLAN_TOOLS } from "@/agent/planTools";
 
@@ -120,10 +121,22 @@ export interface AgentToolContext {
   /**
    * The player's deployed DSS address (session-66, state/dssStore.ts —
    * captured at the creating receipt; the contract has NO getter). Null =
-   * no bundler captured → dss_snipe refuses honestly (deploy first via
-   * the IDENTITY emission desk).
+   * no bundler captured → dss_snipe refuses honestly (dss_setup deploys
+   * one or adopts a validated existing address).
    */
   dss?: Address | null;
+  /**
+   * The DSS capture/adopt seam (session-82.1): persist a validated/captured
+   * DSS record (the app's state/dssStore). Absent in the headless runner
+   * (the same-run ctx.dss fallback still works).
+   */
+  captureDss?:
+    | ((record: { dss: Address; lau: Address; txHash: string | null; source?: "deploy" | "import" }) => void)
+    | null;
+  /** live read of the captured DSS — makes a same-run dss_setup visible to dss_snipe */
+  resolveDss?: (() => Address | null) | null;
+  /** host/test seam for the structural validation; defaults to the chain read */
+  dssValidate?: ((address: Address, lau: Address) => Promise<DssValidation>) | null;
 }
 
 export interface AgentTool {
@@ -186,7 +199,7 @@ const getState: AgentTool = {
       currentVenue: currentVenue()?.a ?? null,
       homeVenue: homeQing,
       homeVenueSource: homeQingSource,
-      dss: ctx.dss ?? null,
+      dss: (ctx.resolveDss?.() ?? ctx.dss) ?? null,
       chatChannel: chatChannelMode(),
       fetchedAt: new Date(s.fetchedAt).toISOString(),
     });
@@ -197,7 +210,7 @@ const getVenue: AgentTool = {
   name: "get_venue",
   risk: "read",
   description:
-    "Live state of a venue (QING). One anonymous batch: Waat, Asset, Entropy, totalSupply, CoverCharge, BouncerDivisor, the AFFECTION market rate (absent = fresh venue, MarketRateNotFound), admission + venue-token balance for the active account, your per-venue attendance bars (YUE.Bar — Hypobar/Epibar, needs your YUE), the management gates (GWAT escrow lock, NoCROWS, your bouncer/owner passes), plus seed facts (HECKE band/coords) and your Eta-readiness (simulated RING.Eta from the account — three states: no-vault-lineage revert / fresh (14,0,0,0) / aged nonzero).",
+    "Live state of a venue (QING). One anonymous batch: Waat, Asset, Entropy, totalSupply, CoverCharge, BouncerDivisor, the AFFECTION market rate (absent = fresh venue, MarketRateNotFound), admission + venue-token balance for the active account, your per-venue attendance bars (YUE.Bar — Hypobar/Epibar, needs your YUE), the management gates (GWAT escrow lock, NoCROWS, your bouncer/owner passes), plus seed facts (HECKE band/coords) and your Eta-readiness (simulated RING.Eta from the account — three states: no-YUE revert / unseeded (14,0,0,0) / seeded nonzero; the seed is four token legs, not age).",
   parameters: {
     type: "object",
     properties: {
@@ -225,13 +238,15 @@ const getVenue: AgentTool = {
     if (ctx.account !== null) {
       try {
         const slots = await readEtaSlots(client, ctx.account);
-        const ready = slots[1] !== 0n || slots[2] !== 0n || slots[3] !== 0n;
-        eta = { slots: slots.map((x) => x.toString()), beatReady: ready, note: ready ? "aged lineage — Beat can run (Yeo rounds to 0 early)" : "fresh-caller shape — Beat will panic 0x12 at ANY funding level; caller state, not holdings" };
+        const ready = etaReadiness(slots).ready;
+        eta = { slots: slots.map((x) => x.toString()), beatReady: ready, note: ready ? "Eta seed in place — Beat can run (the target venue's Yuan still shapes outputs)" : "Eta is not Beat-ready — Beat will panic 0x12 at one of its divisions; seed Fomalhaute+WorldChatSHIO and Fornax at the LAU and hold CHO+Phobos" };
       } catch (e) {
         const msg = e instanceof Error ? e.message : String(e);
         eta = isEtaNoLineageError(msg)
-          ? { beatReady: false, note: "no vault lineage — open your YUE first (SEI.Start); the simulated Eta() reverts 0x12efd467" }
-          : { beatReady: null, error: msg };
+          ? { beatReady: false, note: "no YUE — open your vault first (SEI.Start); the simulated Eta() reverts 0x12efd467" }
+          : isEtaZeroHoldingsError(msg)
+            ? { beatReady: false, note: "your wallet holds zero YUE tokens — top up the YUE (even 1 wei); Yue.React reverts ZeroHoldings" }
+            : { beatReady: null, error: msg };
       }
     }
     return capOutput({
@@ -680,7 +695,7 @@ const joinVenue: AgentTool = {
 const runBeat: AgentTool = {
   name: "run_beat",
   risk: "act",
-  description: `META.Beat(Waat) — the world heartbeat: converts Fornax balance + venue state into output. CEILING-AWARE: the deployed Fornax Goldilocks ceiling exists; Beat gas median ${BEAT_GAS_MEDIAN.toString()} with a ${BEAT_GAS_LIMIT.toString()} limit that is right but not generous; fresh Eta callers panic 0x12 at any funding level. send=false (default) = DRYRUN only (pure preview — the shared Entropy head means committed results differ); send=true goes through the gate.`,
+  description: `META.Beat(Waat) — the world heartbeat: converts Fornax balance + venue state into output. The old Fornax "Goldilocks ceiling" is the APRIL/source formula, not a deployed cap (session-82.1 fork sweep); a zero-Iota modExp/entropy draw can still panic 0x12 even with a large Fornax balance — preview and retry. Beat gas median ${BEAT_GAS_MEDIAN.toString()} with a ${BEAT_GAS_LIMIT.toString()} limit that is right but not generous; Beat reverts panic 0x12 unless the Eta token seed is in place (WorldChatSHIO/Fomalhaute + Fornax at the LAU; CHO + Phobos counted by Yuan). send=false (default) = DRYRUN only (pure preview — the shared Entropy head means committed results differ); send=true goes through the gate.`,
   parameters: {
     type: "object",
     properties: {
@@ -1241,6 +1256,149 @@ const sendWorldChat: AgentTool = {
 };
 
 /**
+ * dss_setup (session-82.1, the owner's manual-deploy report): the DSS has NO
+ * getter, so the address can only be captured from the creation receipt or
+ * adopted after a STRUCTURAL validation (fixed runtime + owner + LAU
+ * binding). One tool covers both paths:
+ *   - { address }  → validate + adopt an existing DSS (no send);
+ *   - {} / send=false → DRYRUN the fixed creation through THE gate;
+ *   - { send: true }  → deploy through THE gate, capture the receipt's
+ *     contractAddress, persist it, and make it visible to dss_snipe in the
+ *     SAME run (ctx.resolveDss / ctx.dss).
+ * Always advertised (it is a setup action, not a chat post); dss_snipe
+ * itself stays behind the §7.4 chat opt-in.
+ */
+const dssSetup: AgentTool = {
+  name: "dss_setup",
+  risk: "act",
+  description:
+    "Set up your DSS self-snipe bundler — the contract dss_snipe sends world lines through. Two paths: WITH address = validate and adopt a DSS deployed elsewhere (fixed runtime + owner = you + bound LAU = yours; no transaction); WITHOUT address = deploy the fixed DSS through THE gate (send=false/default = DRYRUN; send=true = create it) and capture the address from the creation receipt. The DSS has NO getter, so the address must be captured or adopted — this tool is the only way the agent can obtain one. Needs your LAU. After it, dss_snipe works (the chat tools must be enabled).",
+  parameters: {
+    type: "object",
+    properties: {
+      address: { type: "string", description: "existing DSS address (0x…) to validate + adopt; omit to deploy a new one" },
+      send: { type: "boolean", description: "deploy path only: false/default = DRYRUN; true = create through the gate" },
+    },
+    additionalProperties: false,
+  },
+  async execute(args, ctx) {
+    if (ctx.account === null) return { error: "no account — SETTINGS → wallet" };
+    const lau = ctx.snapshot?.lau ?? pendingLau(ctx.account)?.lau ?? null;
+    if (lau === null) return { error: "dss_setup needs your LAU — create_lau (or finish onboarding) first" };
+    const raw = str(args["address"] ?? "").trim();
+    const validator = ctx.dssValidate ?? ((a: Address, l: Address) => validateDss(makeClient(ctx.rpcUrl), a, ctx.account as Address, l));
+    if (raw.length > 0) {
+      const address = launderAddress(raw);
+      if (address === null) return { error: "that is not a 0x… address (40 hex chars)" };
+      let v: DssValidation;
+      try {
+        v = await validator(address, lau);
+      } catch (e) {
+        return { mode: "ADOPT", dss: address, error: `could not validate the DSS: ${e instanceof Error ? e.message : String(e)}` };
+      }
+      if (!v.ok) return { mode: "ADOPT", dss: address, error: v.reason ?? "the DSS did not validate", validation: v };
+      ctx.captureDss?.({ dss: address, lau, txHash: null, source: "import" });
+      ctx.dss = address; // same-run fallback when the host has no store
+      return {
+        mode: "ADOPT",
+        status: "captured",
+        dss: address,
+        lau,
+        validation: v,
+        note: "validated: fixed DSS runtime · owner is the active account · bound to your LAU. dss_snipe can use it now (chat tools must be enabled).",
+      };
+    }
+    const request: GateRequest = {
+      to: null,
+      data: encodeDssDeploy(lau),
+      account: ctx.account,
+      meta: { source: "agent", label: "agent DSS deploy (the fixed self-snipe bundler)" },
+    };
+    if (!requireSendFlag(args)) {
+      const env = await ctx.gateDryRun(request);
+      return {
+        mode: "DEPLOY",
+        lau,
+        ...dryrunGateSummary(env),
+        note: "send=true creates the fixed DSS through the gate; the address is captured from the creation receipt (the contract has no getter)",
+      };
+    }
+    const client = makeClient(ctx.rpcUrl);
+    const predicted = await predictDssAddress(client, ctx.account).catch(() => null);
+    const out = await gateSendRefreshing(ctx, request);
+    const summary = outcomeSummary(out);
+    if (out.status !== "sent") return { mode: "DEPLOY", lau, predicted, ...summary };
+    let captured = captureDssFromReceipt(out);
+    let receiptNote: string | null = null;
+    if (captured === null) {
+      // the receipt may be lagging (load-balanced RPC) or lack the creation
+      // address — poll the deterministic CREATE1 prediction for code + validate
+      const resolution = await resolveDssDeployment(client, predicted, null, {
+        validate: async (a) => (await validator(a, lau)).ok,
+      });
+      captured = resolution.address;
+      receiptNote = resolution.note;
+      if (captured === null) {
+        return { mode: "DEPLOY", lau, predicted, ...summary, error: resolution.note };
+      }
+    }
+    let v: DssValidation | null = null;
+    try {
+      v = await validator(captured, lau);
+    } catch (e) {
+      v = null;
+      summary["validationWarning"] = `captured the creation address but could not re-read it: ${e instanceof Error ? e.message : String(e)}`;
+    }
+    if (v !== null && !v.ok) {
+      // an unreadable slot is NOT a definitive invalid: the creation landed
+      // from our bytecode, so keep the creation address and tell the operator
+      // to re-validate when the RPC recovers. A definitive owner/LAU mismatch
+      // is refused (and not captured).
+      const unreadable = v.ownerMatches === null || v.lauMatches === null;
+      if (unreadable) {
+        ctx.captureDss?.({ dss: captured, lau, txHash: out.txHash, source: "deploy" });
+        ctx.dss = captured;
+        return {
+          mode: "DEPLOY",
+          status: "sent",
+          dss: captured,
+          lau,
+          predicted,
+          ...(receiptNote !== null ? { receiptNote } : {}),
+          ...summary,
+          validation: v,
+          warning:
+            "the creation landed, but the post-deploy slot read was unreadable — the creation address is captured; re-validate with dss_setup(address) when the RPC recovers",
+        };
+      }
+      return {
+        mode: "DEPLOY",
+        lau,
+        dss: captured,
+        predicted,
+        ...(receiptNote !== null ? { receiptNote } : {}),
+        ...summary,
+        validation: v,
+        error: `deployed at ${captured}, but the post-deploy validation failed: ${v.reason ?? "unknown"} — call dss_setup(address) to retry/adopt`,
+      };
+    }
+    ctx.captureDss?.({ dss: captured, lau, txHash: out.txHash, source: "deploy" });
+    ctx.dss = captured; // same-run fallback
+    return {
+      mode: "DEPLOY",
+      status: "sent",
+      dss: captured,
+      lau,
+      predicted,
+      ...(receiptNote !== null ? { receiptNote } : {}),
+      ...summary,
+      validation: v,
+      note: "the DSS is captured; dss_snipe can use it now (chat tools must be enabled).",
+    };
+  },
+};
+
+/**
  * dss_snipe (session-66, §7.4-fenced): the WORLD-channel write path
  * through the player's deployed self-snipe bundler — DSS.chatAndSnipe
  * posts "<Username> message" onto the world SHIO (LAU.Chat inside) AND
@@ -1252,7 +1410,7 @@ const dssSnipe: AgentTool = {
   name: "dss_snipe",
   risk: "act",
   description:
-    "DSS.chatAndSnipe(string) — the TRUE world-channel write path (through YOUR deployed self-snipe bundler): posts one public, permanent line '<Username> …' onto the world/main SHIO (what send_world_chat does NOT do — that tool posts to a VENUE channel) AND mints 1 unit of your LAU which the bundler self-purchases for exactly 1 Ⓐ and forwards to you, atomically — no front-run window on your emission. Costs GAS + 1 Ⓐ. When your Ⓐ allowance to the bundler is short, send=true issues TWO gate sends: the exact-1 Ⓐ APPROVE first, then the snipe — and the DRYRUN previews that two-leg path (the raw snipe preview reverts until the approve lands — EXPECTED, not a broken bundler). Needs your REGISTERED LAU + Username + a captured DSS (deploy it on IDENTITY — the emission desk). send=true required to actually send.",
+    "DSS.chatAndSnipe(string) — the TRUE world-channel write path (through YOUR deployed self-snipe bundler): posts one public, permanent line '<Username> …' onto the world/main SHIO (what send_world_chat does NOT do — that tool posts to a VENUE channel) AND mints 1 unit of your LAU which the bundler self-purchases for exactly 1 Ⓐ and forwards to you, atomically — no front-run window on your emission. Costs GAS + 1 Ⓐ. When your Ⓐ allowance to the bundler is short, send=true issues TWO gate sends: the exact-1 Ⓐ APPROVE first, then the snipe — and the DRYRUN previews that two-leg path (the raw snipe preview reverts until the approve lands — EXPECTED, not a broken bundler). Needs your REGISTERED LAU + Username + a captured DSS — call dss_setup to deploy the fixed bundler or adopt an existing address (the contract has no getter). send=true required to actually send.",
   parameters: {
     type: "object",
     properties: {
@@ -1273,9 +1431,9 @@ const dssSnipe: AgentTool = {
     const lau = ctx.snapshot?.lau ?? null;
     if (lau === null) return { error: pendingLau(ctx.account) !== null ? "world lines need your REGISTERED LAU — finish onboarding with register (CHOA.Play) first" : "you need a LAU first — create_lau" };
     if (ctx.snapshot?.username == null) return { error: "world lines carry your Username — set it first" };
-    const dss = ctx.dss ?? null;
+    const dss = (ctx.resolveDss?.() ?? ctx.dss) ?? null;
     if (dss === null)
-      return { error: "no DSS captured — deploy the self-snipe bundler first (IDENTITY → the LAU emission desk; the app remembers the address from the creation receipt — the contract has no getter)" };
+      return { error: "no DSS captured — call dss_setup to deploy the fixed self-snipe bundler or adopt an existing address (the contract has no getter; dss_setup validates the fixed runtime, owner, and LAU binding)" };
     const message = str(args["message"] ?? "");
     if (message.trim().length === 0) return { error: "empty message" };
     if (message.length > 280) return { error: `message ${message.length} chars > 280 (schema fence)` };
@@ -1410,12 +1568,20 @@ const ALL_TOOLS: AgentTool[] = [
   // generic wallet transfer (+ native PLS mode) and the LAU pocket sweep —
   // single-leg sends, no approve pattern applies
   ...MOVE_TOOLS,
+  // the DEX acquisition family (session-83, the owner's swap round): native
+  // PLS → any ERC-20 through PulseX V2 via THE gate — exact-output, no
+  // approve leg, price-impact guarded; the Beat-seed acquisition surface
+  ...SWAP_TOOLS,
   // the SIM-scoped family (session-59, §8 arc part 2): world_code /
   // spawn_gwat / encrypt_note over the fork-verified never-deployed layer —
   // advertised ONLY in sim mode (SIM_TOOLS gate below)
   ...SIM_TOOLS_LIST,
   sendChat,
   sendWorldChat,
+  // the DSS setup leg (session-82.1): deploy the fixed bundler through THE
+  // gate or adopt a validated existing address — always advertised (a
+  // setup action, not a chat post; dss_snipe itself stays §7.4-gated)
+  dssSetup,
   // the DSS self-snipe leg (session-66): the world-channel write path
   // through the player's deployed bundler — §7.4-fenced with the family
   dssSnipe,

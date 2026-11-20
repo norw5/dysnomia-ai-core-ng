@@ -802,9 +802,10 @@ def flagship(args, fork, rpc: Rpc, canon: Canon, chain: Chain, jrn: Journal, ros
 
     def s_aging(rec):
         parent = st_["parent"]
-        # the aged caller's prereq stack (set-3 s2, verbatim recipe): the
-        # deployer EOA (mariarahel) carries the ladder lineage a fresh soul
-        # cannot be given on demand.
+        # the seeded caller's prereq stack (set-3 s2, verbatim recipe): the
+        # deployer EOA (mariarahel) already carries the four-token Eta seed
+        # (Fomalhaute/Fornax at the LAU; CHO/Phobos for Yuan). A fresh
+        # account can be seeded with four transfers (session-82).
         raw = chain.eth_call(canon.address("CHO"), canon.data("CHO", "GetUser", "", []), frm=DEPLOYER)
         phi = decode(["uint64", "address", "address", "uint64", "uint64", "address", "uint64", "uint64", "uint64", "string", "uint64"], raw)[1].lower()
         fomal = canon.address("WorldChatSHIO")

@@ -17,9 +17,12 @@ Runs on its own managed fork (same pin policy as sets 1/2). Steps:
 
   0  preflight: chain id 369 + fixture manifest verify + pins present
   1  player onboarding-lite + a fresh MockAsset venue on MAP (Code target)
-  2  Eta aging: CHOA.Chat advances the caller's vault-reactor lineage until
-     the simulated RING.Eta(from=player) has nonzero slots (the s5 floor —
-     WORLD.Code beats internally and needs an aged caller)
+  2  Eta seed: the deployer's LAU already carries Fomalhaute/Fornax; the
+     step tops up Fomalhaute at the Phi (the XIA.Charge modulus) and
+     funds the venue-token Yuan. A fresh player can use the same four
+     transfers (session-82); the old "CHOA.Chat ages the soul" draft was
+     wrong (chat never seeds the four legs). WORLD.Code beats internally
+     and needs a seeded caller.
   3  verbatim creation-revert pins: WORLD + WAR creations revert bare (the
      under-construction callback); ENCRYPT (constructed against LIVE VOID)
      deploys clean + runtime byte == pin
@@ -264,13 +267,14 @@ def main():
         return tuple(decode(["uint256", "uint256", "uint256", "uint256"], raw))
 
     def s2(rec):
-        # THE AGED CALLER: WORLD.Code beats + Su's + Eta's ladder inputs need a
-        # caller with real ladder lineage — a fresh player stays at the
-        # (14,0,0,0) floor (fork-proven: 6 settles + Play + SHIO-funded
-        # Fomalhaute/Fornax do NOT age a fresh soul — the accumulators are
-        # per-Soul history, not balances). The deployer EOA (mariarahel, the
-        # dev's own aged account) carries the lineage — impersonation is the
-        # recipe, exactly like the set-2 Beat replays.
+        # THE SEEDED CALLER: WORLD.Code beats + Su's + Eta's ladder inputs
+        # need the four-token Eta seed. A fresh player stays at the
+        # (14,0,0,0) shape until the legs are in place (session-82: the
+        # seed is Fomalhaute/Fornax at the LAU + CHO/Phobos for the Yuan
+        # moduli; the old "6 settles + Play ages a soul" reading was the
+        # wrong variable). The deployer EOA (mariarahel) is a convenient
+        # ALREADY-SEEDED actor — impersonation, exactly like the set-2
+        # Beat replays. A fresh account can be seeded with four transfers.
         e = eta_probe()
         jrn.a(rec, "fresh-player floor pinned (14,0,0,0)", e == (14, 0, 0, 0), str(e))
         raw = chain.eth_call(canon.address("RING"), canon.data("RING", "Eta", "", []), frm=DEPLOYER)
@@ -554,9 +558,9 @@ def main():
         # Parties: alice = the s1 player, bob = a FRESH actor with a fresh LAU
         # (both were tx.origin of their own LAU create — SHIOFactory.New adds
         # tx.origin to the SHIO's owners map, which is exactly the VIEW the
-        # NotParty gate reads). The aged caller is NOT needed here: the
+        # NotParty gate reads). The seeded caller is NOT needed here: the
         # keystream is a deterministic modexp orbit over the pair's per-SHA
-        # channels — no ladder lineage involved.
+        # channels — no Eta seed involved.
         enc = st_["ENCRYPT"]
         bob = Actor(chain)
         bob.fund(10_000)

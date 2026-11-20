@@ -8,7 +8,7 @@ mock-provider UI harness under `../app/e2e/`.
 
 ```
 python3 harness/anvil_flows.py                # set 1: managed fork, starts anvil, runs, stops
-python3 harness/anvil_flows_set2.py           # set 2: Beat floors + DSS + approval gates + deed/create (s10/11) + the YUE desk (s12) + identity/labels/book (s13)
+python3 harness/anvil_flows_set2.py           # set 2: Beat floors + DSS + approval gates + deed/create (s10/11) + the YUE desk (s12) + identity/labels/book (s13) + the DEX seed + Beat (s15)
 python3 harness/anvil_flows_set3.py           # set 3 (session 58): the never-deployed world layer — verbatim creation-revert pins, the fixed stack, the Code→Faa→GWAT loop proof, the SIM overlay
 python3 harness/anvil_flows.py --keep         # leave the fork up on :8545
 python3 harness/anvil_flows.py --rpc http://127.0.0.1:8545   # target an existing fork
@@ -65,7 +65,9 @@ log; re-pin when the suite starts racing live traffic.
   CREATE1-predicted LAU address. Self-skips when no fork answers on 8545. The
   full-identity variant (LAU+Username+YUE created on the fork via the Actor
   classes, then discovered by the UI) was run ad-hoc this session — both paths
-  green; consider promoting it into the spec later.
+  green; consider promoting it into the spec later. Rows since: the session-66
+  DSS desk, the session-68 FULL-AUTO snipe, the session-70 sync engine (needs
+  `--venue`), and the session-83 DEX swap (needs `--onboard`).
 - **Perimeter checksum fix**: 8 kb/config addresses carried wrong EIP-55 casing
   (VOID, LAUFactory, SHAFactory, ZHENG, ZHOU, LibAttribute, LibStrings,
   ReactionsLib) — the underlying hex was always right; the app's first viem
@@ -95,7 +97,7 @@ lesson encoded structurally. Addresses come only from `config/addresses.json`.
 Gas observed at pin 27,666,000: New LAU 10.92M · SEI.Start 2.86M · CHOA.Play
 424k · MAP.New 3.02M · CHOA.Chat 708k.
 
-## Flow set 2 (sessions 40+50+51+52+53, 14 steps — `anvil_flows_set2.py`)
+## Flow set 2 (sessions 40+50+51+52+53+66+83, 16 steps — `anvil_flows_set2.py`)
 
 | # | Step | Key asserts |
 |---|---|---|
@@ -103,9 +105,9 @@ Gas observed at pin 27,666,000: New LAU 10.92M · SEI.Start 2.86M · CHOA.Play
 | 1 | onboarding-lite | LAU → Username → YUE → Play (sets user Entropy) |
 | 2 | venue | MockAsset + MAP.New (fresh QING + Waat); stores the asset for s12 |
 | 3 | whale funding | Ⓐ + Fornax→LAU + CHO→wallet/LAU from probed whales (deployer EOA is the originMint whale: Ⓐ 345k, Fornax 304) |
-| 4 | Ⓐ-bridge mechanics | QING.Purchase(AFFECTION) reverts MarketRateNotFound; CHO.AddContractOwner→AddMarketRate→Purchase→transfer-to-LAU gives Yuan(qing)=11e18; unfunded Beat panic shown too (the s5 fresh-caller floor, funding-independent) |
-| 5 | Beat DRYRUN pin | the probe caller panics 0x12 at META's own SECOND division (the `Yeo` line; `Charge1*Charge/Iota1` passes — depth-1 trace); PANG.Push layer works; reproducible at pins 24M/25M/27.66M on fresh + established venues |
-| 6 | Beat tx | reverts (status 0) with gas 1.93M — inside the census envelope (median 1,916,016) |
+| 4 | Ⓐ-bridge mechanics | QING.Purchase(AFFECTION) reverts MarketRateNotFound; CHO.AddContractOwner→AddMarketRate→Purchase→transfer-to-LAU gives Yuan(qing)=11e18; an unseeded caller's Beat panic shown too (the Eta seed, not PLS funding) |
+| 5 | Beat DRYRUN pin | an unseeded probe caller panics 0x12 — depth-1 trace puts it at the `Yeo` line when `Chao=0`, while a missing `Iota1` (no Fornax/CHO/Phobos) panics at `Charge1*Charge/Iota1`; PANG.Push layer works; reproducible at pins 24M/25M/27.66M on fresh + established venues |
+| 6 | Beat tx | an unseeded send reverts (status 0) with gas 1.93M — inside the census envelope (median 1,916,016); a four-leg-seeded fresh LAU sends status 1 at ~1.95M |
 | 7 | DSS | as-shipped gist byte-pin + its init-order bug (chatAndSnipe reverts at 0x0); DSSFixed (one-line patch) byte-pin + exact-amount approve (never MaxUint) + snipe deltas (LAU +1, Ⓐ -1) |
 | 8 | approval gates + fallback | spent-allowance snipe reverts; unapproved Purchase reverts; plain-chat fallback mints 1 LAU, costs no Ⓐ |
 | 9 | **CHEON.Su settle (session-50)** | the settle verb works for the onboarded caller (status 1 ×2); the pure DRYRUN's decoded (Charge, Hypobar, Epibar) EQUALS the post-send YUE.Bar (Su returns the post state; quiet fork — no interleaving callers); bars advance monotonically across settles (observed epi 0→14,231,926→15,758,184, hyp stayed 0 — Omicron-only for this caller); CHEON is at cap so the meter is a guarded no-op (supply unchanged, kb §5) |
@@ -113,8 +115,10 @@ Gas observed at pin 27,666,000: New LAU 10.92M · SEI.Start 2.86M · CHOA.Play
 | 11 | **MAP.New late-revert + Qu-claim (session-51)** | EvilAsset (name()/symbol() staticcall-succeed with EMPTY returndata) forces New's rename decode to revert AFTER the CHO.Luo() draw; `CHO.Qu(de0) == 0x0` after the reverted New (the claim ROLLS BACK with the tx — the kb "permanent Qu scar" claim retracted); the retry (fresh good asset, quiet fork) re-draws and re-claims the SAME De — `waat3 == de0 × Meridians[0]`, `Qu(de0) == MAP`, GetQing index whole |
 | 12 | **YUE Hong/Hung desk + Ⓐ Redeem leg (session-52)** | GetAssetRate == 0 before a posted rate and Hong reverts `ExchangeRateNotFound` (0x464460b9); non-ancestor spend asset reverts `InvalidPair` (0xd9a764d9); after AddMarketRate(asset, 1e18) the DIRECT pair's GetAssetRate == the POSTED rate EXACTLY (the 777-mod attenuation divides a ZERO accumulator on hop one — chained routes only); **the funding story fork-corrected: BOTH legs pay from the VAULT'S OWN inventory** (Hong: asset player→YUE in, qing YUE→player out — the venue's self-escrow UNTOUCHED; Hung: qing player→YUE in, asset YUE→player out); unapproved Hung reverts (the base transferFrom reverts internally — yue.sol's "Need Approved" requires are UNREACHABLE); the base `QING.Redeem(AFFECTION, 1e18)` is PUBLIC, needs a venue-token allowance with spender == THE VENUE ITSELF, and pays 1e18 Ⓐ from the venue's Ⓐ escrow (what s4's Purchase deposited) — the exact Purchase reverse |
 | 13 | **identity enrichment + pocket sweep + label semantics + the CHO book walk (session-53)** | `On().Phi == address(On().Shio)` (the Bao's entity key IS the channel — 05_zheng.sol Mau); `Saat[2] == SIU.Aura()` simulated from the creating wallet (the fingerprint pin); `LAU.Withdraw` moves the pocket out unmetered (LAU supply unchanged); **VOID's session table is MSG.SENDER-keyed** — the entry is written by `Enter` called from the LAU constructor, so the session lives AT THE LAU (labels read/write through the LAU: its onlyOwners wrapper passes tx.origin and delegates with msg.sender=LAU); the `Alias(address)` VIEW has NO session gate (an unentered sender reads the soul-0 grades → `AliasNotFound`, NOT NoUserEntry — that error lives only on the WRITE); unset label reverts `AliasNotFound` (the failure IS the answer); the CHO book walk: 103 live entries at the pin (kb/dev's "~90" is census drift), all resolvable, fits the app's 160 probe bound |
+| 14 | **LAU emission + DSS desk + the deployment gate (session-66)** | every owner action meters 1 LAU unit into a public 1-Ⓐ pool; mintToCap is silent; one Purchase collects N; LAU.Chat posts `<Username> …` to the WORLD SHIO; the CREATE1 prediction == the creation receipt |
+| 15 | **THE DEX SEED (session-83)** | PulseX V2 router `factory()`/`WPLS()` == the pinned addresses; a FRESH LAU/YUE buys the four seed legs with `swapETHForExactTokens` (native value): Fomalhaute 2 wei + Fornax (1e15 starting point, geometric retry until `Eta.Iota1 > 0`) AT THE LAU, CHO/Phobos 2 wei in the wallet; every swap lands the EXACT output, needs NO approval (allowance stays 0), and the quote is fresh; `RING.Eta` flips `(14, >0, >0, >0)` and `META.Beat` lands status 1 at ~1.97M gas (the zero-target-Yuan venue still Beats — outputs are a separate matter) |
 
-Session-50 gotcha encoded in step 9: the Eta fresh-caller floor does NOT apply
+Session-50 gotcha encoded in step 9: the Beat Eta seed gate does NOT apply
 to Su — Su's chain is ReactYue (XIE.Power) + MAI.React + YueMintToOrigin, no
 RING.Eta division; the floors that DO matter are the YUE itself (Sei.Chi →
 NotStarted) and Yue.React's ZeroHoldings (the caller must hold their own YUE
@@ -168,7 +172,7 @@ bound still holds with margin.
 |---|---|---|
 | 0 | preflight | chain 369; `sync_sources.py` manifest verify + the ten fixture pins present |
 | 1 | player + venue | LAU→Username→YUE→Play-lite + MockAsset venue + **venue funding**: Eris (the Charge base) AND CHO (the Dione numerator) from the deployer |
-| 2 | the aged caller | fresh-player Eta floor pinned `(14,0,0,0)`; mariarahel (the deployer EOA) has nonzero slots + YUE + LAU; **Phi-Fomalhaute funding** (the XIA.Charge modulus reads Fomalhaute AT the caller's channel key, not the wallet); the Ⓐ bridge onto the venue (AddContractOwner→rate→approve→Purchase→LAU) so the caller's venue-token Yuan > 0 |
+| 2 | the Eta seed (the old "aged caller") | unseeded Eta `(14,0,0,0)` and a Beat panic pinned; mariarahel (the deployer EOA) already carries the four-token seed; **the seed legs**: Fomalhaute/WorldChatSHIO + Fornax AT THE LAU (the XIA.Charge modulus + the XIE.Power Omicron), CHO + Phobos for the two Yuan moduli; the Ⓐ bridge onto the venue (AddContractOwner→rate→approve→Purchase→LAU) for the output-side venue-token Yuan |
 | 3 | verbatim creation-revert pins | verbatim WORLD + WAR creations REVERT BARE (the under-construction ctor callback — the wave-5 failure); ENCRYPT deploys clean (VOID is live) + byte-pinned |
 | 4 | the fixed stack | WORLDFIXED→WARFIXED→verbatim GWAT (byte-pinned); VITUS/H2O deployed inside |
 | 5 | WORLD wiring | getters == config; lottery cap < 111111; 4 rates; VITUS seeded 1:1 with the LIVE MV totalSupply; CHAN ownership |
@@ -197,17 +201,21 @@ Session-58 gotchas (set 3 + the fixture build):
   War.World(), and WORLD's own `Vitus.Mint(address(this),1)` whose overflow
   check reads World.Map()). The `// FIX:`-marked fixtures pass live
   addresses as ctor params instead.
-- **A fresh caller cannot be aged on demand**: 6×CHEON.Su + CHOA.Play +
-  funding the caller's Phi with Fomalhaute/Fornax all leave Eta at
-  (14,0,0,0) — the accumulators are per-Soul HISTORY. The recipe is
-  impersonating an aged live player (mariarahel = the deployer EOA, Eta
-  (14, 2.67e15, 50653, 50653)); Yuan/charge prerequisites are fundable,
-  lineage is not.
+- **A fresh caller CAN be Beat-seeded on demand (session-82 correction)**:
+  the old "6×CHEON.Su + CHOA.Play + funding the caller's Phi leaves Eta
+  (14,0,0,0)" experiment changed the wrong variable (chat/settle do not
+  move the four gate-token legs) — the accumulators are NOT per-Soul
+  history. Send Fomalhaute/WorldChatSHIO + Fornax TO THE LAU and hold
+  CHO + Phobos in the Yuan-counted places; Eta flips and Beat lands.
+  `mariarahel` (the deployer EOA) is still a convenient already-seeded
+  actor, but impersonation is no longer required. Yuan/charge
+  prerequisites are fundable; so is the seed.
 - **A crediting Code needs the FULL stack**: venue Eris (Charge base) +
-  venue CHO (Dione) + caller's Phi-Fomalhaute (the modExp modulus) +
-  caller's venue-token Yuan (the Deimos weight — the Ⓐ bridge onto the
-  venue, tokens parked in the LAU for the 10× weight) + aged lineage.
-  Charge==0 ⇒ silent no-op (status 1, nothing happens).
+  venue CHO (Dione) + caller's four-token Eta seed (Fomalhaute/Fornax at
+  the LAU, CHO/Phobos for the Yuan moduli) + caller's venue-token Yuan
+  (the Deimos weight — the Ⓐ bridge onto the venue, tokens parked in the
+  LAU for the 10× weight). Charge==0 ⇒ silent no-op (status 1, nothing
+  happens).
 - **anvil default key #0 / historical wallets carry their OWN VOID
   sessions** (the s13 warning, now also observed for ladder lineage) —
   always probe from the account you mean.
@@ -222,7 +230,7 @@ Session-59 gotchas (set-3 steps 11–12, the ENCRYPT pins):
 - The ENCRYPT party gates read the SHIO owners MAP (view `owner(address)`)
   — SHIOFactory.New adds TX.ORIGIN to every SHIO, so the wallet that
   created the LAU passes; the modifier's tx.origin leg is irrelevant. The
-  aged caller is NOT needed for ENCRYPT flows (no ladder lineage).
+  Eta seed is NOT needed for ENCRYPT flows (no Beat/Eta path).
 - The ENCRYPT keystream is DETERMINISTIC (SHA.React is pure modexp over the
   per-SHA Channel constant): DRYRUN preview index == committed index, and
   the Decrypt preview == the exact plaintext. The only divergent state is
@@ -394,21 +402,38 @@ snapshot-window lie), fix the app, not the script.
 - **`encode()` returns BARE hex** — `sel + encode(...)[2:]` silently corrupts
   calldata (shifts every word 2 nibbles); the failure surfaces as weird
   empty-data reverts two steps later. Hand-encoding = `sel + encode(...)`.
-- **Beat: fresh-caller floor (RESOLVED with owner-provided txs)**: Beat WORKS —
-  three successful txs replay green at their blocks and at the pin, including
-  on a zero-history fresh venue. Fresh harness callers panic 0x12 because the
-  deployed third-revision `RING.Eta()` returns `(14,0,0,0)` for them (Eta is
-  NON-VIEW in the tree: `Chao = Yue.React(Phobos)` — a caller-vault reactor
-  step + per-Soul Moments accumulator); Beat divides by an Eta slot. Aged
-  callers get nonzero slots → success, Yeo rounds to 0 early ("Yeo is always
-  0 on your first Beat" — owner lore, now mechanistically explained). Fork
-  recipe: impersonate an aged caller for Beat flows. RETRACTED earlier
-  session-40 claims: "wedged" (rested on a log-scan blind to successful Beats
-  — they emit no META-address events) and the "double Yuan floor" (a
-  zero-Yuan caller Beats fine with all-zero outputs).
-- **Yuan floors are NOT revert gates**: an aged caller beating a venue whose
-  tokens they hold zero of succeeds (all-zero outputs). Yuan weights still
-  matter for output magnitudes, not for reverting.
+- **Beat: the Eta token seed (session-82 correction)**: Beat WORKS for any
+  LAU with the four seed legs — (1) Fomalhaute/WorldChatSHIO AT THE LAU
+  (nonzero; the XIA.Charge modExp modulus), (2) Fornax AT THE LAU (clear
+  the live Entropy divisor), (3) CHO and (4) Phobos in the Yuan-counted
+  places (wallet/LAU/YUE). With them Eta goes nonzero and Beat lands;
+  remove any leg and it panics 0x12 at `Charge = …/Iota1` or
+  `Yeo = Yeo/Chao`. The 2026-11-19 live proof is a 21-minute-old LAU
+  (`0x081247c8…`); the fork reproduction is a fresh LAU/YUE + four
+  transfers. The old "fresh-caller floor" was the correlation (established
+  wallets hold the tokens); `CHOA.Chat` never seeds them. The target
+  venue's Yuan is NOT a revert gate — zero target Yuan succeeds with
+  all-zero outputs. RETRACTED earlier session-40 claims: "wedged" (rested
+  on a log-scan blind to successful Beats — they emit no META-address
+  events); the "double Yuan floor" is refined, not reinstated — the
+  TARGET venue Yuan is not a gate, the Eta-side CHO/Phobos Yuan are.
+- **The no-YUE floor is real**: a caller with no YUE makes `RING.Eta()`
+  revert `0x12efd467` (`NotStarted`); open the vault first. This is the
+  only pre-Beat identity gate.
+- **The DEX seed (session-83)**: PulseX V2 router
+  `0x165C3410fC91EF562C50559f7d2289fEbed552d9` (`factory()`
+  `0x29eA…`/`WPLS()` `0xA107…`). `swapETHForExactTokens` is the honest seed
+  route: native value wraps inside the router (NO approve leg), the exact
+  output is guaranteed, and the router REFUNDS unused PLS (2,000 PLS sent
+  on a ~674-PLS quote left ~732 PLS including gas). An estimate without
+  `value` reverts EXCESSIVE_INPUT_AMOUNT — `Actor.estimate/raw_send` gained
+  the optional `value` for this. THIN pools: Fornax ~34 tokens / Phobos
+  ~0.91 tokens of depth at the pin; quote every send and keep the
+  price-impact guard. Fornax 1e15 is a STARTING point, not a guarantee:
+  the per-soul Entropy divisor varies, so preview `Eta` and retry a larger
+  exact-output until `Iota1 > 0` (s15 uses a geometric ramp; no static
+  ceiling exists). Fomalhaute/Fornax only count AT THE LAU; CHO/Phobos at
+  ≥2 wei in the wallet are enough for the Yuan modulus.
 - **Fresh QINGs have NO market rates** (v2 base constructor adds none) — the Ⓐ
   bridge needs an owner's AddMarketRate(AFFECTION, 1e18) first. Phobos has no
   rates AT ALL (its 457-token buffer is unpurchasable). Only CHO owns a fresh

@@ -56,7 +56,7 @@ packages"* `[irc: atropa_logged line 21114]`.
    channel contract; the world's conversation is readable by anyone.
 3. **Enter venues** — a QING is a chat room plus micro-economy wrapped
    around *any* ERC-20. Bouncer rules, cover charges and guest passes
-   apply; 917 venues exist `[chain]`.
+   apply; 942 venues exist at the session-83 regen `[chain]`.
 4. **Wrap a token into a venue** — `MAP.New(asset)` places a new QING on
    the coordinate map at a position drawn from the hub's coordinate
    lottery.

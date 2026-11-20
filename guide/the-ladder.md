@@ -41,6 +41,39 @@ The ladder feeds two consumers:
   placement is checked against in the undeployed WORLD layer; `Charge` and
   `Deimos` feed tile value and creator credits.
 
+**Beat readiness is a token seed, not a waiting period** (session-82
+correction): `Eta` reads live balances, not a stored age. A fresh account
+can Beat as soon as its LAU holds `Fomalhaute` (the WorldChatSHIO) and
+`Fornax`, and its wallet/LAU/YUE holds `CHO` and `Phobos` for the Yuan
+weights. Remove any one of those legs and `Beat` panics `0x12` (the Eta
+shape depends on which leg is missing — `(14,0,0,0)` all-absent,
+`(14,1,0,0)` no Fomalhaute, `(14,0,1,1)` no Fornax/CHO/Phobos); with
+the seed it lands immediately (the target venue's own Yuan shapes the
+output, not the revert). A wallet with no YUE at all is the only true
+pre-Beat identity floor — `Eta` reverts until the vault exists.
+
+**Exact seed floors (fork-pinned, session-82.1)**: `Fomalhaute` at the LAU
+needs **2 wei** (1 wei zeroes the modulus); `CHO`/`Phobos` Yuan must be
+**≥ 2** (1 wei in the wallet fails; 1 wei at the LAU counts 10, at the YUE
+40); `Fornax` must clear the live `Entropy` draw (preview and retry). The
+old "Fornax Goldilocks ceiling" is the April/source formula — the deployed
+third revision showed no static cap in a controlled Fornax sweep, so use
+previews rather than a formula ceiling.
+
+**Buying the seed (session-83)**: the terminal's agent can now acquire
+these tokens through PulseX V2 (`swap_pls_for_token` — router `0x165C…`,
+WPLS `0xA107…`). It is an exact-output swap: ask for exactly 2 wei of
+Fomalhaute / CHO / Phobos or 1e15 wei of Fornax (0.001), and the router
+refunds the unused PLS; the native route needs no token approval. Send
+Fomalhaute and Fornax to the **LAU**; CHO/Phobos in the wallet is enough
+for the 2-wei Yuan floor. The Fornax level is a starting point — the live
+per-soul `Entropy` divisor varies, so preview a Beat and retry a larger
+buy on a zero Iota. The seed pools are thin: the tool quotes first and
+refuses a price impact above its guard (5% by default), and every swap
+still passes THE gate (an approval card in wallet modes A/B). At the
+session-83 pin the four buys cost roughly 674 PLS of Fornax plus dust for
+the other three; quotes move, so always quote fresh.
+
 Every rung is metered like all system contracts — one self-mint per call
 against a lottery budget. At the research census the whole ladder sat
 **at cap**: the call counters froze exactly at their constructor-lottery

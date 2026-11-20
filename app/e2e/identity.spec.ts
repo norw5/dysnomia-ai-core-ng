@@ -95,6 +95,12 @@ test.describe("IDENTITY — first contextual panels (mock wallet, dead RPC → h
     await expect(page.getByTestId("dss-emission")).toBeVisible();
     await expect(page.getByTestId("dss-bundler")).toBeVisible();
 
+    // session-82.1: the import path validates an existing address; a dead RPC
+    // is an honest "could not validate", never a false capture
+    await page.getByTestId("dss-import-address").fill("0x5555555555555555555555555555555555555555");
+    await page.getByTestId("dss-import").click();
+    await expect(page.getByTestId("dss-import-result")).toContainText("could not", { timeout: 10_000 });
+
     await page.getByTestId("dss-deploy").click();
     const card = page.getByTestId("approval-card");
     await expect(card).toBeVisible({ timeout: 10_000 });
@@ -143,7 +149,7 @@ test.describe("IDENTITY — first contextual panels (mock wallet, dead RPC → h
 });
 
 test.describe("unified QING sidebar + app-global venue selection (offline seed)", () => {
-  test("917-venue seed renders, search filters, selection + clear work", async ({ page }) => {
+  test("942-venue seed renders, search filters, selection + clear work", async ({ page }) => {
     await page.addInitScript(MOCK_PROVIDER_INIT);
     await page.goto("/");
     await page.getByTestId("rail-map").click();

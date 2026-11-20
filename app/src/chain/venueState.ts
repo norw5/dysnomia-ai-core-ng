@@ -310,42 +310,55 @@ export function useVenueState(
 }
 
 /**
- * Eta readiness (kb §3, session-40 amendments): the deployed third-revision
- * RING.Eta() is NON-VIEW — it is read as a SIMULATED call from the caller
- * (a pure preview; committed results can differ). Fresh callers get
- * `(14, 0, 0, 0)` and META.Beat then panics 0x12 (division by an Eta slot)
- * at ANY funding level; aged callers (months of vault-advancing activity)
- * carry nonzero slots and Beat works — "Yeo is always 0 on your first Beat"
- * is exactly this. Yuan holdings are NOT a gate.
+ * Eta readiness (kb §3, session-40 amendments; session-82 correction):
+ * the deployed third-revision RING.Eta() is NON-VIEW — it is read as a
+ * SIMULATED call from the caller (a pure preview; committed results can
+ * differ). Fresh callers get `(14, 0, 0, 0)` while their LAU/YUE/wallet
+ * hold none of the four Eta seed tokens: Fomalhaute/WorldChatSHIO +
+ * Fornax AT THE LAU, and CHO + Phobos counted by the 1/10/40 Yuan
+ * weights. With the seed, the slots go nonzero and Beat can run; remove
+ * any leg and META.Beat panics 0x12 at one of its two divisions
+ * (`Charge = … / Iota1` or deployed `Yeo = Yeo / Chao`). The target
+ * venue's Yuan scales the OUTPUT, not the revert. "Yeo is always 0 on
+ * your first Beat" is the thin-output shape, not the gate.
  */
 export type EtaSlots = [bigint, bigint, bigint, bigint];
 
 export interface EtaReadiness {
   slots: EtaSlots;
-  /** any nonzero slot past the head = vault lineage exists → Beat can run */
+  /** BOTH Beat divisors nonzero (Iota slot 1 AND Chao slot 2) → Beat will not panic */
   ready: boolean;
 }
 
 export function etaReadiness(slots: EtaSlots): EtaReadiness {
-  return { slots, ready: slots[1] !== 0n || slots[2] !== 0n || slots[3] !== 0n };
+  return { slots, ready: slots[1] !== 0n && slots[2] !== 0n };
 }
 
-/** the reference (14, 7973995094115691, 50653, 69343957)-shape fresh marker */
+/** the reference (14, 0, 0, 0)-shape fresh marker (no seed tokens) */
 export function isFreshEta(slots: EtaSlots): boolean {
   return slots[0] === 14n && slots[1] === 0n && slots[2] === 0n && slots[3] === 0n;
 }
 
 /**
- * The Eta floor BELOW the floor (fork-verified, session-43): a caller with
- * NO vault at all (no YUE lineage) makes the simulated Eta() itself revert
+ * The floor BELOW the seed (fork-verified, session-43): a caller with NO
+ * vault at all (no YUE) makes the simulated Eta() itself revert
  * `0x12efd467(sender)` instead of returning zero slots. Three states:
- * no-lineage revert → (14,0,0,0) fresh (Beat panics 0x12) → nonzero aged.
+ * no-vault revert → (14,0,0,0) unseeded (Beat panics 0x12) → nonzero
+ * seeded (Beat can run; the target venue's Yuan still shapes outputs).
  */
 export const ETA_NO_LINEAGE_SELECTOR = "0x12efd467";
 
 export function isEtaNoLineageError(e: unknown): boolean {
   const msg = e instanceof Error ? e.message : String(e);
   return msg.includes(ETA_NO_LINEAGE_SELECTOR);
+}
+
+/** Yue.React's ZeroHoldings(address) — the wallet holds zero of its own YUE token */
+export const ETA_ZERO_HOLDINGS_SELECTOR = "0x98aaa293";
+
+export function isEtaZeroHoldingsError(e: unknown): boolean {
+  const msg = e instanceof Error ? e.message : String(e);
+  return msg.includes(ETA_ZERO_HOLDINGS_SELECTOR);
 }
 
 let ringEtaFragment: Promise<Abi> | null = null;

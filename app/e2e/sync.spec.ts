@@ -99,6 +99,6 @@ test.describe("sync engine — honest seed chips in DIRECTORY", () => {
     await page.addInitScript(MOCK_PROVIDER_INIT);
     await page.goto(DEAD_RPC);
     await page.getByTestId("rail-map").click();
-    await expect(page.getByTestId("venue-count")).toContainText("· 940", { timeout: 10_000 });
+    await expect(page.getByTestId("venue-count")).toContainText("· 942", { timeout: 10_000 });
   });
 });

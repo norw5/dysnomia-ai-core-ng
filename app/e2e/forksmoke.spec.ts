@@ -174,6 +174,98 @@ test.describe("session-66 DSS desk on a live fork (manual_fork --onboard)", () =
 });
 
 // ---------------------------------------------------------------------------
+// session-83: the DEX swap tool on a LIVE FORK — the real gate path for the
+// Beat-seed acquisition. Two actual exact-output swaps through PulseX V2:
+// Fomalhaute 2 wei → the LAU, then Fornax 1e15 wei → the LAU. Mode B cards
+// both (the router is unknown-contract); the receipt-carried amounts are
+// asserted onchain. Same manual-kit prerequisite as the rows above.
+// The full four-leg seed + the Eta/Beat flip is harness set-2 s15 (it does
+// not need the browser; this row proves the app's card/send path).
+// ---------------------------------------------------------------------------
+test.describe("session-83 DEX swap on a live fork (manual_fork --onboard)", () => {
+  test("two exact-output seed swaps land at the LAU through the gate", async ({ page }) => {
+    test.setTimeout(180_000);
+    const forkUp = await page.request
+      .post("http://127.0.0.1:8545", { data: { jsonrpc: "2.0", id: 1, method: "eth_chainId", params: [] } })
+      .then((r) => r.ok())
+      .catch(() => false);
+    test.skip(!forkUp, "no fork on 8545");
+    const lauHex = (await rpc(page.request, "eth_call", [
+      { to: CHO, data: GET_USER_TOKEN_ADDR + ANVIL0.slice(2).toLowerCase().padStart(64, "0") },
+      "latest",
+    ]).catch(() => null)) as string | null;
+    test.skip(!lauHex || lauHex === "0x" || lauHex.includes("0000000000000000000000000000000000000000"), "anvil#0 not onboarded on this fork (manual_fork --key <anvil0> --onboard --leave)");
+    const lau = ("0x" + lauHex!.slice(26)).toLowerCase();
+
+    // fund generously: Fornax 1e15 costs ~674 PLS at the pin + gas
+    await rpc(page.request, "anvil_setBalance", [ANVIL0, "0x152D02C7E14AF6800000"]); // 100k PLS
+
+    let completion = 0;
+    await page.route("**openrouter.ai/api/v1/chat/completions", async (route) => {
+      const step = completion;
+      completion += 1;
+      const message =
+        step === 0
+          ? { content: null, tool_calls: [{ id: "sw1", type: "function", function: { name: "swap_pls_for_token", arguments: JSON.stringify({ token: "FOMALHAUTE", amountOutWei: "2", recipient: "lau", send: true }) } }] }
+          : step === 1
+            ? { content: null, tool_calls: [{ id: "sw2", type: "function", function: { name: "swap_pls_for_token", arguments: JSON.stringify({ token: "FORNAX", amountOutWei: "1000000000000000", recipient: "lau", send: true }) } }] }
+            : { content: "▸ plan: seed the two SHIO legs.\nBoth swaps landed at the LAU — the CHO/Phobos Yuan legs remain." };
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          choices: [{ message, finish_reason: step < 2 ? "tool_calls" : "stop" }],
+          usage: { prompt_tokens: 100, completion_tokens: 30, total_tokens: 130 },
+        }),
+      });
+    });
+
+    await page.addInitScript(MOCK_PROVIDER_INIT);
+    await page.goto("/?rpc=http://127.0.0.1:8545");
+    await page.getByTestId("rail-settings").click();
+    await page.getByTestId("agent-key-input").fill("sk-or-e2e-byok");
+    await page.getByTestId("agent-remember").check();
+    await page.getByTestId("agent-save").click();
+    await page.getByTestId("mode-b").click();
+    await page.getByTestId("import-priv").fill(ANVIL0_PRIV);
+    await page.getByTestId("import-pass").fill("");
+    await page.getByTestId("import-btn").click();
+    await expect(page.getByTestId("wallet-account")).toHaveAttribute("title", /^0xf39Fd6/i, { timeout: 10_000 });
+
+    await page.getByTestId("rail-deck").click();
+    await page.getByTestId("agent-input").fill("buy the two SHIO seed legs for my LAU");
+    await page.getByTestId("agent-exec").click();
+
+    const card = page.getByTestId("approval-card");
+    // leg 1: Fomalhaute 2 wei — the router's exact-output selector + unknown-contract
+    await expect(card).toBeVisible({ timeout: 30_000 });
+    await expect(card).toContainText("0xfb3bdb41");
+    await expect(card).toContainText("unknown-contract");
+    await page.getByTestId("approval-confirm").click();
+    await expect(page.getByTestId("agent-toolresult").first()).toContainText('"status": "sent"', { timeout: 60_000 });
+
+    // leg 2: Fornax 1e15 wei — the real ~674-PLS value path
+    await expect(card).toBeVisible({ timeout: 45_000 });
+    await expect(card).toContainText("0xfb3bdb41");
+    await page.getByTestId("approval-confirm").click();
+    await expect(page.getByTestId("agent-toolresult").nth(1)).toContainText('"status": "sent"', { timeout: 60_000 });
+
+    // onchain: both SHIO legs are AT THE LAU with the exact requested amounts
+    const [fom, fornax] = [
+      "0x7ae73c498a308247be73688c09c96b3fd06ddb84",
+      "0xf6c50ffe7efbdee63a92e52a4d5e9aff7fb4a4d7",
+    ];
+    const balOf = async (token: string): Promise<bigint> =>
+      BigInt((await rpc(page.request, "eth_call", [
+        { to: token, data: "0x70a08231" + lau.slice(2).padStart(64, "0") },
+        "latest",
+      ])) as string);
+    await expect.poll(async () => (await balOf(fom)).toString(), { timeout: 20_000 }).toBe("2");
+    await expect.poll(async () => (await balOf(fornax)).toString(), { timeout: 20_000 }).toBe("1000000000000000");
+  });
+});
+
+// ---------------------------------------------------------------------------
 // session-68: FULL-AUTO on a LIVE FORK — the dss_snipe cycle. The loop's
 // real send path end-to-end: mode C + breadth + the §7.4 opt-in, the agent
 // (scripted model) self-snipes a world line through the captured DSS, the

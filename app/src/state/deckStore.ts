@@ -365,6 +365,13 @@ export function slotSurface(slot: SlotId, kind: WidgetKind | null, props: Record
   if (kind !== null && !kindFitsSlot(kind, slot)) return;
   if (kind === null) {
     slots = { ...slots, [slot]: { ...emptySlot(), locked: slots[slot].locked } };
+    // the operator's clear MUST notify: `writeSlot` does it for placements,
+    // but this branch sets the store directly — without persist+notify the
+    // bay emptied only after the NEXT unrelated store event (the session-83
+    // seed-regen e2e exposed the silent stale render; clearSlot already
+    // had the pair).
+    persist();
+    notify();
   } else {
     writeSlot(slot, kind, props, "user");
   }

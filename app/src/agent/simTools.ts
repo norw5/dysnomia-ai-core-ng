@@ -22,7 +22,8 @@ import { capOutput, dryrunGateSummary, outcomeSummary, requireSendFlag, resolveV
  * HONESTY STORIES riding the results (the session-58 findings):
  * - Code's "Latitude" is Compliment's FIRST word (the swapped convention);
  * - Charge==0 is a silent no-op; a crediting claim needs the full venue/
- *   caller stack and an AGED caller (fresh callers see honest zeros);
+ *   caller stack and a SEEDED caller (the Eta token seed; an unseeded
+ *   caller sees honest zeros);
  * - the GWAT spawn needs a prior claim on the parent (the cauda), the
  *   parent ≥777 own supply (the rate cap), and each attempt is a fresh
  *   draw (retry on SpawningFailure);
@@ -38,7 +39,7 @@ const worldCode: AgentTool = {
   name: "world_code",
   risk: "act",
   description:
-    'SIM-ONLY (advertised only on a loopback local fork): WORLD.Code(lat, lon, venue) — the composed coordinate claim on the never-deployed world layer: settles the venue (CHEON.Su), beats (META.Beat), adds the tile mass and mints VITUS royalties to your YUE. lat/lon are INTEGERS in Code\'s SWAPPED convention (its "Latitude" is HECKE.Compliment\'s FIRST word — get the anchor from get_venue\'s seed rows or the venue panel). Bounded by Yeo around the venue\'s anchor (OutOfRange beyond); a claim with Charge 0 lands "successful" as a SILENT NO-OP; the VITUS credit needs an aged caller (the Eta floor — fresh callers get honest zeros). send=false (default) = DRYRUN only.',
+    'SIM-ONLY (advertised only on a loopback local fork): WORLD.Code(lat, lon, venue) — the composed coordinate claim on the never-deployed world layer: settles the venue (CHEON.Su), beats (META.Beat), adds the tile mass and mints VITUS royalties to your YUE. lat/lon are INTEGERS in Code\'s SWAPPED convention (its "Latitude" is HECKE.Compliment\'s FIRST word — get the anchor from get_venue\'s seed rows or the venue panel). Bounded by Yeo around the venue\'s anchor (OutOfRange beyond); a claim with Charge 0 lands "successful" as a SILENT NO-OP; the VITUS credit needs a SEEDED caller (the Eta gate: Fomalhaute/WorldChatSHIO + Fornax at the LAU, CHO + Phobos for Yuan — an unseeded caller gets honest zeros). send=false (default) = DRYRUN only.',
   parameters: {
     type: "object",
     properties: {
@@ -68,7 +69,7 @@ const worldCode: AgentTool = {
       coords: `lat ${lat.toString()} / lon ${lon.toString()} (Code's SWAPPED convention)`,
       notes: [
         "the bounds box (Yeo) grows with your Moments — beyond it the call reverts OutOfRange",
-        "Charge 0 lands successful as a silent no-op (venue-Eris-weighted; the credit needs the full prereq stack + an aged caller)",
+        "Charge 0 lands successful as a silent no-op (venue-Eris-weighted; the credit needs the full prereq stack + a seeded caller)",
         simGateNote(),
       ],
     };

@@ -14,6 +14,7 @@ import { VenueManageDrawer } from "@/ui/VenueManageDrawer";
 import {
   etaReadiness,
   isEtaNoLineageError,
+  isEtaZeroHoldingsError,
   isFreshEta,
   readEtaSlots,
   useVenueState,
@@ -794,14 +795,20 @@ export function VenuePanel({
           </h4>
           {!account && <p className="hint">connect an account to read your Eta readiness.</p>}
           {account && eta === null && <p className="hint">simulating RING.Eta() from your account…</p>}
-          {account && eta !== null && eta.error !== null && !isEtaNoLineageError(eta.error) && (
+          {account && eta !== null && eta.error !== null && !isEtaNoLineageError(eta.error) && !isEtaZeroHoldingsError(eta.error) && (
             <p className="err-text">Eta simulation failed: {eta.error}</p>
+          )}
+          {account && eta !== null && eta.error !== null && isEtaZeroHoldingsError(eta.error) && (
+            <p className="err-text">
+              your wallet holds zero YUE tokens — Yue.React's ZeroHoldings gate reverts.
+              top up your YUE (even 1 wei; the construction mint usually covers it).
+            </p>
           )}
           {account && eta !== null && eta.error !== null && isEtaNoLineageError(eta.error) && (
             <p className="err-text">
-              no vault lineage — the simulated Eta() reverts for callers without a vault: open
-              your YUE first (IDENTITY). after onboarding the slots read (14, 0, 0, 0) and Beat
-              still panics 0x12 until the vault lineage ages.
+              no YUE — the simulated Eta() reverts for callers without a vault: open
+              your YUE first (IDENTITY). after that the slots read (14, 0, 0, 0) until
+              the Eta token seed is in place.
             </p>
           )}
           {account && eta !== null && eta.error === null && etaInfo !== null && (
@@ -811,18 +818,19 @@ export function VenuePanel({
               </p>
               {etaInfo.ready ? (
                 <p className="ok-text">
-                  nonzero slots — your vault lineage carries history; Beat can run (Yeo still
-                  rounds to 0 early — the community lore "Yeo is always 0 on your first Beat" is
-                  exactly this).
+                  nonzero slots — the Eta seed is in place; Beat can run. the target
+                  venue's Yuan and the live entropy still shape the outputs (Yeo can
+                  round to 0 early — the community lore "Yeo is always 0 on your first
+                  Beat" is exactly this).
                 </p>
               ) : (
                 <p className="err-text">
-                  fresh-caller shape (14, 0, 0, 0) — Beat divides by an Eta slot and will panic
-                  0x12 at ANY funding level. this is caller state, not holdings: Yuan balances are
-                  not a gate. there is no cheap vault-aging path today (the CHOA buffer is empty;
-                  Yue.React is owner-gated) — aged callers earned their slots through months of
-                  vault-advancing activity. on a SIM fork the harness recipe impersonates an aged
-                  caller.
+                  Eta is not Beat-ready — Beat will panic 0x12 at one of its
+                  divisions (the Iota or Chao slot is zero). Seed all four legs:
+                  send Fomalhaute (WorldChatSHIO) + FornaxSHIO to your LAU, and
+                  hold CHO + Phobos so both Yuan moduli are ≥ 2. this is a token
+                  seed, not age — the target venue's Yuan only shapes the output.
+                  on a SIM fork the same four transfers prepare any fresh account.
                 </p>
               )}
             </>
@@ -948,11 +956,13 @@ export function VenuePanel({
             deployment would carry NEW addresses). WORLD.Code(lat, lon, venue) is the composed
             claim: it settles this venue (CHEON.Su), beats (META.Beat), adds the tile mass and
             mints VITUS royalties to your YUE. the claim box is bounded by Yeo around the venue's
-            anchor (your first Beat's Yeo is 0 — the anchor tile only); beyond it the call reverts
-            OutOfRange. a claim with Charge 0 lands "successful" as a silent no-op (the settle's
-            charge is venue-Eris-weighted); the VITUS credit needs an AGED caller (the Eta floor)
-            and venue-token Yuan — fresh callers see honest zeros, the fork recipe is an aged
-            impersonation. the fixture address classifies unknown-contract: extra ack, intended.
+            anchor (a fresh venue's Beat often returns Yeo 0 — the anchor tile only); beyond it the
+            call reverts OutOfRange. a claim with Charge 0 lands "successful" as a silent no-op (the
+            settle's charge is venue-Eris-weighted); the VITUS credit needs a SEEDED caller (the Eta
+            gate: Fomalhaute/WorldChatSHIO + Fornax at the LAU, CHO + Phobos for Yuan) and
+            venue-token Yuan — an unseeded caller sees honest zeros; seed the same four legs on a
+            fresh account instead of impersonating an aged one. the fixture address classifies
+            unknown-contract: extra ack, intended.
             NOTE the coordinate convention: Code's "Latitude" is the transform's FIRST word — the
             inputs below are prefilled in that order.
           </p>
@@ -1102,9 +1112,10 @@ export function VenuePanel({
           </div>
           <p className="hint">
             lin = the cauda POSITION the draw rides — position 1 is the first creator slot (the same slot
-            Tail@1 probes above). the draw itself keys on YOUR Eta: a fresh caller draws a constant
-            (Charge 0 ⇒ every draw is 1) and keeps failing the checks — the aged-caller story, same as the
-            claim block.
+            Tail@1 probes above). the draw itself keys on YOUR Eta: an unseeded caller draws a constant
+            (Charge 0 ⇒ every draw is 1) and keeps failing the checks — seed the same four legs as Beat
+            (Fomalhaute + Fornax at the LAU, CHO + Phobos for Yuan) to vary it; the separate CHO-owner
+            gate above still applies.
           </p>
           <div className="studio-actions">
             <button

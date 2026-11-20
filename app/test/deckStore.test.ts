@@ -39,6 +39,7 @@ const {
   resetUnlockedSlotsToDefaults,
   setDeckRefusalSink,
   slotSurface,
+  subscribeDeck,
   surfaceWidget,
   widgetFromRunEvent,
   wireDeckToRunEvents,
@@ -133,6 +134,18 @@ describe("locks", () => {
     slotSurface("col2-top", "beat_sim", { waat: "77" });
     expect(deckSlots()["col2-top"].kind).toBe("beat_sim");
     expect(deckSlots()["col2-top"].origin).toBe("user");
+  });
+
+  it("the frame ✕ (slotSurface null) clears, NOTIFIES, and persists immediately (session-83 regression)", () => {
+    ensureFirstRunSeed();
+    const seen: Array<string | null> = [];
+    const unsub = subscribeDeck(() => seen.push(deckSlots()[AGENT_BAY].kind));
+    slotSurface(AGENT_BAY, null);
+    unsub();
+    expect(deckSlots()[AGENT_BAY].kind).toBeNull();
+    expect(seen).toContain(null); // a store event fired — not the next unrelated one
+    const saved = JSON.parse(backing.get("dys.deck.v2") ?? "{}") as { slots?: Record<string, { kind: string | null }> };
+    expect(saved.slots?.[AGENT_BAY]?.kind).toBeNull(); // persisted in the same call
   });
 });
 

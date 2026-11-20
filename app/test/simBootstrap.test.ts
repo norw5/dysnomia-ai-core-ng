@@ -136,7 +136,7 @@ describe("preflight refusal matrix", () => {
   }
   const anvilProbe = (forkBlock: number | null = 27_674_000) => ({
     clientVersion: async () => "anvil/v0.2.0",
-    nodeInfo: async () => ({ forkConfig: { forkBlockNumber: forkBlock } }),
+    nodeInfo: async () => ({ forkConfig: { forkBlockNumber: forkBlock }, hardFork: "Shanghai" }),
   });
   const gethProbe = {
     clientVersion: async () => "Geth/v1.13.0",
@@ -194,6 +194,32 @@ describe("preflight refusal matrix", () => {
     expect(p.reasons.join(" ")).toMatch(/not anvil/);
   });
 
+  it("refuses a Cancun/Prague-pinned anvil (PulseChain is Shanghai)", async () => {
+    const cancunProbe = {
+      clientVersion: async () => "anvil/v1.8.6",
+      nodeInfo: async () => ({ forkConfig: { forkBlockNumber: 27_674_000 }, hardFork: "Cancun" }),
+    };
+    const p = await bootstrap.preflightSimBootstrap({ rpcUrl: FORK, client: fakeClient(), probe: cancunProbe });
+    expect(p.ok).toBe(false);
+    expect(p.checks.find((c) => c.id === "hardfork")?.ok).toBe(false);
+    expect(p.reasons.join(" ")).toMatch(/not Shanghai/);
+    expect(p.reasons.join(" ")).toMatch(/--hardfork shanghai/);
+  });
+
+  it("accepts Shanghai and treats an unreported hardfork as unverifiable, not a failure", async () => {
+    const shanghai = await bootstrap.preflightSimBootstrap({ rpcUrl: FORK, client: fakeClient(), probe: anvilProbe() });
+    expect(shanghai.ok).toBe(true);
+    expect(shanghai.checks.find((c) => c.id === "hardfork")?.ok).toBe(true);
+
+    const noField = {
+      clientVersion: async () => "anvil/v1.8.6",
+      nodeInfo: async () => ({ forkConfig: { forkBlockNumber: 27_674_000 } }),
+    };
+    const p = await bootstrap.preflightSimBootstrap({ rpcUrl: FORK, client: fakeClient(), probe: noField });
+    expect(p.ok).toBe(true);
+    expect(p.checks.find((c) => c.id === "hardfork")?.detail).toMatch(/cannot verify/);
+  });
+
   it("refuses when the forked perimeter is missing (half a chain)", async () => {
     const p = await bootstrap.preflightSimBootstrap({
       rpcUrl: FORK,
@@ -218,6 +244,14 @@ describe("preflight refusal matrix", () => {
     expect(bootstrap.forkBlockOf({ forkConfig: { forkBlockNumber: "0x10" } })).toBe(16);
     expect(bootstrap.forkBlockOf({ forkBlockNumber: "42" })).toBe(42);
     expect(bootstrap.forkBlockOf(null)).toBeNull();
+  });
+
+  it("parses anvil_nodeInfo's hardFork field", () => {
+    expect(bootstrap.hardForkOf({ hardFork: "Shanghai" })).toBe("Shanghai");
+    expect(bootstrap.hardForkOf({ hardFork: "Cancun" })).toBe("Cancun");
+    expect(bootstrap.hardForkOf({ hardfork: "Prague" })).toBe("Prague");
+    expect(bootstrap.hardForkOf({})).toBeNull();
+    expect(bootstrap.hardForkOf(null)).toBeNull();
   });
 });
 

@@ -461,4 +461,34 @@ test.describe("THE DECK (the agent workspace)", () => {
     await expect(page.getByTestId("agent-reasoning").first()).toBeVisible({ timeout: 15_000 });
     await expect(page.getByTestId("agent-reasoning").first()).toContainText("walking through the venue question");
   });
+
+  test("session-82.2: deck chat rows are never their own vertical scrollers (the overflow computed-pair fix)", async ({ page }) => {
+    await page.addInitScript(MOCK_PROVIDER_INIT);
+    await page.goto(DEAD_RPC);
+    const widget = page.getByTestId("widget-chat-monitor");
+    await expect(widget).toBeVisible({ timeout: 10_000 });
+
+    // inject one long row with the real classes (the dead RPC has no lines)
+    await page.evaluate(() => {
+      const host = document.querySelector('[data-testid="widget-chat-monitor"]')!;
+      const ul = document.createElement("ul");
+      ul.className = "deck-chat-lines";
+      const li = document.createElement("li");
+      const body = document.createElement("span");
+      body.className = "deck-chat-body";
+      body.textContent = "a very long world line ".repeat(40);
+      li.appendChild(body);
+      ul.appendChild(li);
+      host.appendChild(ul);
+    });
+    const css = await page.evaluate(() => {
+      const li = document.querySelector(".deck-chat-lines li")!;
+      const cs = getComputedStyle(li);
+      return { overflowX: cs.overflowX, overflowY: cs.overflowY, flexShrink: cs.flexShrink };
+    });
+    // `overflow-x: hidden` alone computes y:auto (the per-row scrollbar bug)
+    expect(css.overflowX).toBe("clip");
+    expect(css.overflowY).toBe("clip");
+    expect(css.flexShrink).toBe("0");
+  });
 });

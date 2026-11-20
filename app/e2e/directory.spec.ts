@@ -53,7 +53,7 @@ test.describe("DIRECTORY — LAU census", () => {
 });
 
 test.describe("DIRECTORY — QING tab (unified sidebar reuse)", () => {
-  test("the QING tab lists the 917-venue seed and selects app-globally", async ({ page }) => {
+  test("the QING tab lists the 942-venue seed and selects app-globally", async ({ page }) => {
     await page.addInitScript(MOCK_PROVIDER_INIT);
     await page.goto(DEAD_RPC);
     await page.getByTestId("rail-directory").click();

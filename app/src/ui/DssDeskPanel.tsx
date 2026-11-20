@@ -10,8 +10,11 @@ import {
   lauMintToCapData,
   lauPurchaseData,
   useDssDesk,
+  validateDss,
 } from "@/chain/dssDesk";
 import { parseAmount, UNIT } from "@/chain/deskMath";
+import { makeClient } from "@/chain/client";
+import { clearDss, setDss } from "@/state/dssStore";
 import { useGateAction } from "@/chain/useGateAction";
 import { useDssDeploy } from "@/ui/useDssDeploy";
 import { ApprovalCard } from "@/ui/ApprovalCard";
@@ -34,8 +37,8 @@ import type { Address } from "viem";
  *    YOUR LAU at construction; chatAndSnipe bundles world-line + 1-Ⓐ
  *    self-purchase atomically — no window between your line and your
  *    collection. The DSS has NO getter — the address is captured at the
- *    creating receipt (state/dssStore.ts); deployed-elsewhere reads as
- *    not deployed.
+ *    creating receipt (state/dssStore.ts) or validated + adopted when it
+ *    was deployed elsewhere (session-82.1; fixed runtime + owner + LAU).
  */
 
 export function DssDeskPanel({
@@ -98,6 +101,7 @@ export function DssDeskPanel({
           <BundlerBlock
             chainUrl={chainUrl}
             account={account}
+            lau={lau}
             walletMode={wallet.mode}
             deployFlow={deployFlow}
             deskState={desk.state}
@@ -288,7 +292,9 @@ function EmissionBlock({
 }
 
 function BundlerBlock({
+  chainUrl,
   account,
+  lau,
   walletMode,
   deployFlow,
   deskState,
@@ -296,6 +302,7 @@ function BundlerBlock({
 }: {
   chainUrl: string;
   account: Address;
+  lau: Address;
   walletMode: string;
   deployFlow: ReturnType<typeof useDssDeploy>;
   deskState: ReturnType<typeof useDssDesk>["state"];
@@ -304,9 +311,41 @@ function BundlerBlock({
   const wallet = useWallet();
   const action = useGateAction();
   const [text, setText] = useState("");
+  const [importAddr, setImportAddr] = useState("");
+  const [importBusy, setImportBusy] = useState(false);
+  const [importMsg, setImportMsg] = useState<string | null>(null);
+  const [importOk, setImportOk] = useState(false);
+  const [forgetArmed, setForgetArmed] = useState(false);
   const chained = useRef<(() => void) | null>(null);
   const dssRecord = deployFlow.dss;
   const dss = dssRecord?.dss ?? null;
+
+  const adoptExisting = async () => {
+    const raw = importAddr.trim();
+    setImportMsg(null);
+    setImportOk(false);
+    if (!/^0x[0-9a-fA-F]{40}$/.test(raw)) {
+      setImportMsg("that is not a 0x… address (40 hex chars)");
+      return;
+    }
+    setImportBusy(true);
+    try {
+      const v = await validateDss(makeClient(chainUrl), raw as Address, account, lau);
+      if (!v.ok) {
+        setImportMsg(v.reason ?? "the DSS did not validate");
+        return;
+      }
+      setDss(account, { dss: raw as Address, lau, txHash: null, source: "import" });
+      setImportOk(true);
+      setImportMsg(
+        `validated — fixed runtime · owner ${account.slice(0, 6)}…${account.slice(-4)} · LAU ${lau.slice(0, 6)}…${lau.slice(-4)}`
+      );
+    } catch (e) {
+      setImportMsg(`could not validate: ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setImportBusy(false);
+    }
+  };
 
   useEffect(() => {
     if (action.outcome?.status === "sent") {
@@ -376,7 +415,7 @@ function BundlerBlock({
             <strong>your LAU</strong> at construction and costs deploy gas only — after that{" "}
             <code>chatAndSnipe(text)</code> posts your world line and self-purchases the minted
             unit atomically for 1 Ⓐ. the DSS carries no getter — the app remembers the address from
-            the creation receipt (deployed-elsewhere reads as not deployed).
+            the creation receipt, or validates + adopts one deployed elsewhere (below).
           </p>
           <dl className="kv">
             <dt>predicted address</dt>
@@ -407,6 +446,33 @@ function BundlerBlock({
             </div>
           )}
           <LocalCard action={deployFlow.action} mode={walletMode} />
+          <div className="arg-row">
+            <label htmlFor="dss-import-address">already deployed? paste the DSS address</label>
+            <input
+              id="dss-import-address"
+              className="mono"
+              value={importAddr}
+              onChange={(e) => setImportAddr(e.target.value)}
+              placeholder="0x…"
+              spellCheck={false}
+              data-testid="dss-import-address"
+            />
+          </div>
+          <div className="studio-actions">
+            <button
+              className="btn"
+              disabled={importBusy || deployFlow.action.busy}
+              onClick={() => void adoptExisting()}
+              data-testid="dss-import"
+            >
+              USE THIS DSS {importBusy ? "…" : ""}
+            </button>
+          </div>
+          {importMsg !== null && (
+            <p className={importOk ? "ok-text" : "err-text"} data-testid="dss-import-result">
+              {importMsg}
+            </p>
+          )}
         </>
       ) : (
         <>
@@ -417,6 +483,12 @@ function BundlerBlock({
               <a className="outlink" href={`${EXPLORER_BASE}${dss}`} target="_blank" rel="noreferrer noopener">
                 ↗
               </a>
+            </dd>
+            <dt>source</dt>
+            <dd>
+              {dssRecord?.source === "import"
+                ? "imported — validated (fixed runtime · owner · LAU)"
+                : "deployed here (receipt capture)"}
             </dd>
             <dt>bound LAU</dt>
             <dd className="mono">{dssRecord?.lau ?? "—"}</dd>
@@ -431,6 +503,59 @@ function BundlerBlock({
             <dt>Ⓐ allowance → the DSS</dt>
             <dd className="mono">{snipeAllowance !== null ? fmtAmt(snipeAllowance) : "—"}</dd>
           </dl>
+          <div className="arg-row">
+            <label htmlFor="dss-readopt-address">switch to another DSS? paste + validate</label>
+            <input
+              id="dss-readopt-address"
+              className="mono"
+              value={importAddr}
+              onChange={(e) => setImportAddr(e.target.value)}
+              placeholder="0x…"
+              spellCheck={false}
+              data-testid="dss-readopt-address"
+            />
+          </div>
+          <div className="studio-actions">
+            <button
+              className="btn"
+              disabled={importBusy || action.busy}
+              onClick={() => void adoptExisting()}
+              data-testid="dss-readopt"
+            >
+              USE THIS DSS {importBusy ? "…" : ""}
+            </button>
+          </div>
+          {importMsg !== null && (
+            <p className={importOk ? "ok-text" : "err-text"} data-testid="dss-readopt-result">
+              {importMsg}
+            </p>
+          )}
+          <div className="studio-actions">
+            <button
+              className="btn"
+              disabled={deployFlow.action.busy || action.busy}
+              onClick={() => {
+                if (!forgetArmed) {
+                  setForgetArmed(true);
+                  return;
+                }
+                clearDss(account);
+                setForgetArmed(false);
+                setImportMsg(null);
+                setImportOk(false);
+                setImportAddr("");
+              }}
+              data-testid="dss-forget"
+            >
+              {forgetArmed ? "CONFIRM FORGET (click again)" : "FORGET THIS DSS (local record only)"}
+            </button>
+          </div>
+          {forgetArmed && (
+            <p className="hint">
+              forgetting only clears the app's local record — the contract stays onchain. click
+              again to confirm; the desk then offers deploy + import again.
+            </p>
+          )}
           <div className="arg-row">
             <label htmlFor="dss-snipe-text">world line (public, permanent — “&lt;Username&gt; …”)</label>
             <input

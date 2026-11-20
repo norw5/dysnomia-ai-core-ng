@@ -381,6 +381,38 @@ test.describe("agent deck (routed OpenRouter, mock wallet, dead RPC)", () => {
     await expect(page.getByTestId("agent-toolresult").nth(1)).toContainText("you need a LAU first", { timeout: 15_000 });
     await expect(page.getByTestId("agent-answer").last()).toContainText("honest state", { timeout: 15_000 });
   });
+
+  test("the DEX tool (session-83): advertised; a dead-RPC quote refuses honestly and never reaches the gate", async ({ page }) => {
+    const captured = await routeOpenRouter(page, [
+      { toolCall: { id: "s1", name: "swap_pls_for_token", args: JSON.stringify({ token: "FOMALHAUTE", amountOutWei: "2", recipient: "wallet" }) } },
+      { text: "the DEX reads are unreachable — nothing was quoted and nothing was sent." },
+    ]);
+    await page.addInitScript(MOCK_PROVIDER_INIT);
+    await page.goto(DEAD_RPC);
+    await page.getByTestId("rail-settings").click();
+    await page.getByTestId("agent-key-input").fill("sk-or-e2e-byok");
+    await page.getByTestId("agent-remember").check();
+    await page.getByTestId("agent-save").click();
+    await page.getByTestId("mode-a").click();
+    await page.getByTestId("connect-io.dysnomia.mox").click();
+    await expect(page.getByTestId("wallet-account")).toContainText("0xf39Fd6");
+
+    await page.getByTestId("rail-deck").click();
+    await page.getByTestId("agent-input").fill("buy 2 wei of fomalhaute");
+    await page.getByTestId("agent-exec").click();
+
+    const advertised = captured[0]!.tools?.map((t) => t.function.name) ?? [];
+    expect(advertised).toContain("swap_pls_for_token");
+
+    // the quote loader is fail-fast: dead RPC → "swap reads failed", no gate
+    // envelope, no approval card, and a clearly-labeled DRYRUN-less result
+    const first = page.getByTestId("agent-toolresult").first();
+    await expect(first).toContainText("swap reads failed", { timeout: 15_000 });
+    await expect(first).toContainText('"error"');
+    await expect(first).not.toContainText('"status": "sent"');
+    await expect(page.getByTestId("approval-card")).toHaveCount(0);
+    await expect(page.getByTestId("agent-answer").last()).toContainText("unreachable", { timeout: 15_000 });
+  });
 });
 
 test.describe("session-65: the whisper, FULL-AUTO, and the yolo-relaxation surfaces", () => {

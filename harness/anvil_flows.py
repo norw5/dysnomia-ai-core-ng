@@ -230,23 +230,29 @@ class Actor:
     def fund(self, pls: int = 1000):
         self.chain.set_balance(self.addr, pls * UNIT)
 
-    def estimate(self, to: str, data: str) -> int:
+    def estimate(self, to: str, data: str, value: int = 0) -> int:
         params = [{"from": self.addr, "data": data}, "latest"]
         if to:
             params[0]["to"] = to
+        # session-83: the DEX exact-output route is PAYABLE — the router
+        # requires msg.value >= getAmountsIn(...) at simulation time, so the
+        # value MUST ride the estimate (a bare estimate reverts
+        # EXCESSIVE_INPUT_AMOUNT for every swap).
+        if value:
+            params[0]["value"] = hex(value)
         st, res = self.chain.rpc.call("eth_estimateGas", params)
         if st == "error":
             err = res.get("data") or res.get("message") or str(res)
             raise HarnessError(f"estimate revert to={to} sel={data[:10]} err={err}")
         return int(res, 16)
 
-    def raw_send(self, to: str, data: str, gas: int = None) -> str:
-        est = self.estimate(to, data)
+    def raw_send(self, to: str, data: str, gas: int = None, value: int = 0) -> str:
+        est = self.estimate(to, data, value)
         gas = gas or min(int(est * 1.3) + 60000, 29_500_000)
         tx = {
             "nonce": self.chain.nonce(self.addr),
             "to": to_checksum_address(to) if to else None,
-            "value": 0,
+            "value": value,
             "gas": gas,
             "gasPrice": int(self.chain.gas_price() * 1.2) + 1_000_000,
             "data": data,
@@ -266,8 +272,8 @@ class Actor:
             time.sleep(0.4)
         raise HarnessError(f"no receipt for {txh}")
 
-    def send(self, to: str, data: str, gas: int = None) -> dict:
-        return self.wait(self.raw_send(to, data, gas))
+    def send(self, to: str, data: str, gas: int = None, value: int = 0) -> dict:
+        return self.wait(self.raw_send(to, data, gas, value))
 
     def deploy(self, creation_hex: str, gas: int = 3_000_000) -> dict:
         return self.send(None, "0x" + creation_hex.removeprefix("0x"), gas)

@@ -51,7 +51,12 @@ The as-shipped community gist is broken (it binds address(0); kb §DSS);
 the app ships the ONE-LINE-FIXED bytecode and deploys it through THE
 gate (IDENTITY → the LAU emission desk; a creation tx — its own risk
 class). The app remembers the address from the creation receipt (the
-contract has no getter — deployed-elsewhere reads as not deployed).
+contract has no getter). A DSS deployed elsewhere is not lost: paste the
+address on the emission desk and the app validates it structurally
+(fixed runtime + owner slot = you + LAU slot = your LAU) before
+adopting it. The agent's `dss_setup` covers both paths — deploy through
+THE gate, or adopt/validate an existing address — so a fresh operator
+does not need a manual deploy first.
 
 Routes once deployed: the desk console, the CHAT composer's
 "WORLD + DSS" leg, and the agent's `dss_snipe` (§7.4-fenced, OFF by

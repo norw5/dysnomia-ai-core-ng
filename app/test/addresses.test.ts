@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { getAddress } from "viem";
 import index from "@abi/index.json";
-import { CHAIN_ID, KNOWN_MAINNET_RPC, PERIMETER } from "@config/addresses";
+import { CHAIN_ID, KNOWN_MAINNET_RPC, PERIMETER, PULSEX_V2_FACTORY, PULSEX_V2_ROUTER, WPLS } from "@config/addresses";
 
 const ADDRESS_RE = /^0x[0-9a-fA-F]{40}$/;
 
@@ -30,6 +31,17 @@ describe("perimeter single-source (config/addresses.json)", () => {
     for (const a of perimeterAddrs) {
       if (!indexAddrs.has(a)) continue;
     }
+  });
+
+  it("pins the external PulseX V2 infra (session-83) with checksum-exact addresses, OUTSIDE the perimeter", () => {
+    expect(PULSEX_V2_ROUTER).toBe("0x165C3410fC91EF562C50559f7d2289fEbed552d9");
+    expect(PULSEX_V2_FACTORY).toBe("0x29eA7545DEf87022BAdc76323F373EA1e707C523");
+    expect(WPLS).toBe("0xA1077a294dDE1B09bB078844df40758a5D0f9a27");
+    for (const a of [PULSEX_V2_ROUTER, PULSEX_V2_FACTORY, WPLS]) {
+      expect(() => getAddress(a)).not.toThrow(); // viem-checksum exact — the first send would throw otherwise
+    }
+    const perimeter = new Set(Object.values(PERIMETER).map((a) => a.toLowerCase()));
+    for (const a of [PULSEX_V2_ROUTER, PULSEX_V2_FACTORY, WPLS]) expect(perimeter.has(a.toLowerCase())).toBe(false);
   });
 
   it("never-deployed layer carries no address in the index", () => {

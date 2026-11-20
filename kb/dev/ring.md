@@ -57,6 +57,13 @@ Effects: `Eta` — `Chao = Yue.React(Phobos)` (requires the caller to hold
 their YUE — `ZeroHoldings` from YUE otherwise), then `Pang.Push(Phobos.
 Waat())`; stores the moment. Requires a CHO session + YUE.
 
+> **ng-correction (session 82)**: the live zero/nonzero shape is a
+> TOKEN-BALANCE read, not a stored age. `Fomalhaute`/WorldChatSHIO +
+> `Fornax` at the LAU and `CHO` + `Phobos` for the Yuan moduli seed it; a
+> fresh LAU can do the same four transfers and Beat immediately. The
+> `Moments[soul] = Iota` write is a monument, not an input. See
+> `kb/deployed-semantics.md` §3.
+
 **Source-version note — the deployed Eta is a THIRD version**:
 repo archaeology dated the drift mechanically (the dev's git history): the repo held
 the April lines (`Chao /= Omicron; Charge /= Omega; Iota *= Iota`) from

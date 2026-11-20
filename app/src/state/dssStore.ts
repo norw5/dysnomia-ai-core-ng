@@ -7,8 +7,10 @@ import type { Address } from "viem";
  * owner(), no bound-LAU view) and no registry exists — so the app carries
  * the address the way it carries the home QING: captured at the creating
  * SEND (the creation receipt's contractAddress) and persisted per
- * account. A DSS deployed by another frontend or wallet reads as "not
- * deployed" here — capture-at-deploy only (the home-QING capture law).
+ * account. A DSS deployed by another frontend or wallet can be ADOPTED
+ * after the structural validation (session-82.1: fixed runtime + owner +
+ * LAU binding — chain/dssDesk.validateDss) and is stored with source
+ * "import". The agent exposes both paths as `dss_setup`.
  */
 
 const KEY = "dys.dss.v1";
@@ -19,6 +21,8 @@ export interface DssRecord {
   /** the LAU it was bound to at construction (the desk binds YOUR LAU) */
   lau: Address;
   txHash: string | null;
+  /** how the record entered the store: the app's deploy, or a validated import */
+  source?: "deploy" | "import";
   t: number;
 }
 
@@ -68,6 +72,17 @@ export function setDss(account: Address, record: Omit<DssRecord, "t">): void {
   const prev = records[k];
   if (prev !== undefined && prev.dss.toLowerCase() === record.dss.toLowerCase()) return;
   records = { ...records, [k]: { ...record, t: Date.now() } };
+  persist();
+  notify();
+}
+
+/** forget the local record (the contract stays onchain) — lets the desk re-deploy or re-adopt */
+export function clearDss(account: Address): void {
+  const k = keyOf(account);
+  if (records[k] === undefined) return;
+  const next = { ...records };
+  delete next[k];
+  records = next;
   persist();
   notify();
 }

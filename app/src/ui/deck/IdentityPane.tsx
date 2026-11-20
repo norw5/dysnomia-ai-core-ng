@@ -183,8 +183,8 @@ export function IdentityPane({
 
       {/* session-66: the status block — home QING + the DSS bundler
           (deployment/status widget in the identity column, the owner's
-          layout call). capture-at-create/deploy law: deployed-elsewhere
-          reads as not deployed. */}
+          layout call). capture-at-create/deploy law; session-82.1 adds the
+          validated import/adoption path on the emission desk. */}
       <div className="passport-status" data-testid="passport-status">
         <p className="passport-row-label">STATUS</p>
         <dl className="kv">
@@ -211,7 +211,8 @@ export function IdentityPane({
           <>
             <p className="hint">
               the fixed self-snipe bundler — chat + collect-your-own-emission atomically
-              (IDENTITY → the emission desk; predicted {deployFlow.predicted ?? "…"}).
+              (IDENTITY → the emission desk; predicted {deployFlow.predicted ?? "…"}). already
+              deployed one? adopt it on the emission desk (validated code + owner + LAU).
             </p>
             <button
               className="btn passport-deploy-btn"

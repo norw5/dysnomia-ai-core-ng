@@ -32,7 +32,7 @@ export interface PowerTokenMeta {
 }
 
 export const POWER_TOKENS: PowerTokenMeta[] = [
-  { key: "Fornax", config: "FornaxSHIO", note: "YI's Psi — the ladder's Fornax constant; the deployed Goldilocks ceiling is real (kb §2)" },
+  { key: "Fornax", config: "FornaxSHIO", note: "YI's Psi — the ladder's Fornax constant; the old Goldilocks ceiling is source-only (session-82.1 fork sweep; preview Beat outputs)" },
   { key: "Eris", config: "ErisSHIO", note: "YANG's channel — QI divides by Eris" },
   { key: "Fomalhaute", config: "WorldChatSHIO", note: "ZHOU's channel — XIA's modulus; carries the world-chat LogEvent stream" },
   { key: "Tethys", config: "CHO", note: "ZI's modulus = CHO — the hub / address book is itself the fourth power token" },

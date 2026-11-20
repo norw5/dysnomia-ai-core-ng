@@ -10,15 +10,17 @@ Runs on its own managed fork (same pin policy as set 1). Steps:
      FornaxSHIO into the player's LAU (the XIE.Power numerator floor)
   4  the Ⓐ-bridge mechanics (state-delta asserts on the venue-token
      acquisition path: rate → approve → Purchase → transfer → Yuan tiers)
-  5  META.Beat DRYRUN pin: the fresh probe caller panics 0x12 — RESOLVED
-     mechanism (owner txs replayed green): the deployed RING.Eta() returns
-     (14,0,0,0) for fresh callers (vault-reactor lineage; Eta is NON-VIEW in
-     the tree) and Beat divides by an Eta slot. Beat itself WORKS for aged
-     callers; the "wedged"/"Yuan floor" session-40 claims are retracted.
-     PANG.Push below works (asserted).
-  6  META.Beat tx: asserts the same revert for this fresh caller (status 0)
-     with gas inside the census envelope (1.5M..2.4M — observed 1,926,388 ≈
-     the historical median 1,916,016)
+  5  META.Beat DRYRUN pin: the unseeded probe caller panics 0x12 — the
+     deployed RING.Eta() returns (14,0,0,0) while the four-token seed is
+     absent (session-82 correction: Fomalhaute/Fornax at the LAU +
+     CHO/Phobos for the Yuan moduli, not an age counter) and Beat divides
+     by an Eta slot. Beat itself WORKS for seeded callers; the
+     "wedged"/"Yuan floor" session-40 claims are retracted. PANG.Push
+     below works (asserted).
+  6  META.Beat tx: asserts the same revert for this unseeded caller
+     (status 0) with gas inside the census envelope (1.5M..2.4M —
+     observed 1,926,388 ≈ the historical median 1,916,016); a seeded
+     fresh caller sends status 1 at ~1.95M (session-82 fork proof).
   7  DSS deploy (fixtures/dss, solc 0.8.21) + runtime byte-pin; exact-amount
      player approval (1e18 Ⓐ, never MaxUint256); chatAndSnipe state deltas
   8  approval-gate + fallback: Purchase without Ⓐ approval reverts; snipe
@@ -66,6 +68,12 @@ Runs on its own managed fork (same pin policy as set 1). Steps:
       "<Username> …" onto the WORLD SHIO (the composer's WORLD leg); a
       sniper wallet proves the front-run; the deploy DRYRUN shape
       (eth_call with no `to`) + CREATE1 prediction == receipt address
+  15  THE DEX SEED (session-83): a FRESH LAU/YUE acquires the four-token
+      Eta seed through PulseX V2 — native PLS exact-output
+      (swapETHForExactTokens), NO approve leg anywhere, exact output at
+      the recipients, the 2-wei/1e15 floors as the gate reads them, the
+      RING.Eta flip, and a committed META.Beat with the census gas
+      envelope
 
 Usage: python3 harness/anvil_flows_set2.py [--keep | --rpc URL | --fork-block N]
 """
@@ -75,6 +83,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -93,6 +102,7 @@ from anvil_flows import (
     decode,
     encode,
     selector,
+    w32,
 )
 
 MAX_UINT256 = 2**256 - 1
@@ -102,6 +112,13 @@ FUND_AFFECTION = 100 * UNIT
 FUND_FORNAX = 100 * UNIT
 PANIC_DIV0 = "0x4e487b710000000000000000000000000000000000000000000000000000000000000012"
 OFFSET = 476733977057179  # Meridians[0] — the MAP.New Waat multiplier (kb/dev/map.md §4)
+
+# PulseX V2 (session-83) — verified on-chain + the official PulseX docs.
+# The router is EXTERNAL infra (not a Dysnomia perimeter contract).
+PULSEX_V2_ROUTER = "0x165C3410fC91EF562C50559f7d2289fEbed552d9"
+PULSEX_V2_FACTORY = "0x29eA7545DEf87022BAdc76323F373EA1e707C523"
+WPLS = "0xA1077a294dDE1B09bB078844df40758a5D0f9a27"
+SWAP_ETH_FOR_EXACT = "swapETHForExactTokens(uint256,address[],address,uint256)"
 
 
 def dss_data(fname: str, ftypes: str, args_: list) -> str:
@@ -121,6 +138,29 @@ def do_view(fname: str) -> str:
     """DO has no recovered source — hand-encoded no-arg view calldata
     (totalSupply/balanceOf rides the IERC20 pins from s0)."""
     return selector(fname, "")
+
+
+def _swap_tail(path: list[str]) -> bytes:
+    return w32(len(path)) + b"".join(w32(int(p, 16)) for p in path)
+
+
+def get_amounts_in_data(amount_out: int, path: list[str]) -> str:
+    """getAmountsIn(uint256,address[]) — 2 head words, array offset 0x40."""
+    head = w32(amount_out) + w32(0x40)
+    return selector("getAmountsIn", "uint256,address[]") + (head + _swap_tail(path)).hex()
+
+
+def swap_out_data(amount_out: int, path: list[str], to: str, deadline: int) -> str:
+    """swapETHForExactTokens(uint256,address[],address,uint256) — 4 head words."""
+    head = w32(amount_out) + w32(0x80) + w32(int(to, 16)) + w32(deadline)
+    return selector("swapETHForExactTokens", "uint256,address[],address,uint256") + (head + _swap_tail(path)).hex()
+
+
+def decode_u256_array(raw: str) -> list[int]:
+    h = raw[2:] if raw.startswith("0x") else raw
+    off = int(h[0:64], 16) * 2  # bytes -> hex chars
+    n = int(h[off:off + 64], 16)
+    return [int(h[off + 64 + i * 64: off + 128 + i * 64], 16) for i in range(n)]
 
 
 def main():
@@ -297,8 +337,8 @@ def main():
 
     def s4(rec):
         # the Ⓐ-bridge mechanics: acquire venue tokens and exercise the Yuan tiers
-        # (also demonstrates the fresh-caller panic independent of funding — the
-        # Eta lineage floor, not a holdings floor; see s5)
+        # (also demonstrates the unseeded-caller panic independent of PLS funding —
+        # the Eta token seed, not a soul-age floor; see s5)
         lau = st_["lau"]
         qing = st_["qing"]
         choa = canon.address("CHOA")
@@ -313,7 +353,7 @@ def main():
         except HarnessError as e:
             panicked = PANIC_DIV0 in str(e)
             jrn.info(rec, "unfunded Beat preview revert", str(e)[-80:])
-        jrn.a(rec, "unfunded Beat preview panics 0x12 (fresh-caller Eta lineage floor, funding-independent)", panicked)
+        jrn.a(rec, "unseeded Beat preview panics 0x12 (Eta seed absent; PLS funding is irrelevant)", panicked)
 
         # fresh QINGs (v2 base) carry NO AFFECTION market rate — MarketRateNotFound.
         # Only CHO owns a fresh venue (MAP.New adds CHO, not the creator); route
@@ -354,17 +394,17 @@ def main():
         meta_c = canon.address("META")
 
         # fully funded (Yuan(qing)=11e18, Yuan(CHO)>0, Fornax in the LAU) —
-        # yet this FRESH caller panics: the deployed RING.Eta() returns
-        # (14,0,0,0) for callers without vault-reactor lineage and Beat
-        # divides by an Eta slot. RESOLVED with owner txs (replayed green);
-        # see README gotchas. Pure preview ⇒ deterministic for THIS caller.
+        # yet this caller is UNSEEDED on the Fomalhaute/Phobos legs: the
+        # deployed RING.Eta() returns (14,0,0,0) and Beat divides by an Eta
+        # slot. A fresh caller can seed the four legs (session-82); see
+        # README gotchas. Pure preview ⇒ deterministic for THIS caller.
         panicked = False
         try:
             chain.eth_call(meta_c, canon.data("META", "Beat", "uint256", [waat]), frm=player.addr)
         except HarnessError as e:
             panicked = PANIC_DIV0 in str(e)
             jrn.info(rec, "funded Beat preview revert", str(e)[-80:])
-        jrn.a(rec, "fresh caller panics 0x12 (Eta=(14,0,0,0) — vault-reactor lineage floor; Beat works for aged callers)", panicked)
+        jrn.a(rec, "unseeded caller panics 0x12 (Eta=(14,0,0,0) — seed absent; a seeded caller Beats)", panicked)
 
         # Eta is tx.origin-sensitive: call from the player.
         eta = decode(["uint256", "uint256", "uint256", "uint256"], chain.eth_call(
@@ -383,7 +423,7 @@ def main():
         waat = st_["waat"]
         meta_c = canon.address("META")
         r = force_send(meta_c, canon.data("META", "Beat", "uint256", [waat]), gas=3_000_000)
-        jrn.a(rec, "Beat tx reverts for this fresh caller (status 0; aged callers succeed)", r["status"] == "0x0")
+        jrn.a(rec, "Beat tx reverts for this unseeded caller (status 0; a seeded caller succeeds)", r["status"] == "0x0")
         gas = int(r["gasUsed"], 16)
         jrn.a(rec, "revert gas inside the census envelope (median 1,916,016)",
               1_500_000 <= gas <= 2_400_000, gas)
@@ -945,6 +985,114 @@ def main():
         world_logs = [l for l in r["logs"] if l["address"].lower() == world_shio and l["topics"][0] == logev_topic]
         jrn.a(rec, "the DSS line ALSO lands on the WORLD SHIO (LAU.Chat inside)", len(world_logs) == 1)
 
+    def s15(rec):
+        """THE DEX SEED (session-83): a FRESH LAU/YUE acquires the whole
+        four-token Eta seed through PulseX V2 (native PLS exact-output),
+        then flips RING.Eta and lands META.Beat. Asserts the router identity,
+        the exact-output amounts at the recipients, the ZERO-approval native
+        route, the seed floors, and the Beat gas envelope."""
+        # (a) the router is the pinned PulseX V2 deployment
+        f_raw = chain.eth_call(PULSEX_V2_ROUTER, selector("factory", ""))
+        w_raw = chain.eth_call(PULSEX_V2_ROUTER, selector("WPLS", ""))
+        f_got = decode(["address"], f_raw)[0]
+        w_got = decode(["address"], w_raw)[0]
+        jrn.a(rec, "PulseX router factory() == the pinned V2 factory",
+              f_got.lower() == PULSEX_V2_FACTORY.lower(), f_got)
+        jrn.a(rec, "PulseX router WPLS() == the pinned WPLS",
+              w_got.lower() == WPLS.lower(), w_got)
+
+        # (b) a fresh identity: LAU -> Username -> YUE -> Play (the set-1 order)
+        d = Actor(chain)
+        d.fund(500_000)  # the Fornax retry ramp is the expensive leg (thin pool)
+        factory = canon.address("LAUFactory")
+        lau = create1(factory, chain.nonce(factory))
+        r = d.send(factory, canon.data("LAUFactory", "New", "string,string", ["Dex Seed", "DSEED"]))
+        jrn.a(rec, "fresh DEX player LAUFactory.New status 1", r["status"] == "0x1", lau)
+        r = d.send(lau, canon.data("LAU", "Username", "string", ["dex_seed"]))
+        jrn.a(rec, "fresh DEX player Username status 1", r["status"] == "0x1")
+        sei = canon.address("SEI")
+        yue = create1(sei, chain.nonce(sei))
+        r = d.send(sei, canon.data("SEI", "Start", "address,string,string", [lau, "Dex Yue", "DYUE"]))
+        jrn.a(rec, "fresh DEX player SEI.Start status 1", r["status"] == "0x1", yue)
+        r = d.send(canon.address("CHOA"), canon.data("CHOA", "Play", "address", [lau]))
+        jrn.a(rec, "fresh DEX player CHOA.Play status 1", r["status"] == "0x1")
+
+        # (c) a fresh venue to Beat (zero target Yuan — the corrected semantic:
+        # the target venue is NOT a revert gate; outputs are a different matter)
+        asset = create1(d.addr, chain.nonce(d.addr))
+        r0 = d.deploy(mock_creation)
+        jrn.a(rec, "fresh DEX player mock asset deploy status 1", r0["status"] == "0x1", asset)
+        mp = canon.address("MAP")
+        dex_qing = create1(mp, chain.nonce(mp))
+        r = d.send(mp, canon.data("MAP", "New", "address", [asset]))
+        jrn.a(rec, "fresh DEX player MAP.New status 1", r["status"] == "0x1", dex_qing)
+        waat = chain.view("QING", "Waat", "", [], ["uint256"], to=dex_qing)
+        jrn.a(rec, "fresh DEX venue Waat > 0", waat > 0, waat)
+
+        # (d) THE SWAPS: exact-output, native value, no approval anywhere.
+        # Floors: Fomalhaute 2 wei AT THE LAU; CHO/Phobos 2 wei in the wallet
+        # (Yuan 1× — enough for the modulus); Fornax is the RETRY leg.
+        def swap_exact(name: str, token: str, amount_out: int, recipient: str) -> None:
+            path = [WPLS, token]
+            quote = decode_u256_array(chain.eth_call(PULSEX_V2_ROUTER, get_amounts_in_data(amount_out, path)))
+            jrn.a(rec, f"router quotes {name} ({amount_out} wei out)",
+                  len(quote) == 2 and quote[1] == amount_out, quote)
+            cap = quote[0] * 101 // 100 + 1  # 1% max-input headroom
+            r = d.send(PULSEX_V2_ROUTER,
+                       swap_out_data(amount_out, path, recipient, int(time.time()) + 1200),
+                       value=cap)
+            jrn.a(rec, f"router swapETHForExactTokens({name}) status 1", r["status"] == "0x1")
+            got = int(chain.eth_call(token, erc20_data("balanceOf", "address", [recipient])), 16)
+            jrn.a(rec, f"{name} EXACT output at the recipient ({amount_out} wei)", got == amount_out, got)
+            allow = int(chain.eth_call(token, erc20_data("allowance", "address,address", [d.addr, PULSEX_V2_ROUTER])), 16)
+            jrn.a(rec, f"{name} needs NO approval (native-value route; allowance == 0)", allow == 0, allow)
+
+        swap_exact("Fomalhaute", canon.address("WorldChatSHIO"), 2, lau)
+        swap_exact("CHO", canon.address("CHO"), 2, d.addr)
+        swap_exact("Phobos", canon.address("PhobosQING"), 2, d.addr)
+
+        # Fornax: the live Entropy divisor is per-soul, so 1e15 (the cited
+        # live success level) is a STARTING point, not a guarantee. Preview
+        # Eta and retry with a geometric ramp — exactly the deployed
+        # discipline (no static ceiling; preview and retry).
+        def read_eta() -> tuple[int, int, int, int]:
+            vals = decode(["uint256", "uint256", "uint256", "uint256"], chain.eth_call(
+                canon.address("RING"), canon.data("RING", "Eta", "", []), frm=d.addr))
+            return tuple(int(x) for x in vals)  # type: ignore[return-value]
+
+        fornax_total = 0
+        chunk = 10**15
+        for attempt in range(5):
+            swap_exact(f"Fornax leg {attempt + 1}", canon.address("FornaxSHIO"), chunk, lau)
+            fornax_total += chunk
+            phoebe, iota1, chao, charge1 = read_eta()
+            if iota1 > 0:
+                break
+            chunk *= 4
+        jrn.a(rec, "Fornax retry ramp cleared the live Entropy draw",
+              iota1 > 0, f"total={fornax_total} wei after {attempt + 1} leg(s)")
+
+        # (e) the floors as the Eta gate reads them
+        jrn.a(rec, "Fomalhaute 2 wei sits AT THE LAU",
+              int(chain.eth_call(canon.address("WorldChatSHIO"), erc20_data("balanceOf", "address", [lau])), 16) == 2)
+        jrn.a(rec, "Fornax at the LAU == the retry-ramp total (>= 1e15)",
+              int(chain.eth_call(canon.address("FornaxSHIO"), erc20_data("balanceOf", "address", [lau])), 16) == fornax_total
+              and fornax_total >= 10**15)
+        jrn.a(rec, "CHO 2 wei sits in the wallet (Yuan 2)",
+              int(chain.eth_call(canon.address("CHO"), erc20_data("balanceOf", "address", [d.addr])), 16) == 2)
+        jrn.a(rec, "Phobos 2 wei sits in the wallet (Yuan 2)",
+              int(chain.eth_call(canon.address("PhobosQING"), erc20_data("balanceOf", "address", [d.addr])), 16) == 2)
+
+        # (f) the Eta flip + the committed Beat
+        jrn.a(rec, "fresh DEX-seeded caller Eta flips(14, >0, >0, >0)",
+              phoebe == 14 and iota1 > 0 and chao > 0 and charge1 > 0,
+              f"Phoebe={phoebe} Iota1={iota1} Chao={chao} Charge1={charge1}")
+        r = d.send(canon.address("META"), canon.data("META", "Beat", "uint256", [waat]), gas=3_000_000)
+        jrn.a(rec, "META.Beat status 1 for the fresh DEX-seeded caller (the seed, not age)", r["status"] == "0x1")
+        gas = int(r["gasUsed"], 16)
+        jrn.a(rec, "Beat gas inside the census envelope (median 1,916,016)",
+              1_500_000 <= gas <= 2_500_000, gas)
+
     steps = [
         ("0 preflight + selector pins", s0),
         ("1 onboarding-lite", s1),
@@ -961,6 +1109,7 @@ def main():
         ("12 YUE Hong/Hung exchange desk + the Ⓐ Redeem leg", s12),
         ("13 identity enrichment + pocket sweep + label semantics + the CHO book walk", s13),
         ("14 LAU emission desk + DSS desk + the deployment gate surface", s14),
+        ("15 DEX seed acquisition (PulseX V2, exact-output) + the Eta flip + Beat", s15),
     ]
     all_ok = True
     for name, fn in steps:

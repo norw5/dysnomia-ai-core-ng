@@ -78,6 +78,12 @@ holdings (the Charge numerator and the Dione payout), the caller needs an
 AGED ladder lineage (the Eta fresh floor) and venue-token Yuan (the Deimos
 weight), and `Charge == 0` makes the call a silent no-op.
 
+> **ng-correction (session 82)**: "aged ladder lineage" is a misreading —
+> the Eta gate is the four-token seed (`Fomalhaute` + `Fornax` AT THE LAU;
+> `CHO` + `Phobos` for the Yuan moduli). A fresh account can seed it; the
+> target venue's Yuan only scales the output. See `kb/deployed-semantics.md`
+> §3.
+
 Designed loop in plain terms `[src]`: a player picks a coordinate near a
 QING they fancy and calls `Code(lat, lon, qing)` — the claim must land
 inside the Yeo box around the venue's anchor (`OutOfRange` otherwise), it

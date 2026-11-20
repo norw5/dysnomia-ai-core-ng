@@ -41,7 +41,7 @@ import { RecordingWriter, serializeRecording } from "@/agent/recording";
 import { executePlan } from "@/agent/planRunner";
 import { simLayerActive } from "@/chain/simMode";
 import { pendingLau as pendingLauValue } from "@/state/pendingLau";
-import { dssOf } from "@/state/dssStore";
+import { dssOf, setDss } from "@/state/dssStore";
 import type { AgentToolContext } from "@/agent/tools";
 import { approvePlan, currentPlan, stopPlan } from "@/state/planStore";
 import { RunsLedger, buildSessionMemory, type AgentRunRecord, type RunKind } from "@/chain/runs";
@@ -503,8 +503,15 @@ export function AgentProvider({
         chatToolsEnabled: settings.chatToolsEnabled,
         simToolsEnabled: simLayerActive(rpcUrl),
         // session-66: the captured DSS (state/dssStore — read live at ctx
-        // build; the store has no getter onchain)
+        // build; the store has no getter onchain). session-82.1: the setup
+        // seam persists a validated/captured DSS and resolveDss makes a
+        // same-run deploy/adopt visible to dss_snipe.
         dss: dssOf(wallet.account as Address | null)?.dss ?? null,
+        captureDss: (record) => {
+          const account = wallet.account as Address | null;
+          if (account !== null) setDss(account, record);
+        },
+        resolveDss: () => dssOf(wallet.account as Address | null)?.dss ?? null,
         gateDryRun: (request) => gate.dryRun(request),
         gateSend: async (request) => {
           runTx += 1;

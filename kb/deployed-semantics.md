@@ -85,12 +85,25 @@ The repo's final tree is NOT the deployed state for two contracts:
 - **Deployed `RING.Eta` is a third revision** — neither the April nor the final-tree
   formula reproduces its outputs (`(14, 7973995094115691, 50653, 69343957)` reference
   sample; Charge = 50653×1369 exactly).
-- The old community playbooks' "no upper ceiling on Fornax" describes the FINAL TREE;
-  **the deployed system HAS the Fornax Goldilocks ceiling**. An agent or UI that buys
-  Fornax past the deployed ceiling WILL revert.
+- **The old "Fornax Goldilocks ceiling" is SOURCE/APRIL-only, not a deployed
+  cap** `[chain, session-82.1 controlled sweep — supersedes the session-31
+  inference]`: the old `docs/strategy/` guides derive
+  `Max_Fornax = Xia.Charge(Phobos) × LAU.Entropy` from the April
+  `Chao /= Omicron` normalization. On a fresh fork LAU/YUE seeded with the
+  four-token legs (Fomalhaute=2 wei, CHO/Phobos=1 wei at the LAU), Fornax
+  from 1e15 through 1e22 left `Eta.Chao = 1` at every step; `Beat` succeeded
+  at every level except a `Fornax=1e19` state where `Iota` zeroed consistently
+  (`Panic(0x12)` — a modExp/entropy zero draw, not a balance cap). The old
+  "higher Fornax → larger Yeo" direction was not observed either (Yeo
+  6→6→4→1 across 1e15/1e18/1e20/1e22 on that fork; the shared Entropy head
+  and the venue state dominate). Keep the old guide as a SOURCE-version
+  strategy model; do not encode a deployed ceiling, and never tell an agent
+  to stop buying Fornax at a formula cap. The operative rule is: preview
+  every send and retry a zero-Iota draw.
 
-Consequence for this codebase: the Fornax ceiling is REAL in our previews and caps;
-playbooks rewritten from this KB treat it as present.
+Consequence for this codebase: the old ceiling warning is historical/source
+context; deployed Beat outputs are entropy-driven, so previews (not formula
+caps) govern acquisition and retries.
 
 ## 3. Core formulas (deployed semantics, `[src]` unless noted)
 
@@ -128,60 +141,145 @@ playbooks rewritten from this KB treat it as present.
   `0xb340a780`. VOID world chat routes `Log("ZHOU", …)` onto the world-chat SHIO's
   `LogEvent(uint64 Soul, uint64 Aura, string LogLine)`.
 - **Beat minimums**: `Omicron = Fornax(LAU)/Entropy` (xie.sol:33), `Dione =
-  Tethys(QING)/Entropy` (zi.sol:37), Yuan-modulus gates, `PANG.Push` uses
-  `QING.Entropy()` exponent (pang.sol:30). Hypobar/Epibar equations at
+  Tethys(QING)/Entropy` (zi.sol:37), the CHO/Phobos Yuan moduli must be
+  nonzero (≥2; session-82), `PANG.Push` uses `QING.Entropy()` exponent
+  (pang.sol:30). Hypobar/Epibar equations at
   `yue.sol:141-142`; the **777 floor**: rate 10.0 ⇒ Mod 1000 (`yue.sol:78-79`).
 - **Yuan 1:10:40** weights above; `CHOA.Yuan(CHO)` weighting used by ZI.Spin.
 - **Gas**: Beat median 1,916,016 gas (p90 1,933,099 over successes; all-318 max
   2,315,227 = a FAILED tx) `[chain]` — the 3M limit is right but not generous.
-- **Beat works; the floor is CALLER state, not holdings or venue** `[chain,
-  session-40, resolved with owner-provided txs]`: three successful Beats
-  (~88-95d before pin 27,666,000, caller 0x7b10…c4f7) replay green on forks at
-  their blocks AND at the pin — including beating a zero-history fresh venue
-  with all-zero outputs. Fresh harness callers panic `Panic(0x12)` at ANY
-  funding level because the deployed third-revision `RING.Eta()` returns
-  `(14, 0, 0, 0)` for them — Beat divides by an Eta slot (the final-tree Eta
-  is NON-VIEW: `Chao = Yue.React(Phobos)`, a caller-vault reactor step, plus a
-  per-Soul `Moments` accumulator; deployed formula differs but reads the same
-  lineage). Aged callers (months of vault-advancing activity — historically
-  CHOA.Chat while the buffer was non-empty) get nonzero slots → Beat succeeds,
-  with Yeo rounding to 0 early — the community lore "Yeo is always 0 on your
-  first Beat call" is exactly this. There is a floor BELOW this floor
-  `[chain, session-43 fork probe]`: a caller with NO vault at all (no YUE
-  lineage) makes `RING.Eta()` itself revert a custom error
-  `0x12efd467(sender)` instead of returning zero slots — the panel renders
-  it as "open your YUE first". Also observed on the same probe: aged v1-era
-  venues (Ozymandias, Phobos) return a KNOWN Ⓐ market rate of 0 (not a
-  MarketRateNotFound revert) — a zero rate is a real state, distinct from
-  the fresh-venue no-rate revert. Fresh callers today have no cheap vault-
-  aging path (CHOA buffer empty at the pin; `Yue.React` onlyOwners +
-  ZeroHoldings-gated). **Corridor experiment (session-65.5, fork-pinned)**:
-  a buffer REFILL alone does not reopen aging — with the top holder
-  donating 200 CHOA to the CHOA contract, 12 `CHOA.Chat` calls from a
-  fully-onboarded fresh wallet (own venue, admitted) all succeeded yet
-  paid the YUE **0** (buffer untouched; Eta stayed (14,0,0,0)): the
-  bounty amount `MAI.React(soul, waat)` computes **0 for a fresh soul
-  even at Phobos** (an aged soul computes nonzero at the same waat), so
-  the transfer leg never fires — the lock is two-layered (buffer AND
-  soul-side MAI state; spot holdings of the venue asset did not move
-  it). "Refill and sneak in" is refuted. Fork recipe for Beat testing:
-  impersonate an aged caller. NOTE: Yuan holdings are NOT revert gates
-  (a zero-Yuan caller Beats fine — all-zero outputs); an earlier
-  session-40 "double Yuan floor" claim
-  and a "wedged Beat" claim are both RETRACTED (the latter rested on a
-  log-scan blind to successful Beats — they emit no META-address events).
+- **Beat works; the gate is the Eta TOKEN SEED, not age or "lineage"**
+  `[chain, session-82 — supersedes the session-40/65 lineage reading]`:
+  the deployed third-revision `RING.Eta()` returns `(14, 0, 0, 0)` for a
+  fresh wallet only while the caller's LAU/YUE/wallet hold none of the
+  gate tokens. The four values are COMPUTED from live token balances
+  (the `Moments[soul] = Iota` write is a monument, not an input). The two
+  integer-division sites in `META.Beat` are
+  `Charge = Charge1 * Charge / Iota1` and (deployed direction)
+  `Yeo = Yeo / Chao`; `Iota1 == 0` or `Chao == 0` is the `Panic(0x12)`.
+  Fork-pinned on a fresh LAU/YUE at block 28,100,378, the four legs are:
+    1. **`Fomalhaute` = the WorldChatSHIO (`0x7aE7…`) AT THE LAU** —
+       nonzero (≥ 2 wei; a modulus of 1 returns 0) makes the
+       `XIA.Charge` modExp modulus nonzero, so a zero MAI exponent
+       yields `1` (`modExp(x, 0, m) = 1` for `m ≥ 2`) → `Chao` and
+       `Charge1` nonzero. Remove it: Eta = `(14, <Iota>, 0, 0)` and
+       `Yeo / Chao` panics.
+    2. **`Fornax` (`0xF6C5…`) AT THE LAU** — feeds `XIE.Power`'s
+       Omicron (the live `Entropy` divisor); too little → `Iota1 = 0`
+       → the `Charge` division panics. Remove it: Eta =
+       `(14, 0, 1, 1)`.
+    3. **`CHO` (Tethys) holdings** — the ZI/PANG `Yuan` modulus must be
+       ≥ 2 (`Yuan` = wallet + 10×LAU + 40×YUE). Remove it: Eta =
+       `(14, 0, 1, 1)` → panic.
+    4. **`Phobos` (the first QING) holdings** — the PANG
+       `Yuan(Phobos)` modulus must be ≥ 2 (same 1/10/40 weights).
+       Remove it: Eta = `(14, 0, 1, 1)` → panic.
+  The TARGET venue's Yuan is NOT a revert gate (a seeded caller Beats a
+  zero-held venue successfully with `(0,0,0,0)` outputs); it only scales
+  the outputs. `Yue.React`'s onlyOwners gate is not a player blocker:
+  the deployed Eta reaches the reactor through `CHAN.ReactYue` (CHAN is a
+  YUE owner), never a direct player call; the player only needs to hold
+  their own YUE token (`ZeroHoldings`).
+  The CHOA bounty buffer never enters the Eta math.
+  **Live proof** `[chain, 2026-11-19]`: tx `0x081247c8…` — a LAU created
+  21 minutes earlier bought 0.0015 each of WorldChatSHIO + Fornax (sent
+  TO THE LAU) and CHO + Phobos (kept in the wallet), then landed a
+  successful `Beat` (status 1, 1,967,304 gas). Its own fresh venue's
+  pre-block simulation returns `(0,0,0,0)` (zero target Yuan; Beat's
+  outputs are not in the receipt); the same wallet now previews
+  `Beat(Phobos)` as `(14, 0, ~6.1e14, ~1.06e15)`. The old "aged"
+  wallets are simply token-seeded LAUs — their transfer histories show
+  the seed (e.g. 0xebd4… cycles buy → transfer-to-LAU → Beat →
+  recover). The session-65.5 corridor experiment failed for this
+  reason: 12 `CHOA.Chat` calls never seed the four token legs; the
+  buffer refill was irrelevant. **The floor BELOW the gate remains
+  real** `[chain, session-43]`: a caller with NO YUE makes `Eta()`
+  itself revert `0x12efd467(sender)` ("open your YUE first"). A wallet
+  that holds ZERO of its own YUE tokens makes `Yue.React` revert
+  `ZeroHoldings` (`0x98aaa293`) — the vault must hold at least 1 wei
+  (the constructor mint covers a normal player; the aged-transfer recipe
+  tops it up). The gate
+  is per-CALLER (its LAU/YUE/wallet), not per-venue: a seeded caller
+  can Beat any venue; an unseeded one panics everywhere. Readiness is a
+  PREVIEW, not a promise: `Eta` is non-view and draws the shared
+  entropy, so a borderline seed can still land zero on a given call
+  (the UI's `beatReady` = BOTH Beat divisors, Iota and Chao, nonzero). Fork recipe for a
+  repeatable Beat: seed a fresh LAU with `~1e18` Fomalhaute + Fornax
+  and hold `~1e18` CHO + Phobos (the cited live wallet used `1.5e15`
+  and worked; the Fornax leg must clear the live entropy draw). The
+  earlier "double Yuan floor" retraction was about the TARGET venue's
+  Yuan (correct: not a revert gate); the Eta-side CHO/Phobos Yuan
+  moduli ARE gates, and a caller with both at zero does not Beat. The
+  "wedged Beat" retraction stands (Beat emits no META-address events —
+  a log-scan blind spot, never a wedge).
+- **The old strategy guides' exact floors, re-pinned (session-82.1)**:
+  - **Fomalhaute at the LAU: 2 wei** — 1 wei makes the `XIA.Charge`
+    modulus 1, `modExp` returns 0, `Chao=0`, and `Yeo/Chao` panics. The
+    old guide's "≥1 wei" is off by one.
+  - **CHO / Phobos Yuan: ≥2** — 1 wei in the WALLET gives `Yuan=1`,
+    `modExp` returns 0 and `Iota=0` → Panic; 1 wei at the LAU counts 10
+    and 1 wei at the YUE counts 40 (both work).
+  - **Fornax at the LAU: above the live Entropy draw** — `1e15` worked
+    in the cited wallet; a `1e19` state zeroed Iota consistently in the fork sweep
+    (preview/retry; no static cap, see §2).
+  - **The target QING's Yuan is NOT a revert gate** — zero target
+    holdings Beat successfully with `(0,0,0,0)`; it only scales Deimos /
+    the output. The old "your QING asset ≥1 wei" is an OUTPUT rule, not
+    a gate.
+  - **Dione = the target QING's Tethys/Entropy** — a venue with a nonzero
+    own CHO balance gives a nonzero Dione; only the QING owner can
+    `Withdraw`, so NEVER send CHO to an unowned QING (the old guides'
+    donation trap is real). `Dione=0` means a successful tx with no
+    territory output.
+  - **Phobos is the universal accumulator** — every Beat forces a
+    `Yue.React(Phobos)`; its Hypobar grows with network activity, so
+    targeting Phobos can give the largest territory but is volatile and
+    its underlying asset is thin/expensive. The home QING is the stable
+    alternative; other QINGs are parasitic-snipe targets.
+- **Acquiring the seed — the PulseX V2 route (session-83)** `[chain]`: the
+  four legs are ordinary ERC-20s with WPLS pairs on PulseX V2. The router
+  is `0x165C3410fC91EF562C50559f7d2289fEbed552d9` (Router02),
+  `factory()` = `0x29eA7545DEf87022BAdc76323F373EA1e707C523`, and
+  `WPLS()` = `0xA1077a294dDE1B09bB078844df40758a5D0f9a27` (all verified
+  on-chain at the live head + the 27,674,000 fork, and named in the
+  official PulseX docs). The app's `swap_pls_for_token` uses the NATIVE
+  exact-output route (`swapETHForExactTokens`, selector `0xfb3bdb41`;
+  `getAmountsIn` `0x1f00ca74`): the PLS is wrapped inside the router, so
+  there is NO approve leg anywhere, and the router refunds unused native
+  value (fork-verified: a 2,000-PLS send on a ~674-PLS quote left ~732
+  PLS including gas). The ask is exact: 2 wei Fomalhaute, 2 wei CHO,
+  2 wei Phobos, and 1e15 wei Fornax (0.001) as the STARTING Fornax
+  level — the live per-soul `Entropy` divisor can demand more; preview
+  `Eta` and retry with a larger exact-output (a geometric ramp is the
+  honest discipline; there is no static ceiling). At the 27,674,000 pin
+  the quotes for those four amounts were `754,507 wei` / `95,768 wei` /
+  `15,264,994 wei` PLS and `674.300772701668684784 PLS` — a ~674-PLS
+  token bill plus gas; quotes move with every swap. **The pools are
+  thin** (Fornax ~33.96 tokens, Phobos ~0.91 tokens of depth at the
+  pin): the tool enforces a reserve-ratio price-impact guard
+  (`maxImpactBps`, default 500 = 5%) and an optional `maxPls` ceiling
+  before THE gate, and the router is an external unknown-contract send
+  (approval card in modes A/B; PLS value caps bind). Recipients:
+  Fomalhaute/Fornax must land AT THE LAU; CHO/Phobos can sit in the
+  wallet at ≥ 2 wei (1×) or deeper at the LAU (10×)/YUE (40×). The four
+  swaps fill the default per-run send cap (4) — Beat in the next run or
+  raise the L2 knob.
 - **Aged accounts are TRANSFERABLE by design** `[chain, session-65.6
-  fork-proven]`: the Beat caller lineage rides the YUE (the vault
-  reactor state), and `CHAN.TransferYue(yue, newOrigin)` — public,
-  gated only on `_chi.Origin() == tx.origin` and the new origin being
-  YUE-less — moves BOTH the `Yan` resolver and the YUE's Origin,
+  fork-proven; mechanism corrected session-82]`: the Beat gate rides the
+  caller's LAU (its token seed), NOT the YUE reactor state — the YUE is
+  needed only for the "does a vault exist" `NotStarted` check and the
+  40× Yuan weight. Keep the aged LAU (with its Fomalhaute/Fornax
+  balances) and remap the wallet to it, and the gate follows.
+  `CHAN.TransferYue(yue, newOrigin)` — public, gated only on
+  `_chi.Origin() == tx.origin` and the new origin being YUE-less —
+  moves BOTH the `Yan` resolver and the YUE's Origin,
   clearing the old wallet's mapping (a MOVE, not a copy). The complete
   handover: `LAU.addOwner(new)` → `CHAN.TransferYue(yue, new)` →
   `new: CHO.Enter(lau)` (Enter gates on `UserLau.owner(tx.origin)`) →
   `YUE.transfer(new, ≥1 wei)` (`Yue.React`'s `ZeroHoldings(tx.origin)`
   gate — the wallet must hold its own YUE token). Fork-verified
-  end-to-end: the receiving wallet reads AGED Eta slots and lands a
-  successful Beat (~1.9M gas). The manual kit implements it as
+  end-to-end: the receiving wallet reads the aged LAU's token-seeded
+  Eta slots and lands a successful Beat (~1.9M gas). The manual kit implements it as
   `manual_fork.py --aged-transfer` (a FORK COPY onto a key you hold —
   the real owner untouched).
 - **Venue-token acquisition** `[chain, session-40]`: fresh QINGs (v2 base)
@@ -208,11 +306,18 @@ playbooks rewritten from this KB treat it as present.
   is the owner (`onlyOwner`; the LAU's onlyOwners passes via tx.origin), and
   the app captures the deployed address from the creation receipt (CREATE1 —
   prediction == receipt.contractAddress, fork-pinned; the contract has NO
-  getter — capture-at-deploy only, the home-QING law). Routes: the manual
-  desk (IDENTITY), the CHAT composer's WORLD/WORLD+DSS legs, and the agent's
-  `dss_snipe` (§7.4-fenced with the chat family + the FULL-AUTO cadence
-  governor). The exact-amount Ⓐ APPROVE (spender = the DSS) rides first when
-  short — once-only per approve (s8).
+  getter). **Session-82.1**: a DSS deployed by another frontend/wallet can be
+  adopted after a STRUCTURAL validation — the shipped runtime
+  (`app/src/data/dss_fixed.runtime.hex`, verbatim fixture copy) must match
+  `getCode` byte-for-byte, storage slot 0 (ownerAddress) must be the active
+  account, and slot 1 (LAUAddress) must be the active LAU. The same check
+  runs after an in-app deploy; the import is stored with source "import"
+  (state/dssStore). Routes: the manual desk (IDENTITY, deploy OR adopt), the
+  CHAT composer's WORLD/WORLD+DSS legs, the agent's `dss_setup` (deploy
+  through THE gate or adopt an address — always advertised; it is setup, not
+  a chat post) and `dss_snipe` (§7.4-fenced with the chat family + the
+  FULL-AUTO cadence governor). The exact-amount Ⓐ APPROVE (spender = the DSS)
+  rides first when short — once-only per approve (s8).
 - **YUE custody exits are dead code** `[src, session-58 fork-verified against a live
   YUE]`: `YUE.Withdraw`/`Chan.YueWithdraw` gate on `hasMint(what)`, but the deployed
   `hasMint` staticcalls the selector of the string `"Mint(address, uint256)"` — WITH
@@ -321,9 +426,9 @@ playbooks rewritten from this KB treat it as present.
 ## 6. Census facts (for sizing/context, `[chain]`)
 
 - LAUs 18,660 (97.8% carry readable usernames); SHIO channels 12,460; QING venues
-  940 at the 2026-10-11 regen (917 at the 2026-09 census; 23 alive in the last 30
-  days of THAT census; Phobos alone ~35% of venue activity); YUEs 93; Beat txs 318
-  by 33 callers (the owner reports successful personal calls; see §3 for the open
+  **942 at the 2026-11-20 regen** (940 at 2026-10-11; 917 at the 2026-09 census;
+  23 alive in the last 30 days of THAT census; Phobos alone ~35% of venue
+  activity); YUEs 93; Beat txs 318 by 33 callers (the owner reports successful personal calls; see §3 for the open
   zero-divisor question); CHEON.Su is the
   most-called function (24,931 direct; one wallet 86.9% of all CHOA.Chat).
 - **Enumerability (session-70, the corpus-refresh round)**: the QING census is the

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   etaReadiness,
   isEtaNoLineageError,
+  isEtaZeroHoldingsError,
   isFreshEta,
   loadVenueState,
   type VenueLiveState,
@@ -245,17 +246,22 @@ describe("loadVenueState (one anonymous batch, fail-fast discipline)", () => {
   });
 });
 
-describe("Eta readiness (kb §3 session-40 amendments)", () => {
-  it("fresh-caller shape (14,0,0,0) is not ready — Beat would panic 0x12", () => {
+describe("Eta readiness (kb §3 session-40 amendments; session-82 token-seed correction)", () => {
+  it("unseeded shape (14,0,0,0) is not ready — Beat would panic 0x12", () => {
     const slots = [14n, 0n, 0n, 0n] as const;
     expect(isFreshEta([...slots] as [bigint, bigint, bigint, bigint])).toBe(true);
     expect(etaReadiness([14n, 0n, 0n, 0n]).ready).toBe(false);
   });
 
-  it("any nonzero slot past the head means the vault lineage exists", () => {
+  it("both Beat divisors (Iota + Chao) must be nonzero — a partial seed still panics", () => {
     expect(etaReadiness([14n, 7973995094115691n, 50653n, 69343957n]).ready).toBe(true);
-    expect(etaReadiness([14n, 0n, 50653n, 0n]).ready).toBe(true);
-    expect(etaReadiness([42n, 0n, 0n, 1n]).ready).toBe(true);
+    // Charge1 (slot 3) is a multiplier, not a divisor — zero is fine
+    expect(etaReadiness([14n, 1n, 1n, 0n]).ready).toBe(true);
+    // Iota=0 → `Charge = … / Iota1` panics
+    expect(etaReadiness([14n, 0n, 50653n, 0n]).ready).toBe(false);
+    // Chao=0 → deployed `Yeo = Yeo / Chao` panics
+    expect(etaReadiness([14n, 1n, 0n, 0n]).ready).toBe(false);
+    expect(etaReadiness([42n, 0n, 0n, 1n]).ready).toBe(false);
   });
 
   it("the reference sample classifies ready and is not the fresh marker", () => {
@@ -264,7 +270,7 @@ describe("Eta readiness (kb §3 session-40 amendments)", () => {
     expect(isFreshEta(r.slots)).toBe(false);
   });
 
-  it("the no-vault-lineage revert (0x12efd467, session-43 fork probe) is classified", () => {
+  it("the no-YUE revert (0x12efd467, session-43 fork probe) is classified", () => {
     expect(
       isEtaNoLineageError(
         new Error(
@@ -273,6 +279,17 @@ describe("Eta readiness (kb §3 session-40 amendments)", () => {
       )
     ).toBe(true);
     expect(isEtaNoLineageError(new Error("HTTP 502"))).toBe(false);
+  });
+
+  it("the zero-YUE-holdings revert (0x98aaa293) is classified", () => {
+    expect(
+      isEtaZeroHoldingsError(
+        new Error(
+          "execution reverted: custom error 0x98aaa293: 0000000000000000000000009522229037ae187b3757546f80aac1d9988f9d1e"
+        )
+      )
+    ).toBe(true);
+    expect(isEtaZeroHoldingsError(new Error("HTTP 502"))).toBe(false);
   });
 });
 

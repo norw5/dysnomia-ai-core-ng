@@ -4482,9 +4482,15 @@ a.chat-tx:hover {
 }
 
 /* multi-line messages WRAP (up to two lines) then clamp — never a
-   horizontal scroller (the owner's find) */
+   horizontal scroller. Session-82.1 (the owner's laptop find): `overflow-x:
+   hidden` alone is NOT enough — with `overflow-y: visible` the CSS overflow
+   pair computes y to `auto`, so every row became its OWN vertical scroller
+   when the flex column shrank. `overflow: clip` + `flex-shrink: 0` keeps
+   each row at its natural (clamped) height; `.deck-chat-lines` is the ONE
+   scroller. */
 .deck-chat-lines li {
-  overflow-x: hidden;
+  overflow: clip;
+  flex-shrink: 0;
 }
 
 .deck-chat-body {
