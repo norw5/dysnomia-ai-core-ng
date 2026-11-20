@@ -7,9 +7,12 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { KNOWN_MAINNET_RPC } from "@config/addresses";
 import { makeClient } from "@/chain/client";
 import { FACTS } from "@/chain/facts";
 import type { Journal } from "@/chain/journal";
+import { isLocalForkRpc, normalizeRpcUrl } from "@/chain/rpc";
+import { waitForReceiptResilient } from "@/chain/receipt";
 import {
   DEFAULT_POLICY,
   freshCounters,
@@ -157,17 +160,25 @@ export function GateProvider({
           account: args.account,
         }),
       waitForReceipt: async (txHash, timeoutMs) => {
-        const r = await client.waitForTransactionReceipt({ hash: txHash, timeout: timeoutMs });
-        return {
-          status: r.status === "success" ? "success" : "reverted",
-          gasUsed: r.gasUsed,
-          blockNumber: r.blockNumber ?? null,
-          logs: r.logs.map((l) => ({ address: l.address, topics: [...l.topics], data: l.data })),
-          contractAddress: r.contractAddress ?? null,
-        };
+        // session-84: 180s + 3s polls, with READ-ONLY receipt fallbacks to
+        // the known public RPCs. The selected RPC stays the only send path;
+        // a loopback fork gets NO fallbacks (a public RPC would answer for
+        // the LIVE chain, never the fork).
+        const fallbackUrls = isLocalForkRpc(rpcUrl)
+          ? []
+          : KNOWN_MAINNET_RPC.filter((u) => normalizeRpcUrl(u) !== normalizeRpcUrl(rpcUrl));
+        const { receipt } = await waitForReceiptResilient({
+          client,
+          txHash,
+          timeoutMs,
+          fallbackUrls,
+          onFallback: (source) =>
+            journal.emit("gate.receipt", `receipt via fallback RPC ${source} (the selected RPC lagged)`, { txHash }),
+        });
+        return receipt;
       },
     }),
-    [client]
+    [client, journal, rpcUrl]
   );
 
   const setPolicy = useCallback((p: PolicyConfig) => {
@@ -193,7 +204,7 @@ export function GateProvider({
       journal,
       counters: freshCounters(new Date(), counters),
       onCounters: setCounters,
-      receiptTimeoutMs: 12_000,
+      receiptTimeoutMs: 180_000,
       approval: async (envelope) => {
         setPendingApproval(envelope);
         return await new Promise<boolean>((resolve) => {

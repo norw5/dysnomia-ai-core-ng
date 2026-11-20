@@ -63,7 +63,15 @@ export function outcomeSummary(out: GateOutcome | { status: "no-signer" }): Reco
     base.receiptStatus = out.receipt?.status ?? null;
     base.gasUsed = out.receipt?.gasUsed.toString() ?? null;
     base.movements = out.movements.map((m) => ({ token: m.token, from: m.from, to: m.to, amount: m.amount.toString() }));
-    if (out.receiptError) base.receiptError = out.receiptError;
+    // session-84: a broadcast tx is NOT a failed tx. A receipt timeout leaves
+    // confirmation "unconfirmed"; the model must check the hash before
+    // claiming failure or re-sending (tx_status is the read tool).
+    base.confirmation = out.receipt === null ? "unconfirmed" : out.receipt.status === "success" ? "confirmed" : "reverted";
+    if (out.receipt?.source !== undefined) base.receiptSource = out.receipt.source;
+    if (out.receiptError) {
+      base.receiptError = out.receiptError;
+      base.note = `BROADCAST — the transaction was sent but the receipt was not observed. Call tx_status("${out.txHash}") (selected RPC + public fallbacks) before claiming failure or retrying; the explorer also shows it.`;
+    }
   }
   return base;
 }

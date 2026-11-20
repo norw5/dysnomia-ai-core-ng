@@ -40,6 +40,7 @@ import { DASHBOARD_TOOLS } from "@/agent/dashboardTools";
 import { DESK_TOOLS } from "@/agent/deskTools";
 import { MOVE_TOOLS } from "@/agent/moveTools";
 import { SWAP_TOOLS } from "@/agent/swapTools";
+import { TX_TOOLS } from "@/agent/txTools";
 import { SIM_TOOLS as SIM_TOOLS_LIST } from "@/agent/simTools";
 import { PLAN_TOOLS } from "@/agent/planTools";
 
@@ -1572,6 +1573,10 @@ const ALL_TOOLS: AgentTool[] = [
   // PLS → any ERC-20 through PulseX V2 via THE gate — exact-output, no
   // approve leg, price-impact guarded; the Beat-seed acquisition surface
   ...SWAP_TOOLS,
+  // the receipt-confirmation read (session-84): a broadcast tx is not a
+  // failed tx — tx_status checks the selected RPC + public fallbacks for
+  // a receipt/pending/mined state before the model claims failure/retries
+  ...TX_TOOLS,
   // the SIM-scoped family (session-59, §8 arc part 2): world_code /
   // spawn_gwat / encrypt_note over the fork-verified never-deployed layer —
   // advertised ONLY in sim mode (SIM_TOOLS gate below)

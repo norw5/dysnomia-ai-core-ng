@@ -192,7 +192,15 @@ caps) govern acquisition and retries.
   the seed (e.g. 0xebd4… cycles buy → transfer-to-LAU → Beat →
   recover). The session-65.5 corridor experiment failed for this
   reason: 12 `CHOA.Chat` calls never seed the four token legs; the
-  buffer refill was irrelevant. **The floor BELOW the gate remains
+  buffer refill was irrelevant. **The receipt is the proof (session-84)**
+  `[chain]`: a committed Beat's success signal is the transaction RECEIPT
+  status (and the ~1.9M gas envelope), NOT the venue's live entropy/supply
+  — Beat does not move those. Public RPCs can lag their receipt index
+  after the tx is mined; a receipt timeout is not a failed Beat (tx
+  `0x787cdc…cc139` landed at block 28,105,481 / 1,916,004 gas while the
+  selected RPC's receipt read timed out). The app waits 180s with
+  read-only public-RPC receipt fallbacks and `tx_status` resolves a hash
+  later. **The floor BELOW the gate remains
   real** `[chain, session-43]`: a caller with NO YUE makes `Eta()`
   itself revert `0x12efd467(sender)` ("open your YUE first"). A wallet
   that holds ZERO of its own YUE tokens makes `Yue.React` revert

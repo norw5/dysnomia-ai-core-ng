@@ -399,6 +399,14 @@ snapshot-window lie), fix the app, not the script.
 
 ## Gotchas paid this session (add to your instincts)
 
+- **Receipt confirmation (session-84)**: the app gate waits 180s / 3s
+  polls and falls back READ-ONLY to the known public RPCs for a receipt
+  (the selected RPC stays the only send path; a loopback fork gets NO
+  fallbacks; a dead no-fallback RPC bails after 2 transport errors). The
+  headless runner uses the same helper. The Python harness's own
+  `Actor.wait` (0.4s × 300) is separate. `tx_status(hash)` is the
+  agent/operator probe for a broadcast tx that a lagging RPC has not
+  confirmed yet — a broadcast is not a failure.
 - **`encode()` returns BARE hex** — `sel + encode(...)[2:]` silently corrupts
   calldata (shifts every word 2 nibbles); the failure surfaces as weird
   empty-data reverts two steps later. Hand-encoding = `sel + encode(...)`.

@@ -382,6 +382,31 @@ test.describe("agent deck (routed OpenRouter, mock wallet, dead RPC)", () => {
     await expect(page.getByTestId("agent-answer").last()).toContainText("honest state", { timeout: 15_000 });
   });
 
+  test("the receipt probe (session-84): tx_status is advertised; a loopback/dead RPC answers unknown, never a false success", async ({ page }) => {
+    const hash = "0x787cdc2867d74f0a0cd66b01dbc1385c92ef1ba3652120d8aa540957031cc139";
+    const captured = await routeOpenRouter(page, [
+      { toolCall: { id: "t1", name: "tx_status", args: JSON.stringify({ hash }) } },
+      { text: "the hash is not confirmable on this RPC — nothing was claimed and nothing was sent." },
+    ]);
+    await page.addInitScript(MOCK_PROVIDER_INIT);
+    await page.goto(DEAD_RPC);
+    await page.getByTestId("rail-settings").click();
+    await page.getByTestId("agent-key-input").fill("sk-or-e2e-byok");
+    await page.getByTestId("agent-remember").check();
+    await page.getByTestId("agent-save").click();
+    await page.getByTestId("rail-deck").click();
+    await page.getByTestId("agent-input").fill(`confirm ${hash}`);
+    await page.getByTestId("agent-exec").click();
+
+    const advertised = captured[0]!.tools?.map((t) => t.function.name) ?? [];
+    expect(advertised).toContain("tx_status");
+    const first = page.getByTestId("agent-toolresult").first();
+    await expect(first).toContainText('"status": "unknown"', { timeout: 15_000 });
+    await expect(first).toContainText("ipfs.scan.pulsechain.com/tx/");
+    await expect(first).not.toContainText('"status": "confirmed"');
+    await expect(page.getByTestId("agent-answer").last()).toContainText("not confirmable", { timeout: 15_000 });
+  });
+
   test("the DEX tool (session-83): advertised; a dead-RPC quote refuses honestly and never reaches the gate", async ({ page }) => {
     const captured = await routeOpenRouter(page, [
       { toolCall: { id: "s1", name: "swap_pls_for_token", args: JSON.stringify({ token: "FOMALHAUTE", amountOutWei: "2", recipient: "wallet" }) } },

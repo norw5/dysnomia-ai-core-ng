@@ -119,6 +119,12 @@ describe("the FIXED system-prompt core", () => {
     expect(CORE_SYSTEM_PROMPT).toContain("no static ceiling");
   });
 
+  it("names the session-84 receipt-honesty rule (broadcast ≠ failure, tx_status)", () => {
+    expect(CORE_SYSTEM_PROMPT).toContain("tx_status");
+    expect(CORE_SYSTEM_PROMPT).toContain("BROADCAST");
+    expect(CORE_SYSTEM_PROMPT).toContain("mined-receipt-missing");
+  });
+
   it("pins the Beat gas budget against the venue panel's constants (one source)", () => {
     expect(CORE_SYSTEM_PROMPT).toContain(BEAT_GAS_MEDIAN.toLocaleString("en-US"));
     expect(CORE_SYSTEM_PROMPT).toContain(`the ${(Number(BEAT_GAS_LIMIT) / 1_000_000).toFixed(0)}M gas limit`);

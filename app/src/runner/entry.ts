@@ -1,7 +1,10 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { privateKeyToAccount } from "viem/accounts";
 import { createPublicClient, createWalletClient, http } from "viem";
+import { KNOWN_MAINNET_RPC } from "@config/addresses";
 import { pulsechain } from "@/chain/client";
+import { isLocalForkRpc, normalizeRpcUrl } from "@/chain/rpc";
+import { waitForReceiptResilient } from "@/chain/receipt";
 import { loadPlayerSnapshot } from "@/chain/identity";
 import { FACTS } from "@/chain/facts";
 import { DEFAULT_POLICY, freshCounters, type SessionDayCounters } from "@/chain/policy";
@@ -176,14 +179,18 @@ async function main(): Promise<number> {
       },
       estimateGas: async (a) => client.estimateGas({ to: a.to, data: a.data, value: a.value ?? undefined, account: a.account }),
       waitForReceipt: async (txHash, timeoutMs) => {
-        const r = await client.waitForTransactionReceipt({ hash: txHash, timeout: timeoutMs });
-        return {
-          status: r.status === "success" ? ("success" as const) : ("reverted" as const),
-          gasUsed: r.gasUsed,
-          blockNumber: r.blockNumber ?? null,
-          logs: r.logs.map((l) => ({ address: l.address, topics: [...l.topics], data: l.data })),
-          contractAddress: r.contractAddress ?? null,
-        };
+        const fallbackUrls = isLocalForkRpc(plan.rpc)
+          ? []
+          : KNOWN_MAINNET_RPC.filter((u) => normalizeRpcUrl(u) !== normalizeRpcUrl(plan.rpc));
+        const { receipt } = await waitForReceiptResilient({
+          client,
+          txHash,
+          timeoutMs,
+          fallbackUrls,
+          onFallback: (source) =>
+            journal.emit("gate.receipt", `receipt via fallback RPC ${source} (the selected RPC lagged)`, { txHash }),
+        });
+        return receipt;
       },
     };
 
@@ -212,7 +219,7 @@ async function main(): Promise<number> {
       },
       signerMode: "C",
       approval: recordedApproval(plan.policy.autoApprove, journal),
-      receiptTimeoutMs: 30_000,
+      receiptTimeoutMs: 180_000,
     });
 
     const snapshot = await loadPlayerSnapshot(client, account);

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { getAddress } from "viem";
 import index from "@abi/index.json";
-import { CHAIN_ID, KNOWN_MAINNET_RPC, PERIMETER, PULSEX_V2_FACTORY, PULSEX_V2_ROUTER, WPLS } from "@config/addresses";
+import { CHAIN_ID, EXPLORER_TX, KNOWN_MAINNET_RPC, PERIMETER, PULSEX_V2_FACTORY, PULSEX_V2_ROUTER, WPLS } from "@config/addresses";
 
 const ADDRESS_RE = /^0x[0-9a-fA-F]{40}$/;
 
@@ -31,6 +31,15 @@ describe("perimeter single-source (config/addresses.json)", () => {
     for (const a of perimeterAddrs) {
       if (!indexAddrs.has(a)) continue;
     }
+  });
+
+  it("pins the session-84 RPC list: PublicNode in, g4mm4/stats out, no duplicates", () => {
+    expect(KNOWN_MAINNET_RPC).toContain("https://pulsechain-rpc.publicnode.com");
+    expect(KNOWN_MAINNET_RPC.some((u) => u.includes("g4mm4"))).toBe(false);
+    expect(KNOWN_MAINNET_RPC.some((u) => u.includes("pulsechainstats"))).toBe(false);
+    expect(new Set(KNOWN_MAINNET_RPC).size).toBe(KNOWN_MAINNET_RPC.length);
+    for (const u of KNOWN_MAINNET_RPC) expect(new URL(u).protocol).toBe("https:");
+    expect(EXPLORER_TX).toBe("https://ipfs.scan.pulsechain.com/tx/");
   });
 
   it("pins the external PulseX V2 infra (session-83) with checksum-exact addresses, OUTSIDE the perimeter", () => {

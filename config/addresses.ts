@@ -4,6 +4,8 @@ export interface AddressConfig {
   $provenance: string;
   chainId: number;
   explorer: string;
+  /** transaction path — tx_status links a hash without guessing the explorer shape */
+  explorerTx: string;
   knownMainnetRpc: string[];
   contracts: Record<string, `0x${string}`>;
   /**
@@ -29,6 +31,7 @@ export const addressConfig = raw as AddressConfig;
 
 export const CHAIN_ID = addressConfig.chainId;
 export const EXPLORER_BASE = addressConfig.explorer;
+export const EXPLORER_TX = addressConfig.explorerTx;
 export const KNOWN_MAINNET_RPC = addressConfig.knownMainnetRpc;
 export const MULTICALL3 = addressConfig.infra.multicall3;
 /** external PulseX V2 DEX constants (session-83) — see the infra comment above */

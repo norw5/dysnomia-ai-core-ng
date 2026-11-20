@@ -2,10 +2,12 @@
   "$provenance": "GENERATED-FROM kb/deployed-semantics.md \u00a71 (all [chain]) \u2014 the deployed perimeter on PulseChain (chain id 369). NEVER hand-edit addresses here: fix the KB, regenerate. The never-deployed layer (WORLD/WAR/H2O/VITUS/GWAT/ENCRYPT/NYM/VMREQ) is intentionally address-less; fixtures inject a SIM overlay only.",
   "chainId": 369,
   "explorer": "https://ipfs.scan.pulsechain.com/address/",
+  "explorerTx": "https://ipfs.scan.pulsechain.com/tx/",
   "knownMainnetRpc": [
     "https://rpc.pulsechain.com",
-    "https://rpc-pulsechain.g4mm4.io",
-    "https://rpc.pulsechainstats.com"
+    "https://pulsechain-rpc.publicnode.com",
+    "https://rpc.pulsechainrpc.com",
+    "https://rpc.libertyswap.finance"
   ],
   "contracts": {
     "VOID": "0x965B0d74591bF30327075A247C47dBf487dCff08",
@@ -62,6 +64,7 @@
     "MATH": "atropaMath"
   },
   "notes": {
+    "knownMainnetRpc": "session-84: g4mm4 (announced shutdown 2026-11-21) and pulsechainstats (NXDOMAIN) removed. https://rpc.pulsechain.com stays FIRST for archive/history; PublicNode (tested 78ms median, archive), pulsechainrpc.com and libertyswap.finance are verified chain-369 fallbacks (chain id + this session's receipt read). Receipt confirmation falls back read-only across this list; sends NEVER auto-failover.",
     "CHO": "the hub / address book; ALSO the Tethys SHIO of ZI",
     "ZI": "Tethys constant = CHO (same address)",
     "WorldChatSHIO": "ZHOU's SHIO (Fomalhaute label) \u2014 carries LogEvent world chat",

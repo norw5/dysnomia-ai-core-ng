@@ -58,6 +58,8 @@ export interface ReceiptLike {
   blockNumber: bigint | null;
   /** set on creation receipts — the deployed contract's address */
   contractAddress: string | null;
+  /** "selected RPC" or the fallback host that answered (session-84) */
+  source?: string;
 }
 
 export interface TokenMovement {

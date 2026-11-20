@@ -5,7 +5,8 @@ import { addr } from "@config/addresses";
 import { loadAbi } from "@/chain/abiLoad";
 import { parseAmountToDecimals } from "@/chain/deskMath";
 import { loadErc20Hold, _erc20MetaAbi } from "@/chain/moveReads";
-import { pickFn } from "@/agent/toolShared";
+import { outcomeSummary, pickFn } from "@/agent/toolShared";
+import type { GateOutcome } from "@/chain/txGate";
 import { toolByName, toolSpecs, type AgentToolContext } from "@/agent/tools";
 import { _erc20TransferAbi } from "@/agent/moveTools";
 
@@ -144,6 +145,47 @@ describe("catalog + selectors", () => {
     expect(toFunctionSelector(_erc20MetaAbi[3])).toBe(selector("name()"));
     const lau = await loadAbi("LAU.json");
     expect(toFunctionSelector(pickFn(lau, "Withdraw", 2))).toBe(selector("Withdraw(address,uint256)"));
+  });
+});
+
+describe("outcomeSummary — the session-84 receipt honesty", () => {
+  it("a sent tx with a receipt timeout is BROADCAST/unconfirmed, never a failure", () => {
+    const out = {
+      status: "sent",
+      envelope: {} as never,
+      txHash: "0x787cdc2867d74f0a0cd66b01dbc1385c92ef1ba3652120d8aa540957031cc139",
+      receipt: null,
+      receiptError: "Timed out while waiting for transaction to be confirmed.",
+      movements: [],
+      capBreaches: [],
+    } as unknown as GateOutcome;
+    const s = outcomeSummary(out);
+    expect(s.status).toBe("sent");
+    expect(s.confirmation).toBe("unconfirmed");
+    expect(String(s.note)).toContain("tx_status");
+    expect(String(s.note)).toContain("BROADCAST");
+  });
+
+  it("a confirmed receipt carries confirmation + the source it came from", () => {
+    const out = {
+      status: "sent",
+      envelope: {} as never,
+      txHash: "0xabc",
+      receipt: {
+        status: "success",
+        gasUsed: 1n,
+        logs: [],
+        blockNumber: 1n,
+        contractAddress: null,
+        source: "pulsechain-rpc.publicnode.com",
+      },
+      receiptError: null,
+      movements: [],
+      capBreaches: [],
+    } as unknown as GateOutcome;
+    const s = outcomeSummary(out);
+    expect(s.confirmation).toBe("confirmed");
+    expect(s.receiptSource).toBe("pulsechain-rpc.publicnode.com");
   });
 });
 
